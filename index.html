@@ -462,8 +462,8 @@
             <p>##搭建博客</p>
 <ol>
 <li>使用Git Bash进入一个安全的目录。  </li>
-<li>在GitHub上新建一个空repo，repo名称是 <strong>[你的github用户名.github.io]</strong></li>
-<li><figure class="highlight plain"><figcaption><span>install -g hexo-cli```，安装Hexo</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">4. ```Hexo init myBlog```,新建个目录并初始化  </span><br><span class="line">5. ```cd myBlog```  </span><br><span class="line">6. ```npm i```，安装所有模块。</span><br><span class="line">7. ```hexo new 博客章节名```，会看到一个md文件的路径。</span><br><span class="line">8. ```start xxxx.md```,编辑这个md文件，windows下直接进目录打开操作也行。</span><br><span class="line">9. 打开**_config.yml**，这个是**站点配置文件**，这里可以修改网站配置。  </span><br><span class="line">&gt; 把第6行的title改成想要的名字。</span><br><span class="line">&gt; 把第9行的author改成自己的名字。</span><br><span class="line">&gt; 把最后以行的type改成```type: git</span><br></pre></td></tr></table></figure>
+<li>在GitHub上新建一个空repo，repo名称是 <strong>[你的github用户名.github.io]</strong>  </li>
+<li><figure class="highlight plain"><figcaption><span>install -g hexo-cli```，安装Hexo   </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">4. ```Hexo init myBlog```,新建个目录并初始化  </span><br><span class="line">5. ```cd myBlog```  </span><br><span class="line">6. ```npm i```，安装所有模块。</span><br><span class="line">7. ```hexo new 博客章节名```，会看到一个md文件的路径。</span><br><span class="line">8. ```start xxxx.md```,编辑这个md文件，windows下直接进目录打开操作也行。</span><br><span class="line">9. 打开**_config.yml**，这个是**站点配置文件**，这里可以修改网站配置。  </span><br><span class="line">&gt; 把第6行的title改成想要的名字。</span><br><span class="line">&gt; 把第9行的author改成自己的名字。</span><br><span class="line">&gt; 把最后以行的type改成```type: git</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <blockquote>
@@ -619,14 +619,18 @@
           
             <p>##注册与登陆</p>
 <ol>
-<li>打开网址<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">2. 注册账号，登陆账号  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##配置github</span><br><span class="line">1. 前往```https://github.com/settings/keys```上添加新key。</span><br><span class="line">2. title随便写，由于我们没有key，所以要新建个key。</span><br><span class="line">3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</span><br><span class="line">4. 运行 ```cat ~/.ssh/id_rsa.pub```，得到一串东西，复制粘贴到key里，点击 Add SSH key</span><br><span class="line">5. 运行 ```ssh -T git@github.com```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##配置git</span><br><span class="line">依次运行</span><br><span class="line">&gt;```git config --global user.name “英文名”</span><br></pre></td></tr></table></figure></li>
+<li>打开网址“<a href="http://www.github.com”" target="_blank" rel="noopener">www.github.com”</a> </li>
+<li>注册账号，登陆账号  </li>
 </ol>
-<blockquote>
-<figure class="highlight plain"><figcaption><span>config --global user.email “邮箱”```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;```git config --global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<figure class="highlight plain"><figcaption><span>config --global core.quotepath false```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;```git config --global core.editor &quot;vim&quot;</span><br></pre></td></tr></table></figure>
-</blockquote>
+<p>##配置github</p>
+<ol>
+<li>前往<a href="https://github.com/settings/keys上添加新key。" target="_blank" rel="noopener">https://github.com/settings/keys上添加新key。</a></li>
+<li>title随便写，由于我们没有key，所以要新建个key。</li>
+<li>打开终端（Git Bash）输入<code>https://github.com/settings/keys</code>(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</li>
+<li>运行 <code>cat ~/.ssh/id_rsa.pub</code>，得到一串东西，复制粘贴到key里，点击 Add SSH key</li>
+<li>运行 <code>ssh -T git@github.com</code>  </li>
+</ol>
+<p>##配置git<br>依次运行<br>    git config –global user.name “英文名”<br>    git config –global user.email “邮箱”<br>    git config –global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）<br>    git config –global core.quotepath false<br>    git config –global core.editor “vim”</p>
 <p>##使用git的三种方法</p>
 <ol>
 <li><p>只在本地使用<br>初始化本地仓库<code>git init</code>，初始化后里面有个.git的文件夹<br>将变动文件添加到暂存区<code>git add 文件路径</code><br>正式提交变动文件，提交到.git仓库<code>git commit -m &quot;注释信息&quot;</code><br>如果有新的变动我们只需依次执行<code>git add xxx</code>和<code>git commit -m &quot;xxx&quot;</code>两个命令即可。<br>记住：<strong>先add再commit即可</strong><br>查看变更历史<code>git log</code>  </p>
