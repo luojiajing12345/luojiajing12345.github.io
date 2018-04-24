@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="##一.注册与登陆  打开网址123456782. 注册账号，登陆账号  ##二.配置github1. 前往```https://github.com/settings/keys```上添加新key。2. title随便写，由于我们没有key，所以要新建个key。3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一堆文件在/.s">
+<meta name="description" content="##注册与登陆  打开网址12345678910111213142. 注册账号，登陆账号  ##配置github1. 前往```https://github.com/settings/keys```上添加新key。2. title随便写，由于我们没有key，所以要新建个key。3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="github注册与使用">
 <meta property="og:url" content="http://yoursite.com/2018/04/21/github注册与使用/index.html">
 <meta property="og:site_name" content="心剑无痕">
-<meta property="og:description" content="##一.注册与登陆  打开网址123456782. 注册账号，登陆账号  ##二.配置github1. 前往```https://github.com/settings/keys```上添加新key。2. title随便写，由于我们没有key，所以要新建个key。3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一堆文件在/.s">
+<meta property="og:description" content="##注册与登陆  打开网址12345678910111213142. 注册账号，登陆账号  ##配置github1. 前往```https://github.com/settings/keys```上添加新key。2. title随便写，由于我们没有key，所以要新建个key。3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-23T13:47:01.183Z">
+<meta property="og:updated_time" content="2018-04-24T13:10:37.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github注册与使用">
-<meta name="twitter:description" content="##一.注册与登陆  打开网址123456782. 注册账号，登陆账号  ##二.配置github1. 前往```https://github.com/settings/keys```上添加新key。2. title随便写，由于我们没有key，所以要新建个key。3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一堆文件在/.s">
+<meta name="twitter:description" content="##注册与登陆  打开网址12345678910111213142. 注册账号，登陆账号  ##配置github1. 前往```https://github.com/settings/keys```上添加新key。2. title随便写，由于我们没有key，所以要新建个key。3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一">
 
 
 
@@ -329,14 +329,17 @@
       
 
       
-        <p>##一.注册与登陆</p>
+        <p>##注册与登陆</p>
 <ol>
-<li>打开网址<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2. 注册账号，登陆账号  </span><br><span class="line"></span><br><span class="line">##二.配置github</span><br><span class="line">1. 前往```https://github.com/settings/keys```上添加新key。</span><br><span class="line">2. title随便写，由于我们没有key，所以要新建个key。</span><br><span class="line">3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</span><br><span class="line">4. 运行 ```cat ~/.ssh/id_rsa.pub```，得到一串东西，复制粘贴到key里，点击 Add SSH key</span><br><span class="line">5. 运行 ```ssh -T git@github.com</span><br></pre></td></tr></table></figure></li>
+<li>打开网址<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">2. 注册账号，登陆账号  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##配置github</span><br><span class="line">1. 前往```https://github.com/settings/keys```上添加新key。</span><br><span class="line">2. title随便写，由于我们没有key，所以要新建个key。</span><br><span class="line">3. 打开终端（Git Bash）输入```https://github.com/settings/keys```(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</span><br><span class="line">4. 运行 ```cat ~/.ssh/id_rsa.pub```，得到一串东西，复制粘贴到key里，点击 Add SSH key</span><br><span class="line">5. 运行 ```ssh -T git@github.com```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##配置git</span><br><span class="line">依次运行</span><br><span class="line">&gt;```git config --global user.name “英文名”</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>##三.配置git<br>依次运行<br><figure class="highlight plain"><figcaption><span>config --global user.name “英文名”```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```git config --global user.email “邮箱”</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><figcaption><span>config --global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
-<p><code>git config --global core.editor &quot;vim&quot;</code></p>
-<p>##四.使用git的三种方法</p>
+<blockquote>
+<figure class="highlight plain"><figcaption><span>config --global user.email “邮箱”```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;```git config --global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><figcaption><span>config --global core.quotepath false```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;```git config --global core.editor &quot;vim&quot;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>##使用git的三种方法</p>
 <ol>
 <li><p>只在本地使用<br>初始化本地仓库<code>git init</code>，初始化后里面有个.git的文件夹<br>将变动文件添加到暂存区<code>git add 文件路径</code><br>正式提交变动文件，提交到.git仓库<code>git commit -m &quot;注释信息&quot;</code><br>如果有新的变动我们只需依次执行<code>git add xxx</code>和<code>git commit -m &quot;xxx&quot;</code>两个命令即可。<br>记住：<strong>先add再commit即可</strong><br>查看变更历史<code>git log</code>  </p>
 </li>
@@ -345,7 +348,7 @@
 <li><p>下载GitHub上的仓库<br>在GitHub上新建一个仓库（不是空仓库，要勾选Initialize那个按钮），仓库自带了README。<br>仓库有了几个文件了。<br>点击绿色按钮[clone or download],会看到一个弹出层。<br>确保弹出层里的地址是<strong>SSH地址</strong>，点击Use SSH按钮，然后复制这个地址。<br>打开Git Bash，进入一个目录后，运行<code>git clone 你刚才得到的以git@github.com开头的地址</code>,运行完会发现当前目录下多了个目录。<br>进入这个目录，运行<code>ls -la</code>，就会看到远程目录下的所有文件了，另外还会看到.git本地仓库。<br>这时可以添加文件，<code>git add</code>,然后<code>git aommit</code>了  </p>
 </li>
 </ol>
-<p>#五.如何上传更新<br>如果在本地目录有任何变动，只需按照以下顺序就能上传：</p>
+<p>#如何上传更新<br>如果在本地目录有任何变动，只需按照以下顺序就能上传：</p>
 <blockquote>
 <ol>
 <li>git add 文件路径</li>
@@ -354,7 +357,7 @@
 <li>git push（上传）</li>
 </ol>
 </blockquote>
-<p>##六.学习资源</p>
+<p>##学习资源</p>
 <ul>
 <li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">常用Git命令清单</a></li>
 <li><a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html" target="_blank" rel="noopener">读懂diff-阮一峰</a></li>
@@ -396,8 +399,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/24/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/24/Hexo+GitHub搭建博客/" rel="prev" title="Hexo+GitHub搭建博客和修改主题和绑定域名">
+                Hexo+GitHub搭建博客和修改主题和绑定域名 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
