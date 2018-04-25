@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="搭建博客 使用Git Bash进入一个安全的目录。   在GitHub上新建一个空repo，repo名称是 [你的github用户名.github.io]。  npm install -g hexo-cli，安装Hexo。      Hexo init myBlog,新建个目录并初始化     cd myBlog。      npm i，安装所有模块。    hexo new 博客章节名，会看到一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-25T00:11:36.808Z">
+<meta property="og:updated_time" content="2018-04-25T00:14:15.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+GitHub搭建博客和修改主题和绑定域名">
 <meta name="twitter:description" content="搭建博客 使用Git Bash进入一个安全的目录。   在GitHub上新建一个空repo，repo名称是 [你的github用户名.github.io]。  npm install -g hexo-cli，安装Hexo。      Hexo init myBlog,新建个目录并初始化     cd myBlog。      npm i，安装所有模块。    hexo new 博客章节名，会看到一">
@@ -348,18 +348,13 @@
 <li><p><code>start xxxx.md</code>,编辑这个md文件，windows下直接进目录打开操作也行。</p>
 </li>
 <li>打开<strong>_config.yml</strong>，这个是<strong>站点配置文件</strong>，这里可以修改网站配置。  <blockquote>
-<p>把第6行的title改成想要的名字。<br>把第9行的author改成自己的名字。<br>把最后以行的type改成<code>type: git</code>。  </p>
+<p>把第6行的title改成想要的名字。<br>把第9行的author改成自己的名字。<br>把最后以行的type改成<code>type: git</code>。<br>在最后一行后面新增一行，左边与type平齐，加上一行<code>repo: 仓库地址</code>，（请将仓库地址改为「你的用户名.github.io」对应的仓库地址，仓库地址以 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: 开头的）。<br>repo和type后面都有个空格。</p>
 </blockquote>
 </li>
-</ol>
-<blockquote>
-<p>在最后一行后面新增一行，左边与type平齐，加上一行<code>repo: 仓库地址</code>（请将仓库地址改为「你的用户名.github.io」对应的仓库地址，仓库地址以 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>: 开头的）<br>repo和type后面都有个空格</p>
-<ol start="10">
-<li><code>npm install hexo-deployer-git --save</code>，安装git部署插件  </li>
-</ol>
-</blockquote>
-<ol start="11">
-<li><code>hexo deploy</code>,</li>
+<li><p><code>npm install hexo-deployer-git --save</code>，安装git部署插件  </p>
+</li>
+<li><p><code>hexo deploy</code>,</p>
+</li>
 <li>进入[你的用户名.github.io]对应的repo，打开GitHub Pages功能，如果打开了，就直接点击预览链接就能看到博客了。</li>
 </ol>
 <h2 id="以后上传博客的方法"><a href="#以后上传博客的方法" class="headerlink" title="以后上传博客的方法"></a>以后上传博客的方法</h2><ol>
@@ -438,8 +433,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/24/page/" rel="prev" title="page">
-                page <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/24/脚本/" rel="prev" title="脚本">
+                脚本 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +519,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -532,6 +527,15 @@
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
