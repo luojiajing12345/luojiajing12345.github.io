@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="HTML5的内容类型 内嵌：在文档中添加其他类型的内容，如audio、video、canvas和iframe等。流：在文档中和应用的body中使用的元素，如form、h1和small等标题：段落标题，如h1、h2和group等交互：与用户交互的内容，如音频和视频的控件、button和textarea等元数据：通常出现在页面的head中，设置页面其他部分的表现和行为，如script、style和ti">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T01:55:45.783Z">
+<meta property="og:updated_time" content="2018-04-26T02:38:27.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML常用标签">
 <meta name="twitter:description" content="HTML5的内容类型 内嵌：在文档中添加其他类型的内容，如audio、video、canvas和iframe等。流：在文档中和应用的body中使用的元素，如form、h1和small等标题：段落标题，如h1、h2和group等交互：与用户交互的内容，如音频和视频的控件、button和textarea等元数据：通常出现在页面的head中，设置页面其他部分的表现和行为，如script、style和ti">
@@ -345,7 +345,49 @@
 <p>&lt;p>:定义段落。<br>&lt;br>: 换行。</p>
 <p>&lt;hr>: 定义水平线。<br>&lt;!–…-->:定义注释。</p>
 </blockquote>
+<h3 id="iframe标签"><a href="#iframe标签" class="headerlink" title="iframe标签"></a>iframe标签</h3><p>嵌套页面，即在当前页面再打开一个页面。<br><code>&lt;iframe src=&quot;https://www.baidu.com&quot; name=&quot;xxx&quot;&gt;&lt;/iframe&gt;</code></p>
+<h3 id="a标签与target属性"><a href="#a标签与target属性" class="headerlink" title="a标签与target属性"></a>a标签与target属性</h3><ol>
+<li><p>a标签是用来跳转页面的（GET 请求）<br>a标签的target可选属性有4个。<code>_blank、_self（默认）、_parent、_top</code>。  </p>
+<blockquote>
+<p><a href="http://qq.com" target="_blank">QQ</a>（点击后会在一个新的标签页面里打开）<br><a href="http://qq.com" target="_self">QQ</a> (点击后会在当前页面打开)<br><a href="http://qq.com" target="_parent">QQ</a>（点击后会在父级页面打开）<br><a href="http://qq.com" target="_top">QQ</a> （点击后会在最顶级页面打开）  </p>
+</blockquote>
+</li>
+<li><p>a标签的href<br><code>&lt;a href=&quot;//qq.com&quot;&gt;QQ&lt;/a&gt;</code>href里写的是无协议地址，意思是当前用的是http协议就自动继承http协议，用的是file就会用file协议。<br><code>&lt;a href=&quot;?name=pyz&quot;&gt;qq&lt;/a&gt;``点击之后会在当前页面发起?name=pyz的请求,相当于补充了个**路径**。</code><a href="#sss">qq</a><code>点击之后不会发起请求，因为**锚点**仅仅是在当前页面内的跳转。</code><a href="/..">link</a><code>`</code>标签被点击后浏览器会发起GET / HTTP/1.1的请求，路径还是/，因为/已经是根目录，无法再往前退。</p>
+</li>
+<li><p>伪协议<br>用javascript来代替协议，叫伪协议。<br><code>&lt;a href=&quot;javascript:;&quot;&gt;qq&lt;/a&gt;</code>一般用于点击a链接后不发生任何事，如果<code>href=&quot;#&quot;</code>，那么点击后会刷新页面。  </p>
+</li>
+</ol>
+<p><code>&lt;a href=&quot;javascript:alert(1)&quot;;&gt;qq&lt;/a&gt;</code>点击之后会弹出1。  </p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a><form>标签</form></h3><p>跳转页面（POST请求）</p>
+<form>里必须要有一个sumbmit按钮才能提交。<br><form>用input按钮的话，想提交一定要有name值。例：<br>&gt; <form action="users?name=pyz" method="post"><br><label>用户名&lt;input type=”text” <strong>name=”username”</strong>&gt;</label>    //input要被提及的话一定要有那么值<br><label>密码&lt;input type=”password” <strong>name=”password”</strong>&gt;</label><br><input type="submit" value="提交"><br></form>  
 
+<p><label>直接包在input外面用</label></p>
+<p><form>例的target和<a>里的用法是一样的  </a></form></p>
+<p><form>里如果没有 <code>&lt;input type=&quot;submit&quot;&gt;</code>,而有<button>，则</button><button>会默认为submit，若写成这样 <code>&lt;button type=&quot;button&quot;&gt;button&lt;/button&gt;</code> 则不会成为submit，一个form里必须要有一个submit按钮才能提交。</button></form></p>
+<h3 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h3><ol>
+<li><p>checkbox</p>
+<blockquote>
+<label><input type="checkbox" name="apple" value="yes">苹果</label>
+</blockquote>
+<p><label><input type="checkbox" name="banana" value="yes">香蕉</label><br>多选，一定要有个name值才能提交上去。</p>
+</li>
+<li><p>radio</p>
+<blockquote>
+<p>1<br>2</p>
+</blockquote>
+<p><label><input type="radio" name="sexual">男</label><br><label><input type="radio" name="sexual">女</label><br>单选  </p>
+</li>
+</ol>
+<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><blockquote>
+<select name="group" multiple><br>    <option value="">-</option><br>    <option value="1">第一组</option><br>    <option value="2">第二组</option><br>    <option value="3" disabled>第三组</option><br>    <option value="4" selected>第四组</option><br></select>  
+</blockquote>
+<p>disabled属性意味着不能被选中，selected意思是默认选中的，multiple意思是可以同时选中几项 。</p>
+<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p>大文本框</p>
+<blockquote>
+<p><textarea style="resize: none; width: 200px; height: 100px;" name="hobbies"></textarea><br>resize若不设置为none，则用户可以肆意更改输入框的大小。  </p>
+</blockquote>
+<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><p>表格，下面有4个字标签为colgroup（表格中供格式化的列组），thead（表头内容），tbody（主题内容），tfoot（表底部内容）。<br>再下面为th(表头单元格)，tr（表行），td（表单元格）</p>
+</form></form>
       
     </div>
     
@@ -465,7 +507,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -478,7 +520,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -511,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5的内容类型"><span class="nav-number">1.</span> <span class="nav-text">HTML5的内容类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5的基础元素"><span class="nav-number">2.</span> <span class="nav-text">HTML5的基础元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明的重要性："><span class="nav-number">3.</span> <span class="nav-text">声明的重要性：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5的内容类型"><span class="nav-number">1.</span> <span class="nav-text">HTML5的内容类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5的基础元素"><span class="nav-number">2.</span> <span class="nav-text">HTML5的基础元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明的重要性："><span class="nav-number">3.</span> <span class="nav-text">声明的重要性：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iframe标签"><span class="nav-number">3.1.</span> <span class="nav-text">iframe标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a标签与target属性"><span class="nav-number">3.2.</span> <span class="nav-text">a标签与target属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">3.3.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#input标签"><span class="nav-number">3.4.</span> <span class="nav-text">input标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select"><span class="nav-number">3.5.</span> <span class="nav-text">select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#textarea"><span class="nav-number">3.6.</span> <span class="nav-text">textarea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table"><span class="nav-number">3.7.</span> <span class="nav-text">table</span></a></li></ol></li></ol></div>
             
 
           </div>

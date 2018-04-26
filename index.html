@@ -249,6 +249,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/HTML/" itemprop="url">HTML</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T20:55:39+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/25/HTML/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTML/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>HTML的版本(W3C组织制定规范)<blockquote>
+<p>HTML 4.01<br>XHTML<br>HTML 5<br>HTML 5.1</p>
+</blockquote>
+</li>
+<li>规范文档（Specifications）<blockquote>
+<p>由W3C写文档<br>W3C根据浏览器的实际情况总结文档，并不是凭空想象。</p>
+</blockquote>
+</li>
+<li>DOCTYPE<blockquote>
+<p>用来选择文档类型</p>
+</blockquote>
+</li>
+<li>html/head/body，文档/头/身体</li>
+<li>常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg<blockquote>
+<p>基本上，知道标签对应的单词的意思，就知道标签怎么用了（语义化）<br>除了div和span，其他标签都有默认样式。div和span是没有语义的。</p>
+</blockquote>
+</li>
+<li>可替换标签，宽和高由里面的内容决定。如：<blockquote>
+<p><img>、<video>、<input></video></p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/Flag/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -460,7 +612,17 @@
       
         
           
-            
+            <h3 id="1xx消息"><a href="#1xx消息" class="headerlink" title="1xx消息"></a>1xx消息</h3><hr>
+<p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应式临时响应，只包含状态航和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。  </p>
+<h3 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h3><hr>
+<p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</p>
+<h3 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h3><hr>
+<p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这类状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。</p>
+<h3 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h3><hr>
+<p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个HEAD请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。</p>
+<h1 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h1><hr>
+<p>表示服务器无法完成明显有效的请求。这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</p>
+
           
         
       
@@ -1307,7 +1469,49 @@
 <p>&lt;p>:定义段落。<br>&lt;br>: 换行。</p>
 <p>&lt;hr>: 定义水平线。<br>&lt;!–…-->:定义注释。</p>
 </blockquote>
+<h3 id="iframe标签"><a href="#iframe标签" class="headerlink" title="iframe标签"></a>iframe标签</h3><p>嵌套页面，即在当前页面再打开一个页面。<br><code>&lt;iframe src=&quot;https://www.baidu.com&quot; name=&quot;xxx&quot;&gt;&lt;/iframe&gt;</code></p>
+<h3 id="a标签与target属性"><a href="#a标签与target属性" class="headerlink" title="a标签与target属性"></a>a标签与target属性</h3><ol>
+<li><p>a标签是用来跳转页面的（GET 请求）<br>a标签的target可选属性有4个。<code>_blank、_self（默认）、_parent、_top</code>。  </p>
+<blockquote>
+<p><a href="http://qq.com" target="_blank">QQ</a>（点击后会在一个新的标签页面里打开）<br><a href="http://qq.com" target="_self">QQ</a> (点击后会在当前页面打开)<br><a href="http://qq.com" target="_parent">QQ</a>（点击后会在父级页面打开）<br><a href="http://qq.com" target="_top">QQ</a> （点击后会在最顶级页面打开）  </p>
+</blockquote>
+</li>
+<li><p>a标签的href<br><code>&lt;a href=&quot;//qq.com&quot;&gt;QQ&lt;/a&gt;</code>href里写的是无协议地址，意思是当前用的是http协议就自动继承http协议，用的是file就会用file协议。<br><code>&lt;a href=&quot;?name=pyz&quot;&gt;qq&lt;/a&gt;``点击之后会在当前页面发起?name=pyz的请求,相当于补充了个**路径**。</code><a href="#sss">qq</a><code>点击之后不会发起请求，因为**锚点**仅仅是在当前页面内的跳转。</code><a href="/..">link</a><code>`</code>标签被点击后浏览器会发起GET / HTTP/1.1的请求，路径还是/，因为/已经是根目录，无法再往前退。</p>
+</li>
+<li><p>伪协议<br>用javascript来代替协议，叫伪协议。<br><code>&lt;a href=&quot;javascript:;&quot;&gt;qq&lt;/a&gt;</code>一般用于点击a链接后不发生任何事，如果<code>href=&quot;#&quot;</code>，那么点击后会刷新页面。  </p>
+</li>
+</ol>
+<p><code>&lt;a href=&quot;javascript:alert(1)&quot;;&gt;qq&lt;/a&gt;</code>点击之后会弹出1。  </p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a><form>标签</form></h3><p>跳转页面（POST请求）</p>
+<form>里必须要有一个sumbmit按钮才能提交。<br><form>用input按钮的话，想提交一定要有name值。例：<br>&gt; <form action="users?name=pyz" method="post"><br><label>用户名&lt;input type=”text” <strong>name=”username”</strong>&gt;</label>    //input要被提及的话一定要有那么值<br><label>密码&lt;input type=”password” <strong>name=”password”</strong>&gt;</label><br><input type="submit" value="提交"><br></form>  
 
+<p><label>直接包在input外面用</label></p>
+<p><form>例的target和<a>里的用法是一样的  </a></form></p>
+<p><form>里如果没有 <code>&lt;input type=&quot;submit&quot;&gt;</code>,而有<button>，则</button><button>会默认为submit，若写成这样 <code>&lt;button type=&quot;button&quot;&gt;button&lt;/button&gt;</code> 则不会成为submit，一个form里必须要有一个submit按钮才能提交。</button></form></p>
+<h3 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h3><ol>
+<li><p>checkbox</p>
+<blockquote>
+<label><input type="checkbox" name="apple" value="yes">苹果</label>
+</blockquote>
+<p><label><input type="checkbox" name="banana" value="yes">香蕉</label><br>多选，一定要有个name值才能提交上去。</p>
+</li>
+<li><p>radio</p>
+<blockquote>
+<p>1<br>2</p>
+</blockquote>
+<p><label><input type="radio" name="sexual">男</label><br><label><input type="radio" name="sexual">女</label><br>单选  </p>
+</li>
+</ol>
+<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><blockquote>
+<select name="group" multiple><br>    <option value="">-</option><br>    <option value="1">第一组</option><br>    <option value="2">第二组</option><br>    <option value="3" disabled>第三组</option><br>    <option value="4" selected>第四组</option><br></select>  
+</blockquote>
+<p>disabled属性意味着不能被选中，selected意思是默认选中的，multiple意思是可以同时选中几项 。</p>
+<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p>大文本框</p>
+<blockquote>
+<p><textarea style="resize: none; width: 200px; height: 100px;" name="hobbies"></textarea><br>resize若不设置为none，则用户可以肆意更改输入框的大小。  </p>
+</blockquote>
+<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><p>表格，下面有4个字标签为colgroup（表格中供格式化的列组），thead（表头内容），tbody（主题内容），tfoot（表底部内容）。<br>再下面为th(表头单元格)，tr（表行），td（表单元格）</p>
+</form></form>
           
         
       
@@ -1689,172 +1893,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/开始/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/开始/" itemprop="url">开始</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T19:29:31+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/21/开始/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/开始/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#内容</p>
-<ul>
-<li>V1.0：一个在线网页（HTML+CSS）</li>
-<li>V2.0: 支持手机端查看，附加一个画板功能</li>
-<li>v3.0: 添加轮播、Tab、CSS3动画等特效。</li>
-<li>v4.0：添加留言板功能</li>
-<li>v5.0：添加作品：仿站、时钟、皮卡丘</li>
-<li>v6.0：添加JS作品：DOM库、MVVM库</li>
-<li>v7.0：使用Vue</li>
-<li>v8.0：使用React</li>
-</ul>
-<hr>
-<p>###C-R-M 学习法</p>
-<ul>
-<li>Copy 抄——mdn</li>
-<li>Run 运行——js.jirengu.com</li>
-<li>Modify 修改——自学，尝试</li>
-</ul>
-<hr>
-<p>###学习资料</p>
-<ul>
-<li>HTML - MDN</li>
-<li>CSS - MDN + CSS Tricks</li>
-<li>JavaScript - MDN + <a href="http://javascript.ruanyifeng.com" target="_blank" rel="noopener">阮一峰的书</a></li>
-<li>HTTP - frankfang/nodejs-test</li>
-<li>其他 - GitHub</li>
-</ul>
-<p>###知识分类</p>
-<ol>
-<li>工具使用知识</li>
-<li>概念知识（名词的意思，css先用再学，js线理解概念再用。）</li>
-<li>工程实践知识（实践出来的知识，例如自己容易写错的单词，多写多总结）</li>
-<li>经验（人码合一，<strong>总结</strong>输出）</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1898,7 +1943,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1911,7 +1956,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
