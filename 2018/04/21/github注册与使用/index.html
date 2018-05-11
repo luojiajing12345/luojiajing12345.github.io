@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="注册与登陆 打开网址“www.github.com”  注册账号，登陆账号    配置github 前往https://github.com/settings/keys上添加新key。 title随便写，由于我们没有key，所以要新建个key。 打开终端（Git Bash）输入https://github.com/settings/keys(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，">
+<meta name="description" content="注册与登陆 打开网址“www.github.com”  注册账号，登陆账号    配置github 前往https://github.com/settings/keys上添加新key。 title随便写，由于我们没有key，所以要新建个key。 打开终端（Git Bash）输入ssh-keygen -t rsa -b 4096 -C &amp;quot;你的邮箱&amp;quot;(生成一堆文件在/.ssh目录下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="github注册与使用">
 <meta property="og:url" content="http://yoursite.com/2018/04/21/github注册与使用/index.html">
 <meta property="og:site_name" content="心剑无痕">
-<meta property="og:description" content="注册与登陆 打开网址“www.github.com”  注册账号，登陆账号    配置github 前往https://github.com/settings/keys上添加新key。 title随便写，由于我们没有key，所以要新建个key。 打开终端（Git Bash）输入https://github.com/settings/keys(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，">
+<meta property="og:description" content="注册与登陆 打开网址“www.github.com”  注册账号，登陆账号    配置github 前往https://github.com/settings/keys上添加新key。 title随便写，由于我们没有key，所以要新建个key。 打开终端（Git Bash）输入ssh-keygen -t rsa -b 4096 -C &amp;quot;你的邮箱&amp;quot;(生成一堆文件在/.ssh目录下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-24T23:59:56.841Z">
+<meta property="og:updated_time" content="2018-05-03T09:40:49.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github注册与使用">
-<meta name="twitter:description" content="注册与登陆 打开网址“www.github.com”  注册账号，登陆账号    配置github 前往https://github.com/settings/keys上添加新key。 title随便写，由于我们没有key，所以要新建个key。 打开终端（Git Bash）输入https://github.com/settings/keys(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，">
+<meta name="twitter:description" content="注册与登陆 打开网址“www.github.com”  注册账号，登陆账号    配置github 前往https://github.com/settings/keys上添加新key。 title随便写，由于我们没有key，所以要新建个key。 打开终端（Git Bash）输入ssh-keygen -t rsa -b 4096 -C &amp;quot;你的邮箱&amp;quot;(生成一堆文件在/.ssh目录下">
 
 
 
@@ -336,11 +336,11 @@
 <h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><ol>
 <li>前往<a href="https://github.com/settings/keys上添加新key。" target="_blank" rel="noopener">https://github.com/settings/keys上添加新key。</a></li>
 <li>title随便写，由于我们没有key，所以要新建个key。</li>
-<li>打开终端（Git Bash）输入<code>https://github.com/settings/keys</code>(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</li>
+<li>打开终端（Git Bash）输入<code>ssh-keygen -t rsa -b 4096 -C &quot;你的邮箱&quot;</code>(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</li>
 <li>运行 <code>cat ~/.ssh/id_rsa.pub</code>，得到一串东西，复制粘贴到key里，点击 Add SSH key</li>
 <li>运行 <code>ssh -T git@github.com</code>  </li>
 </ol>
-<h2 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h2><p>依次运行<br>    git config –global user.name “英文名”<br>    git config –global user.email “邮箱”<br>    git config –global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）<br>    git config –global core.quotepath false<br>    git config –global core.editor “vim”</p>
+<h2 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h2><p>依次运行<br>    git config --global user.name “英文名”<br>    git config --global user.email “邮箱”<br>    git config --global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）<br>    git config --global core.quotepath false<br>    git config --global core.editor “vim”<br>global前面两个-</p>
 <h2 id="使用git的三种方法"><a href="#使用git的三种方法" class="headerlink" title="使用git的三种方法"></a>使用git的三种方法</h2><ol>
 <li>只在本地使用<br>初始化本地仓库<code>git init</code>，初始化后里面有个.git的文件夹  </li>
 </ol>
@@ -492,7 +492,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

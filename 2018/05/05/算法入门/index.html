@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="结构化编程结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。满足下面3个语句，就是结构化编程。  一行一行执行 有条件控制语句if…else… 有循环控制语句wh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法入门">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/算法入门/index.html">
+<meta property="og:site_name" content="心剑无痕">
+<meta property="og:description" content="结构化编程结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。满足下面3个语句，就是结构化编程。  一行一行执行 有条件控制语句if…else… 有循环控制语句wh">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-07T00:22:51.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法入门">
+<meta name="twitter:description" content="结构化编程结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。满足下面3个语句，就是结构化编程。  一行一行执行 有条件控制语句if…else… 有循环控制语句wh">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/05/算法入门/"/>
+
+
+
+
+
+  <title>算法入门 | 心剑无痕</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">心剑无痕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archive">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            archive
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/算法入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-05T20:52:42+08:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/05/算法入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/05/算法入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="结构化编程"><a href="#结构化编程" class="headerlink" title="结构化编程"></a>结构化编程</h3><p>结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。<br>满足下面3个语句，就是结构化编程。</p>
+<ol>
+<li>一行一行执行</li>
+<li>有条件控制语句if…else…</li>
+<li>有循环控制语句while(exp)do…</li>
+</ol>
+<h3 id="什么是算法"><a href="#什么是算法" class="headerlink" title="什么是算法"></a>什么是算法</h3><p>在高德纳的著作《计算机程序设计艺术》里对算法的特征归纳：</p>
+<ul>
+<li>输入：一个算法必须有零个或以上输入量。</li>
+<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
+<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地匹配要求或期望，通常要求实际运行结果的确定的。</li>
+<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态，有限个输入符号和有限个穿衣函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
+<li>有效性：又称可行性。能够实现，算法中描述的操作都可以通过已经实现的基本运算执行有限次来实现。</li>
+</ul>
+<h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><p>就是数据的结构。<br>一般来说这样的：</p>
+<ol>
+<li>我们要解决一个跟数据相关的问题。  </li>
+<li>分析这个问题，相处对应的数据结构</li>
+<li><strong>分析数据结构，想出算法</strong><blockquote>
+<p>数据结构和算法是相互依存，不可分开的。<br>学习完排序算法，就能了解常见的数据结构。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="算法大分类"><a href="#算法大分类" class="headerlink" title="算法大分类"></a>算法大分类</h3><ul>
+<li>分治法：把一个问题分区成互相独立的多个部分分别求解的思路。这种求解思路带来的好处之一是便于进行并行计算。（例如把国家分为省，然后把省分为市这样一路分，每个地方不一样的管理方式）</li>
+<li>动态规则法：当问题的整体最优解就是有局部最优解组成的时候，经常采用的一种方式。（就目前的情况来看，如果当前是最好的，那么就用这个。）</li>
+<li>贪婪算法： 常见的近似求解思路。当问题的整体最优解不是（或无法证明是）由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。（短视算法，选择当前较好的方法）</li>
+<li>线性规划法：</li>
+<li>简并法：把一个问题通过逻辑或数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。</li>
+</ul>
+<p><strong>前端主要使用分治法————分而治之</strong></p>
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p><strong>冒泡排序</strong>（体育委员两两对比法）：例如要把3、5、9、1、7、6这六个数字从左往右为以小到大。</p>
+<ol>
+<li>对比第一个和第二个，把小的放左边，大的放右边。</li>
+<li>然后对比第二个和第三个，也是小的放左边，大的放右边。</li>
+<li>就这样依次对比，比完第五个和第六个。此时的排序为3、5、1、7、6、9。此时最大的值已固定。</li>
+<li>依照前面的方法，但最后一位数不用再比，此时的排序为3、1、5、6、7、9。此时后两位二位已固定。</li>
+<li>再按照前面的方法，最后两位不用比，此时的排序为1、3、5、6、7、9。此时后三位已固定。</li>
+<li>再按照前面的方法，后3位不用比，此时排序为1、3、5、6、7、9.此时后四位已固定。</li>
+<li>再按照前面的方法，后四位不用比，此时排序为1、3、5、6、7、9.此时后五位已固定，</li>
+<li>那么这几个数字从左往右从小到大为1、3、5、6、7、9.</li>
+</ol>
+<p><strong>选择排序</strong>（体育老师一指禅法）：例如要把6、3、2、4、5、1这6个数字从左往右以小到大。</p>
+<ol>
+<li>找出个最小的，把这6个数字相互比较，找出最小的数字也就是1，把跟最前面的数字换位置，得到的排序为1、3、2、4、5、6，此时最小值已固定。比较方法，例：6和3比，3小；3和2比，2小；2和4比。4小，这样。</li>
+<li>从后五位中选出最小的，也就是2，和排在第二位的3换位置，得到的为1、2、3、4、5、6，此时前二位已固定。</li>
+<li>从后四位中选出最小的，也就是3,3本身排在第三位，就不用换位置了，此时排序为1、2、3、4、5、6，前三位已固定。</li>
+<li>从后三位中选出最小的，也就是4,4本身排在第四位，就不用换位置了，此时排序为1、2、3、4、5、6，前四位已固定。</li>
+<li>从后二位中选出最小的，也就是5,5本身排在第五位，就不用换位置了，此时排序为1、2、3、4、5、6，前五位已固定。</li>
+<li>此时得到的排序就是想要的排序了。</li>
+</ol>
+<p><strong>插入排序</strong>（起扑克牌法）例如要把5、6、4、3、2、1这6个数字从左往右以小到大。</p>
+<ol>
+<li>把第一个数字，也就是5（第一张扑克牌），拿到手里。此时排序为5.</li>
+<li>拿到第二个，也就是6，对比手中的5，发现比5大，把6放5右边。此时排序5、6.</li>
+<li>拿到第三个，也就是4，对比手中的，发现比6小，然后有比5小，把4放5左边。此时排序4、5、6.</li>
+<li>拿到第四个，也就是3，对比手中的，发现比4、5、6都小，把3放最左边。此时排序3、4、5、6.</li>
+<li>拿到第五个，也就是2，对比手中的，发现比3、4、5、6都小，把2放最左边。此时排序2、3、4、5、6.</li>
+<li>拿到最后一个，也就是1，对比手中的，发现比2、3、4、5、6都小，把1放最左边，此时排序1、2、3、4、5、6.</li>
+<li>此时得到想要的排序1、2、3、4、5、6.</li>
+</ol>
+<p><strong>桶排序</strong>（强迫症受扑克牌法） 例如地上有4个A，4个2,4个K，4个3，要把它们收集起来。<br>随便捡一个，例如捡到A，把A放一边放好，再捡到2，又放一边放好，再捡到A，放到A放的地方叠起来，就一直这样，相同的放一起，不同的分开放。<strong>优点：速度最快，因为不用对比。缺点：需要较大的存放空间</strong></p>
+<p><strong>快速排序</strong> 例如要把13、2、60、0、1、32、40、9、6这9个数字从左往右以小到大排。</p>
+<ol>
+<li>以13为中心，比它小的放左边，大的放右边。此时的排序为2、0、1、9、6、13、60、32、40。此时13已结确定位置。</li>
+<li>以2为中心，和13前面的另外几个数字对比，比它小的左边，大的右边。以60为中心，和13后面的另外几个数字对比，比它小的放左边，大的放右边。<strong>因为对比的数少很多，所以节省很多时间</strong>,此时的排序为，0、1、2、9、6、13、32、40、60。此时2,13,60位置已固定。</li>
+<li>以0为中心，和2前面的数字对比，比它小的放左边，大的放右边。以9为中心，和2后面13前面的数字作对比，比它小的放左边，比它大的放右边。以32为中心，和13后面60前面的数字对比，比它小的放左边，大的放右边。此时的排序为0、1、2、6、9、13、32、40、60。此时所有数字都以固定</li>
+<li>此时得到想要的排序0、1、2、6、9、13、32、40、60。</li>
+</ol>
+<p><strong>快速排序之所以快，是因为每次对比过后，都缺少一半对比的东西，减少很多对比时间。</strong><br><strong>快排有时也不快，例如每次选的中心要么是最大的要么是最小的，所有数字都跑到一边去了的时候</strong>例：654321，选了6，然后选了5，以此类推。解决此类的方法是随机选个数字，所以尽量使用<strong>随机快排</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/css布局与定位/" rel="next" title="css布局与定位">
+                <i class="fa fa-chevron-left"></i> css布局与定位
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/07/数据结构/" rel="prev" title="数据结构">
+                数据结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/05/05/算法入门/"
+           data-title="算法入门" data-url="http://yoursite.com/2018/05/05/算法入门/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">罗嘉嘉</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构化编程"><span class="nav-number">1.</span> <span class="nav-text">结构化编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是算法"><span class="nav-number">2.</span> <span class="nav-text">什么是算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据结构"><span class="nav-number">3.</span> <span class="nav-text">什么是数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法大分类"><span class="nav-number">4.</span> <span class="nav-text">算法大分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序算法"><span class="nav-number">5.</span> <span class="nav-text">排序算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">罗嘉嘉</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

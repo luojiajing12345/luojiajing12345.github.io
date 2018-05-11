@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="design," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##高度是由什么决定的？ 内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。例如把span里的文字设为100px">
+<meta name="keywords" content="design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css布局与定位">
+<meta property="og:url" content="http://yoursite.com/2018/04/27/css布局与定位/index.html">
+<meta property="og:site_name" content="心剑无痕">
+<meta property="og:description" content="##高度是由什么决定的？ 内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。例如把span里的文字设为100px">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-02T07:53:16.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css布局与定位">
+<meta name="twitter:description" content="##高度是由什么决定的？ 内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。例如把span里的文字设为100px">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/27/css布局与定位/"/>
+
+
+
+
+
+  <title>css布局与定位 | 心剑无痕</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">心剑无痕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archive">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            archive
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/css布局与定位/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css布局与定位</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T14:59:23+08:00">
+                2018-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/27/css布局与定位/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/27/css布局与定位/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##高度是由什么决定的？</p>
+<p><strong>内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同</strong><br>字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。<br>把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。<br>例如把span里的文字设为100px，那么span的高度会比100px高，因为会有个<strong>建议行高</strong>，每种字体的默认行高不一样。  </p>
+<pre><code class="line-height```能使文字自动垂直居中">
+**块级元素:高度有其内部文档流元素的高度总和决定。决定，但不相等。**（假设body里什么都没有，那么他的高度是0（只有个回车不算））
+
+##文档流是什么？
+文档内元素的流动方向。
+**内联元素从左往右流，如果流动遇到阻碍，那就换行继续从左往右流动。**   
+ 如果一个元素例如&lt;span&gt;，中间类截断，假设这个元素有加边框，那么那个元素会被分开，但还是一个元素，边框也还是一个，只是头在第一行，身体在第二行。  
+ 如果被截断的是英文单词，那么英文单词并不会换行，会缩到里面去。因为中文每个字是一个东西，而英文单词也是一个东西，所以默认不会被分开。如果要想使其可以被截断：  
+ &gt; 添加css属性:```word-break:break-all
+</code></pre>
+<p><strong>块级元素从上往下流，每一块都占一行，新的一块换新一行。</strong><br>把块级元素也变成从左往右流：<code>display：inline-block</code>（不推荐使用，建议用floot浮动）</p>
+<h2 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position fixed"></a>position fixed</h2><p>position属性用于指定一个元素在文档中的定位方式。<br>相对定位：<code>relative</code>。<br>绝对定位：<code>absolute</code>（基于祖先元素定位）和<code>fixed</code>(基于屏幕视口定位，元素位置在屏幕滚动时不会改变，会创建新的层叠上下文，脱离文档流)。<br>以下是基于屏幕左上角视口定位，创建新的层叠上下文</p>
+<blockquote>
+<p>div {<br>    position fixed;<br>    top 0;<br>    left 0;<br>}  </p>
+</blockquote>
+<p><strong>脱离文档流，使用<code>position fixed</code>后，该元素会脱离文档流，脱离文档流后，其父级元素的高度就不受其影响了，因为块元素的高度为其内部文档流高度总和，脱离后就没关系了</strong><br>当使用<code>position fixd</code>后，此元素就不会往外扩展了，它有多大，就占用多大范围。</p>
+<h2 id="css三角形"><a href="#css三角形" class="headerlink" title="css三角形"></a>css三角形</h2><ol>
+<li><p>使一个背景图片变暗，放一个div在图片的div里，高度设置成一样，宽度不设置（它会自适应），然后把这个div的背景色设置成黑色，然后使其半透明。<br>rgba()允许设定一个颜色的透明度，0=透明，1=不透明。</p>
+<blockquote>
+<p>rgba(255,0,0,0.1) /<em>百分之10红色透明</em>/<br>rgba(255,0,0,0.5) /<em>百分之50红色透明</em>/<br>rgba(255,0,0,1) /<em>不透明，显示全红</em>/  </p>
+</blockquote>
+</li>
+<li><p>背景图片居中并按比例缩放<br><code>background-position: center center</code>第一个为水平居中，第二个是垂直居中。<br><code>background-size: cover</code>盖住所有面积，并按比例缩放。</p>
+</li>
+<li><p>宽度与最大宽度。<br>假设设置一个div的宽度为1000px，<code>width:1000px</code>如果屏幕被缩小到小于1000px的时候，不会出现自适应，还是1000px，会出现一个滚动条，如果屏幕大于1000px的时候，它也是1000px。<br>假设设置一个div的最大宽度为1000px，<code>max-width:1000px</code>如果屏幕被缩小到小于1000px的时候，那么它就会自适应，如果大于1000px的时候，它最大就1000px。</p>
+</li>
+<li><p>修改span（内联元素）宽高<br>内联元素是不接受修改宽高的，要把它修改为行内块元素<code>display:inline-block</code>,它就接受宽高了。<br><strong>并不推荐直接设置宽高，因为如果修改里面的内容，长度不一样的话，显示会出问题，建议使用padding，这样盒子没有固定宽度的话，增加了内容宽度也会增加，实现自适应。但为了防止不同浏览器出现不一样的高，我们可以使用<code>line-height</code>固定一下高度</strong>   </p>
+</li>
+<li><p>画三角形</p>
+<blockquote>
+<p>写个div，然后里面没有内容，就是<code>height：0px</code>，<code>width: 0px</code>。<br>然后设置一个大边框<code>border: 10px solid</code>。<br>然后给每个边框不一样的颜色<code>border-top-color:bule</code>，就出现4个等腰三角形了。<br>然后把三个设置为透明就可以了。</p>
+<blockquote>
+<p>还可以设置另一种三角形，就是把一个边框宽度大小设置为0px<code>border-top-width:0px</code>，然后再把两个设置为透明。  </p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<p>我们在span里面最好不要放div,容易出bug。span加个<code>display:block</code>就是div了。  </p>
+<p>更多图形小技巧：搜索<code>css tricks shape</code>。<br><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">画各种形状网站</a>。      </p>
+<ol start="6">
+<li><p>绝对定位 </p>
+<blockquote>
+<p>当一个元素在另一个元素里面，我们需要把子元素拿出来，并依附着父元素定位是，就要用到绝对定位（脱离文档流，然后定位）。  </p>
+<blockquote>
+<p>在子元素上面写<code>position: absolute</code>。<br>在父元素上面写<code>position: relative</code>。<br>这就是子元素相对于父元素定位。</p>
+<blockquote>
+<p>如果要紧贴父元素下方，子元素上写<code>top:100%</code>,紧贴左边<code>right:100%</code>,依此类推。。。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li><p>初始化所有元素。<br>因为一些元素会有浏览器的自带内边距和外边距，这样会导致不好调距离，所以把他们都干掉。</p>
+<blockquote>
+<p>*{<br> margin:0;<br> padding:0;<br>}</p>
+</blockquote>
+</li>
+<li><p>修改分界线hr标签</p>
+<blockquote>
+<p>把hr的<code>border</code>去掉，<code>border:none</code>。<br>重写<code>border</code>，<code>border:1px solid red</code>。  </p>
+</blockquote>
+</li>
+<li><p>使用svn链接图标。<br><a href="http://www.iconfont.cn/" target="_blank" rel="noopener">阿里巴巴矢量图</a></p>
+</li>
+<li><p>伪类与伪元素<br>默认情况下div就有个::before和::after，但是它是隐藏的。</p>
+<blockquote>
+<p>div::before {content: ‘[‘}所有div前面有个“[”。<br>div::after {content: ‘]’}所有div后面有个“]”。</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>一个冒号开头的叫做伪类，例如：：hover。两个冒号开头的叫做伪元素::after。</strong></p>
+<ol start="11">
+<li><p>下载按钮<br>制作下载按钮要用a标签。样式加了download的话就一定是下载，不然可能是预览。<br>a按钮是内联元素，不能设置宽高（左右padding有用，上下pandding没用），所以要设置’’’display:inline-block’’’，然后内联要居中的话，要在父级元素上设置<code>text-align:center</code>,可以额外加一个父级元素，例如p，span等。</p>
+</li>
+<li><p>box-sizing<br>box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒子模型。</p>
+<blockquote>
+<p>box-sizing: content-box</p>
+</blockquote>
+</li>
+</ol>
+<p>默认值，标准盒子模型。<code>width</code>与<code>height</code>只包括内容的宽和高，不包括边框（<code>border</code>），内边距（<code>padding</code>），外边距（<code>margin</code>）。</p>
+<blockquote>
+<p>box-sizing: border-box</p>
+</blockquote>
+<p>width和height属性包括内容，内边距和边框，但不包括外边距。</p>
+<ol start="13">
+<li><p>选择奇数与偶数<br>例如要使6个列表3个向左浮动3个向右浮动。</p>
+<blockquote>
+<p>li {float:left}<br>li:nth-child(even){float:right}<br>li:nth-child(odd){float:left}</p>
+</blockquote>
+</li>
+<li><p>display:inline-block<br>加了inline-block，会出现两个bug。<br>1.下面会出现一条缝隙，所以要加<code>vertical-align：top</code>。<br>2.</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/design/" rel="tag"># design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/26/css入门/" rel="next" title="css入门">
+                <i class="fa fa-chevron-left"></i> css入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/05/算法入门/" rel="prev" title="算法入门">
+                算法入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/04/27/css布局与定位/"
+           data-title="css布局与定位" data-url="http://yoursite.com/2018/04/27/css布局与定位/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">罗嘉嘉</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#position-fixed"><span class="nav-number">1.</span> <span class="nav-text">position fixed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css三角形"><span class="nav-number">2.</span> <span class="nav-text">css三角形</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">罗嘉嘉</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
