@@ -249,6 +249,903 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/23/JS里的数据/" itemprop="url">JS里的数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T10:12:58+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/23/JS里的数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/23/JS里的数据/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="JS历史"><a href="#JS历史" class="headerlink" title="JS历史"></a>JS历史</h3><p>ie7不支持ES5<br>IE8不支持ES6<br>JS每年一更<br>学习先从ES3&gt;ES5&gt;ES6<br>有些js没有发布的特性就已经被使用了（就是浏览器先有了，然后ECMA再纳入规范）  </p>
+<hr>
+<h3 id="数据类型（七种）"><a href="#数据类型（七种）" class="headerlink" title="数据类型（七种）"></a>数据类型（七种）</h3><p><strong>对象是复杂类型，其他的都是简单类型，复杂类型是由简单类型的组合。</strong></p>
+<ol>
+<li>数值(Number):十进制(1和.1),二进制(0b11),八进制(011),十六进制(0x11)  </li>
+<li>字符串(String):<blockquote>
+<ul>
+<li>可用单或双引号。</li>
+<li>空字符串（里面什么也没有，长度为0），空格字符串（里面有个空格，长度为1）。</li>
+<li>转义符\。回车(\n)长度为1，因为只有一个字符n。如果要输出转义符(‘\‘)。</li>
+<li>多行字符串，(‘123 \ 456),456是在第二行的，第一行的\后面不能有空格等看不见的字符，否则会报错（所以<em>不推荐使用这种方法</em>）。也可以使用+把两个字符串连起来。（推荐使用）。</li>
+<li>ES6里可以使用`（tab上面的那个键）把换行的字符包起来，里面可以直接换行，然后空格也会被算进去。</li>
+</ul>
+</blockquote>
+</li>
+<li>布尔值（boolean）：两个值：true和false<blockquote>
+<ul>
+<li>与运算(&amp;&amp;)，全是真，即为真，其他为假。  </li>
+<li>或运算(||)，有一个真，即为真，全是假，即为假。  </li>
+</ul>
+</blockquote>
+</li>
+<li>Symbol(符号)（es6新添加）</li>
+<li>undefined：一个值，undefined。表示为定义或不存在，即由于目前没有定义，所以此处暂时没有任何值</li>
+<li>null:一个值，null。表示空值，即此处的值为空。<blockquote>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>a```，变量没有赋值，那么就是undefined。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; - ```var obj = null```,有一个对象object，现在不给值，想以后给，就给null。(惯例，一般先给null)</span><br><span class="line">&gt; - 有一个非对象，现在不给值，想以后给，就是undefined。</span><br><span class="line">1. 对象(object)：形式相当于**哈希表**，是一组“键值对”的集合（无序）。  </span><br><span class="line">对象又可以分为3个子类型。</span><br><span class="line">&gt; 1. 狭义的对象(object)</span><br><span class="line">&gt; 2. 数组(array)</span><br><span class="line">&gt; 3. 函数(fuction)  </span><br><span class="line">对象里面的valur可以是数值，字符串，布尔值，null，undefined，也可以是对象。  </span><br><span class="line">key可以是空字符串，对象里的所有key都是字符串，所以加不加引号都可以，如果key是数值，那么会自动转化为字符串，如果不是数值，也不加&apos;&apos;的话，那么要依照**标识符命名原则**。  </span><br><span class="line"></span><br><span class="line">生成：  </span><br><span class="line">```var obj = &#123;name:&apos;hello&apos;&#125;```  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">获取：  </span><br><span class="line">```obj[&apos;name&apos;]```,假设key符合标识符的条件下可以直接```obj.name```。  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">删除：  </span><br><span class="line">```delete obj[&apos;name&apos;]```,删掉以后再去访问，会得到undefined。key和value都被删除了，**在正常查询中```obj.name```输出undefined也有可能只是没有value，就像```obj.name=undefined```它的value就是undefined**  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">查询：  </span><br><span class="line">```&apos;name&apos; in obj``` , 假设得到```flase```，那么代表无key。  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">遍历key(输出顺序不确定)：</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>var obj = {name:’luojj’,age:18}<br>for(var key in obj){<br>    console.log(key)<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">遍历value</span><br></pre></td></tr></table></figure></p>
+<p>var obj = {name:’luojj’,age:18}<br>for(var key in obj){<br>    console.log(obj[key])<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">遍历key和value</span><br></pre></td></tr></table></figure></p>
+<p>var obj = {name:’luojj’,age:18}<br>for(var key in obj){<br>    console.log(key,obj[key])<br>}</p>
+<pre><code>
+---
+
+查看变量类型  
+```typeof a
+</code></pre><hr>
+<p>null类型返回(bug1)<br><code>typeof null</code>应该返回null类型，但返回了这是一个object类型，这是js里的一个bug（历史错误）。  </p>
+<hr>
+<p>函数类型返回(bug2)<br><code>typeof function(){}</code>,应该返回这是一个object类型，但返回这是一个function类型。但是function类型不在那七种类型之内。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/适应移动端画板/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/20/适应移动端画板/" itemprop="url">适应移动端</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-20T19:42:20+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/20/适应移动端画板/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/20/适应移动端画板/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="pc端到移动端"><a href="#pc端到移动端" class="headerlink" title="pc端到移动端"></a>pc端到移动端</h3><ol>
+<li>页面缩小。</li>
+</ol>
+<ul>
+<li>按照980px<strong>宽度</strong>的大小放进移动端，假设本来就显示980px，那么就占整个移动端屏幕按比例缩小放进去。</li>
+<li>假设本来为490px，那么就占屏幕的一半，会空出一半位置</li>
+<li>如果超过980px那么就会出现滚动条。</li>
+</ul>
+<ol start="2">
+<li>双击放大。</li>
+</ol>
+<hr>
+<h3 id="响应式Web设计-viewport"><a href="#响应式Web设计-viewport" class="headerlink" title="响应式Web设计-viewport"></a>响应式Web设计-viewport</h3><h4 id="什么是viewport"><a href="#什么是viewport" class="headerlink" title="什么是viewport?"></a>什么是viewport?</h4><p>viewport是用户网页的可视区域，翻译为中文叫做“视区”。<br><figure class="highlight plain"><figcaption><span>name</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">宽度=设备宽度，不允许缩放，所有比例都是1比1.   </span><br><span class="line"></span><br><span class="line">六个属性：</span><br><span class="line">1. width:控制viewport的大小，可以指定的一个值，如600，或者特殊的值，如device-width为设备的宽度（相当于100%的css像素）</span><br><span class="line">2. height：和width相对应，指定高度。</span><br><span class="line">3. initial-scale：初始缩放比例，也即是当页面第一次load的时候缩放比例。1.0，就是1：1</span><br><span class="line">4. maximum-scale：允许用户缩放到的最大比例。1.0</span><br><span class="line">5. minimum-scale：允许用户缩放到的最小比例。1.0</span><br><span class="line">6. user-scalable：用户是否可以手动缩放。yes或no</span><br><span class="line"></span><br><span class="line">### touch触摸事件</span><br><span class="line">触摸事件的种类，有以下几种。可以通过TouchEvent。type属性，查看到底发生的是哪一种事件。</span><br><span class="line">- ```touchstart```:用户开始触摸时触发，它的```target```属性返回发生触摸的元素节点。</span><br><span class="line">- ```touchend```:用户不在接触触摸屏时（或移除屏幕边缘时）触发，它的```target```属性与```touchstart```事件一致的，就是开始触摸时所在的元素节点。它的```changedTouches```属性返回一个```TouchList```实例，包含所有不在触摸的触摸点（即```Touch实例对象```）</span><br><span class="line">- ```touchmove```:用户移动触摸点时触发，它的```target```属性与```touchstart```事件一致。如果触摸的半径、角度、力度发生变化，也会触发该事件。</span><br><span class="line">- ```touchcancel```:触摸点取消时触发，比如在触摸区域跳出一个情态窗口（modal window）、触摸点离开了文档区域（进入浏览器菜单栏）、用户的触摸点太多，超过了支持的上限（自动取消早先的触摸点）。</span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">### 查看设备是否支持触摸(特性检测)</span><br><span class="line">1. ```canvas.ontouchstart```，如果显示为null，则为可触摸设备，表示支持该功能，不支持显示为undefined。canvas为变量名。  </span><br><span class="line">2. 查看```ontouchstart```是否body的一个属性。例：```&apos;ontouchstart&apos; in document.body```显示true，代表是，那么可触摸。  </span><br><span class="line">3. ```document.body.touchstart == undefinede```为非触屏设备。```document.body.touchstart == null```为触屏设备。  </span><br><span class="line">in，用于查看什么属性或者什么值在不在xxx里面，例如：查看一个key在不在哈希里。```&apos;key&apos; in hash```，在就输出```true```，不在就输出```false</span><br></pre></td></tr></table></figure></p>
+<h3 id="获取触摸位置"><a href="#获取触摸位置" class="headerlink" title="获取触摸位置"></a>获取触摸位置</h3><p>在触摸事件属性里，在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">canvas.ontouchstart = function(a)&#123;</span><br><span class="line">    var x = a.touches[0].clientX</span><br><span class="line">    var y = a.touches[0].clientY </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/Canvas画板/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/17/Canvas画板/" itemprop="url">Canvas绘图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-17T18:50:33+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/Canvas画板/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/17/Canvas画板/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="mouse事件"><a href="#mouse事件" class="headerlink" title="mouse事件"></a>mouse事件</h3><ul>
+<li><p>onmousedown:在用户按下了任意鼠标按键时触发。不能通过键盘触发这个事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.onmousedown = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.onmousemove = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>onmouseup:当用户释放鼠标按键时触发。不能通过键盘触发这个事件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.onmousemove = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>这些事件，前面可加on可不加on，即onmousedown和mousedown一样</strong></p>
+<hr>
+<h3 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h3><ol>
+<li>定义一个变量赋值为false.</li>
+<li>按下鼠标任意键，即触发mousedown时，给变量赋值true</li>
+<li>在鼠标指针滑动，即触发mousemove时，判断变量是否为true，即是否已按下鼠标按键，如果是，执行代码，如果不是，就不执行。</li>
+<li>当鼠标释放时，即触发mouseup事件时，非变量赋值false，即停止鼠标指针滑动时的执行的代码。</li>
+</ol>
+<hr>
+<h3 id="canvas里，图像生成位置"><a href="#canvas里，图像生成位置" class="headerlink" title="canvas里，图像生成位置"></a>canvas里，图像生成位置</h3><p>canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    margin:0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>生成一条路径：<br>开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</p>
+<hr>
+<h3 id="使画板全屏"><a href="#使画板全屏" class="headerlink" title="使画板全屏"></a>使画板全屏</h3><p>对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var drawWidth = document.documentElement.clientWintd//获取页面宽度</span><br><span class="line">var drawHeight = document.documentElement.clientHeight//获取页面高度</span><br><span class="line">canvas.width = drawWidth</span><br><span class="line">canvas.height = drawHeight</span><br></pre></td></tr></table></figure></p>
+<h3 id="onresize-事件"><a href="#onresize-事件" class="headerlink" title="onresize 事件"></a>onresize 事件</h3><p>onresize 事件会在窗口或框架被调整大小时发生。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    var drawWidth = document.documentElement.clientWintd//获取页面宽度</span><br><span class="line">    var drawHeight = document.documentElement.clientHeight//获取页面高度</span><br><span class="line">    canvas.width = drawWidth</span><br><span class="line">    canvas.height = drawHeight</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</p>
+<h3 id="HTML-DOM-classList属性"><a href="#HTML-DOM-classList属性" class="headerlink" title="HTML DOM classList属性"></a>HTML DOM classList属性</h3><p>classList 属性返回元素的类名，作为 DOMTokenList 对象。<br>该属性用于在元素中添加，移除及切换 CSS 类。<br>classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  </span><br><span class="line">- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 </span><br><span class="line"></span><br><span class="line">### 防止移动端滑动时抖动</span><br></pre></td></tr></table></figure></p>
+<p>body{<br>    overflow:hidden;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">不要出现滚动条。</span><br><span class="line"></span><br><span class="line">### 清空整个画板。</span><br><span class="line">```context.clearRect(0,0,canvas.width,canvas.height)``` </span><br><span class="line">使用```clerrRect()```方法清除一个和画板一样大的矩形就行了</span><br><span class="line"></span><br><span class="line">### 把canvas保存为图片</span><br></pre></td></tr></table></figure></p>
+<p>download.onclick = function(){<br>    var url = canvas.toDataURL(‘image/png)<br>    var a = document.createElement(‘aa’)<br>    document.body.appendChild(a)<br>    a.href = url<br>    a.download = ‘图片’<br>    a.click()<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 完全固定住，在手机上不会滑动(绝对定位住)</span><br></pre></td></tr></table></figure></p>
+<p>#canvas{<br>    position: fixed;<br>    top: 0;<br>    left: 0;<br>}</p>
+<pre><code>
+### className和classList
+className用于 **更改** 某个标签的类名，来达到更改类属性的效果。  
+```element.className = &apos;xxx&apos;
+</code></pre><p>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/Canvas绘图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/17/Canvas绘图/" itemprop="url">Canvas绘图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-17T11:50:33+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/Canvas绘图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/17/Canvas绘图/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-什么是Canvas"><a href="#1-什么是Canvas" class="headerlink" title="1.什么是Canvas?"></a>1.什么是Canvas?</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 2.基本用法</span><br><span class="line">1. 创建一个画布。  </span><br><span class="line">```&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&apos;border:1px solid red&apos;&gt;&lt;/canvas&gt;```不加边框看不见画布的范围。 </span><br><span class="line">---</span><br><span class="line">2. 绘制图像</span><br></pre></td></tr></table></figure>
+<p>var c=document.getElementById(“myCanvas”);//把<canvas>元素赋值给c<br>var ctx=c.getContext(“2d”);//创建context对象，getContext（’2d’）对象是内建的html5对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法<br>ctx.fillStyle=”#FF0000”;//填充样式，可以设定颜色、渐变或方案<br>ctx.fillRect(0,0,150,75);//填充方式，四个值x,y,width,heigth。<br>ctx.strokeStyle = ‘red’;//描边样式，边框颜色等<br>ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分开的，这里为两个矩形。<br><code>`</code><br><strong>描边属性：</strong></canvas></p>
+<ul>
+<li>线条宽度：lineWidth</li>
+<li>线末形状：lineCap</li>
+<li>线条相交方式：lineJoin<br><strong>要先设置好宽度等属性再画线，即lineWidth要在stroke后面</strong></li>
+</ul>
+<hr>
+<ol start="3">
+<li>坐标<br>坐标默认是从画布左上角开始算，左上角为（0，0），横轴为x，竖轴为y。</li>
+</ol>
+<hr>
+<ol start="4">
+<li>路径<br>在Canvas上绘制路径，首先必须调用beginPath()方法，表示要开始绘制新路径。<br>然后，我们将使用以下几种方法。</li>
+</ol>
+<ul>
+<li>arc(x,y,radius,startAngle,endAngle,counterclockwise)：以（x,y）为圆心绘制一条弧线，弧线半径为radius,起始和结束角度分别为startAngle和endAngle，最后一个参数表示起始和结束角度是否按逆时针方向计算，false为顺时针。</li>
+<li>arcTo(x1,y1,x2,y2,radius):从上一点开始绘制一条曲线，到(x2,y2)位置，并且以给定的半径radius穿过(x1,y2)</li>
+<li>bezierCurveTo(c1x,c1y,c2x,c2y,x,y):从上一点开始绘制一条曲线，到(x,y)为止，并且以(c1x,c1y)和(c2x,c2y)为控制点</li>
+<li>moveTo(x,y)将绘图游标移动到(x,y)，不画线。</li>
+<li>lineTo(x,y)从上一点绘制一条线，到(x,y)为止。</li>
+<li>rect(x,y,width,height):从点(x,y)开始绘制一个矩形，宽度和高度分别为width,height。这个方法绘制的是矩形路径。<br>创建完路径后：</li>
+<li>绘制一条连接到路径起点的线条，可用closePath(),</li>
+<li>填充，fill()</li>
+<li>描边，stroke()</li>
+<li>创建剪切区域，clip()</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/15/居中方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/15/居中方案/" itemprop="url">居中方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-15T10:37:04+08:00">
+                2018-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/15/居中方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/15/居中方案/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="水平居中方案"><a href="#水平居中方案" class="headerlink" title="水平居中方案"></a>水平居中方案</h3><ul>
+<li><strong>行内元素</strong>：设置其块父元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- **固定宽度的块级元素**：</span><br><span class="line">    1. 设置当前块元素的左右margin值为auto，```margin:o auto```，**当前块元素一定要有固定宽度**</span><br><span class="line">    2. 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子元素宽度除于二）的margin-left.</span><br><span class="line">    3. 给父元素position:absolute，子元素给剩余宽度一半的margin-left。 </span><br><span class="line">    4. 给父元素position:absolute，子元素左浮动，然后子元素给剩余宽度一半的margin-left。</span><br><span class="line">- **不定宽度块状元素**</span><br><span class="line">    1. 在元素外加入table标签（完整的，包括table、tbody、tr、td），该元素写在td内，然后设置margin的值为auto。</span><br><span class="line">    2. 把块元素变为行元素，给该元素设置```display：inline```或者```display:inline-block```,然后给父级块元素加```text-align:center```（行内居中），```margin:0 auto```（块级居中）</span><br><span class="line">    3. 绝对定位的方法：</span><br><span class="line">    4. flexbox，给父元素添加```display:flex;flex-direction:column;```,居中元素```align-self:center```。</span><br><span class="line"></span><br><span class="line">### 垂直居中方案</span><br><span class="line">1. 单行文本居中，假设元素的高度为100px，那么设置```line-height:</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/12/Flex布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/12/Flex布局/" itemprop="url">Flex布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-12T17:55:06+08:00">
+                2018-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/12/Flex布局/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/12/Flex布局/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/第一个JS作品/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -330,7 +1227,29 @@
       
         
           
-            
+            <h3 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h3><ol>
+<li>加一个边框，然后边框外再加一个阴影。</li>
+<li><figure class="highlight plain"><figcaption><span>1px 1px 2px 10px red;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; 第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。</span><br><span class="line">&gt; 第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。</span><br><span class="line">&gt; 第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。</span><br><span class="line">&gt; 第五个为阴影颜色。</span><br><span class="line"></span><br><span class="line">####改变元素的class名：</span><br><span class="line">```divxxx = document.createElement(&apos;div&apos;)</span><br><span class="line">divxxx.className = &apos;name&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面创建的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### flex布局</span><br><span class="line">布局的传统解决方案，基于**盒状模型**，依赖```display```属性 + ```position```属性 + ```float```属性。它对于那些特殊布局非常不方便，比如，**垂直居中**就不容易实现。  </span><br><span class="line">2009年，W3C提出了一种新的方案----Flex布局，可以渐变、完整、响应式地实现各种页面布局，目前已经得到所有浏览器的支持。Flex布局将成为未来布局的首选方案。</span><br><span class="line">#### Flex布局是什么？</span><br><span class="line">--- </span><br><span class="line">Flex 是 Flexible Box的缩写，意味“弹性布局”，用来为盒状模型提供最大的灵活性。  </span><br><span class="line">任何一个容器都可以指定Flex布局</span><br></pre></td></tr></table></figure></p>
+<p>.box{<br>    display: flex;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">行内元素也可以使用Flex布局。</span><br></pre></td></tr></table></figure>
+<p>.box{<br>    display: inline-flex;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Webkit内核的浏览器，必须加上```-webkit```前缀。</span><br></pre></td></tr></table></figure></p>
+<p>.box{<br>    display:-webkit-flex;<br>    display:flex;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**注意：设为Flex布局以后，子元素的```float```、```clear```和```vartical-align```属性将失效**  </span><br><span class="line"></span><br><span class="line">#### 用flex设置元素绝对居中(给它的父元素加下面三行代码)</span><br></pre></td></tr></table></figure>
+<p>.box{<br>    display:flex;/如果是内联元素使用inline-flex<br>    align-items: center;/水平居中<br>    justify-content: center;/垂直居中<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### vh、vw单位</span><br><span class="line">viewport height（可视高度），相对于视窗的高度：视窗高度为100vh</span><br><span class="line">viewport width（可视宽度），想对于视窗的宽度：视窗宽度为100vw</span><br><span class="line"></span><br><span class="line">#### background属性</span><br><span class="line">```background-color```背景颜色。  </span><br><span class="line">```background-position```背景图像的位置。例：```background-position:left top</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>100px```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-repeat```指定如何重复背景图像。例：```background-repeat：repeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-clip```背景图像的绘画区域。例：```background-clip：border-box</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-image```要使用一个还是多个图像。例：```background-image:url(./img/img.jpg)</span><br></pre></td></tr></table></figure>
+<p>**这几个值在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 模拟3g网速</span><br><span class="line">在浏览器开发者界面——Network——Online——选择3G。然后把Disable cache勾选栏去掉（清除缓存），刷新。</span><br><span class="line"></span><br><span class="line">#### 使背景图自适应</span><br><span class="line">background-size:cover，使这个背景把当前元素覆盖住，例如给body元素这个背景属性，这个背景会覆盖整个body，无论浏览器大小或者显示大小多大，都会自适应覆盖住。</span><br><span class="line"></span><br><span class="line">### web窗口栏上的图标---Favicon</span><br><span class="line">Favicon是favorites icon的缩写，亦被称为website icon（网页图标）、page icon（页面图标）或urlicon（URL图标）。Favicon是与某个网站或网页相关联的图标。</span><br><span class="line">**标准：**  </span><br><span class="line">1. 最初，定义一个favicon的方法是将一个名为“favicon.ico”的文件置于web服务器的根目录下，**想要访问图标就去网站根目录下的Favicon.ico即可。**例：浏览器url输入栏输入www.baidu.com/favicon.ico，即可访问百度的网页图标。</span><br><span class="line">2. 后来出现了一种更为灵活的方法，即使用HTML来为任何一个网页指示其图标所存储的位置，通过在页面的&lt;head&gt;部分添加两个link组件来实现的。</span><br><span class="line"></span><br><span class="line">### onerror请求失败</span><br><span class="line">捕抓错误信息：</span><br></pre></td></tr></table></figure></p>
+<p>img.onerror = function(xxx){<br>    console.log(xxx)<br>    xxx.target.src = ‘url’<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">把请求失败的img的src换成不会失败的，即自己上传的图片。</span><br><span class="line"></span><br><span class="line">#### 重设url以后使图标变化</span><br><span class="line">首先，获取我们点击的button标签，```button2 = xxx.target```  </span><br><span class="line">然后，我们发现img标签，是button标签的兄弟标签。```img2 = button2.previousSibling</span><br></pre></td></tr></table></figure></p>
+<p>然后，使变更后的url的图标覆盖已代替原来的图标。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 封装成函数</span><br><span class="line">例：</span><br></pre></td></tr></table></figure></p>
+<p>function tag(tagName){<br>    return document.createElement(tagName)<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">var div = tag(&apos;div&apos;)//就可以创建div标签了</span><br></pre></td></tr></table></figure></p>
+<p><strong>创建一个生成标签，并给元素类名（row）的函数</strong><br>function tag(tagName,attributes){<br>    var element = document.createElement(tagName)<br>    for(var key in attributes){<br>        element[key] = attributes[key]<br>    }<br>    return element</p>
+<p>}<br><code>divxxx = tag(&#39;div&#39;,{className:&#39;row&#39;})</code>//创建一个div标签，它的classname是row,把attributes的key，也就是className赋值给element的key。</p>
+<p>//attributes是一个属性，我们要遍历这个属性。for…in..循环可以遍历一个哈希。<br>element也是一个哈希，<code>div.className=&#39;xxx&#39;</code>,div也是个哈希，className是个key，xxx是key对应的value。<br>className、id、textContent都是key。<br><strong>使用函数封装后，代码变成树形的，然后这样更容易理解，更容易区分，更容易排错</strong></p>
+
           
         
       
@@ -875,1062 +1794,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/css布局与定位/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/27/css布局与定位/" itemprop="url">css布局与定位</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T14:59:23+08:00">
-                2018-04-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/27/css布局与定位/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/27/css布局与定位/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##高度是由什么决定的？</p>
-<p><strong>内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同</strong><br>字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。<br>把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。<br>例如把span里的文字设为100px，那么span的高度会比100px高，因为会有个<strong>建议行高</strong>，每种字体的默认行高不一样。  </p>
-<pre><code class="line-height```能使文字自动垂直居中">
-**块级元素:高度有其内部文档流元素的高度总和决定。决定，但不相等。**（假设body里什么都没有，那么他的高度是0（只有个回车不算））
-
-##文档流是什么？
-文档内元素的流动方向。
-**内联元素从左往右流，如果流动遇到阻碍，那就换行继续从左往右流动。**   
- 如果一个元素例如&lt;span&gt;，中间类截断，假设这个元素有加边框，那么那个元素会被分开，但还是一个元素，边框也还是一个，只是头在第一行，身体在第二行。  
- 如果被截断的是英文单词，那么英文单词并不会换行，会缩到里面去。因为中文每个字是一个东西，而英文单词也是一个东西，所以默认不会被分开。如果要想使其可以被截断：  
- &gt; 添加css属性:```word-break:break-all
-</code></pre>
-<p><strong>块级元素从上往下流，每一块都占一行，新的一块换新一行。</strong><br>把块级元素也变成从左往右流：<code>display：inline-block</code>（不推荐使用，建议用floot浮动）</p>
-<h2 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position fixed"></a>position fixed</h2><p>position属性用于指定一个元素在文档中的定位方式。<br>相对定位：<code>relative</code>。<br>绝对定位：<code>absolute</code>（基于祖先元素定位）和<code>fixed</code>(基于屏幕视口定位，元素位置在屏幕滚动时不会改变，会创建新的层叠上下文，脱离文档流)。<br>以下是基于屏幕左上角视口定位，创建新的层叠上下文</p>
-<blockquote>
-<p>div {<br>    position fixed;<br>    top 0;<br>    left 0;<br>}  </p>
-</blockquote>
-<p><strong>脱离文档流，使用<code>position fixed</code>后，该元素会脱离文档流，脱离文档流后，其父级元素的高度就不受其影响了，因为块元素的高度为其内部文档流高度总和，脱离后就没关系了</strong><br>当使用<code>position fixd</code>后，此元素就不会往外扩展了，它有多大，就占用多大范围。</p>
-<h2 id="css三角形"><a href="#css三角形" class="headerlink" title="css三角形"></a>css三角形</h2><ol>
-<li><p>使一个背景图片变暗，放一个div在图片的div里，高度设置成一样，宽度不设置（它会自适应），然后把这个div的背景色设置成黑色，然后使其半透明。<br>rgba()允许设定一个颜色的透明度，0=透明，1=不透明。</p>
-<blockquote>
-<p>rgba(255,0,0,0.1) /<em>百分之10红色透明</em>/<br>rgba(255,0,0,0.5) /<em>百分之50红色透明</em>/<br>rgba(255,0,0,1) /<em>不透明，显示全红</em>/  </p>
-</blockquote>
-</li>
-<li><p>背景图片居中并按比例缩放<br><code>background-position: center center</code>第一个为水平居中，第二个是垂直居中。<br><code>background-size: cover</code>盖住所有面积，并按比例缩放。</p>
-</li>
-<li><p>宽度与最大宽度。<br>假设设置一个div的宽度为1000px，<code>width:1000px</code>如果屏幕被缩小到小于1000px的时候，不会出现自适应，还是1000px，会出现一个滚动条，如果屏幕大于1000px的时候，它也是1000px。<br>假设设置一个div的最大宽度为1000px，<code>max-width:1000px</code>如果屏幕被缩小到小于1000px的时候，那么它就会自适应，如果大于1000px的时候，它最大就1000px。</p>
-</li>
-<li><p>修改span（内联元素）宽高<br>内联元素是不接受修改宽高的，要把它修改为行内块元素<code>display:inline-block</code>,它就接受宽高了。<br><strong>并不推荐直接设置宽高，因为如果修改里面的内容，长度不一样的话，显示会出问题，建议使用padding，这样盒子没有固定宽度的话，增加了内容宽度也会增加，实现自适应。但为了防止不同浏览器出现不一样的高，我们可以使用<code>line-height</code>固定一下高度</strong>   </p>
-</li>
-<li><p>画三角形</p>
-<blockquote>
-<p>写个div，然后里面没有内容，就是<code>height：0px</code>，<code>width: 0px</code>。<br>然后设置一个大边框<code>border: 10px solid</code>。<br>然后给每个边框不一样的颜色<code>border-top-color:bule</code>，就出现4个等腰三角形了。<br>然后把三个设置为透明就可以了。</p>
-<blockquote>
-<p>还可以设置另一种三角形，就是把一个边框宽度大小设置为0px<code>border-top-width:0px</code>，然后再把两个设置为透明。  </p>
-</blockquote>
-</blockquote>
-</li>
-</ol>
-<p>我们在span里面最好不要放div,容易出bug。span加个<code>display:block</code>就是div了。  </p>
-<p>更多图形小技巧：搜索<code>css tricks shape</code>。<br><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">画各种形状网站</a>。      </p>
-<ol start="6">
-<li><p>绝对定位 </p>
-<blockquote>
-<p>当一个元素在另一个元素里面，我们需要把子元素拿出来，并依附着父元素定位是，就要用到绝对定位（脱离文档流，然后定位）。  </p>
-<blockquote>
-<p>在子元素上面写<code>position: absolute</code>。<br>在父元素上面写<code>position: relative</code>。<br>这就是子元素相对于父元素定位。</p>
-<blockquote>
-<p>如果要紧贴父元素下方，子元素上写<code>top:100%</code>,紧贴左边<code>right:100%</code>,依此类推。。。</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
-<li><p>初始化所有元素。<br>因为一些元素会有浏览器的自带内边距和外边距，这样会导致不好调距离，所以把他们都干掉。</p>
-<blockquote>
-<p>*{<br> margin:0;<br> padding:0;<br>}</p>
-</blockquote>
-</li>
-<li><p>修改分界线hr标签</p>
-<blockquote>
-<p>把hr的<code>border</code>去掉，<code>border:none</code>。<br>重写<code>border</code>，<code>border:1px solid red</code>。  </p>
-</blockquote>
-</li>
-<li><p>使用svn链接图标。<br><a href="http://www.iconfont.cn/" target="_blank" rel="noopener">阿里巴巴矢量图</a></p>
-</li>
-<li><p>伪类与伪元素<br>默认情况下div就有个::before和::after，但是它是隐藏的。</p>
-<blockquote>
-<p>div::before {content: ‘[‘}所有div前面有个“[”。<br>div::after {content: ‘]’}所有div后面有个“]”。</p>
-</blockquote>
-</li>
-</ol>
-<p><strong>一个冒号开头的叫做伪类，例如：：hover。两个冒号开头的叫做伪元素::after。</strong></p>
-<ol start="11">
-<li><p>下载按钮<br>制作下载按钮要用a标签。样式加了download的话就一定是下载，不然可能是预览。<br>a按钮是内联元素，不能设置宽高（左右padding有用，上下pandding没用），所以要设置’’’display:inline-block’’’，然后内联要居中的话，要在父级元素上设置<code>text-align:center</code>,可以额外加一个父级元素，例如p，span等。</p>
-</li>
-<li><p>box-sizing<br>box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒子模型。</p>
-<blockquote>
-<p>box-sizing: content-box</p>
-</blockquote>
-</li>
-</ol>
-<p>默认值，标准盒子模型。<code>width</code>与<code>height</code>只包括内容的宽和高，不包括边框（<code>border</code>），内边距（<code>padding</code>），外边距（<code>margin</code>）。</p>
-<blockquote>
-<p>box-sizing: border-box</p>
-</blockquote>
-<p>width和height属性包括内容，内边距和边框，但不包括外边距。</p>
-<ol start="13">
-<li><p>选择奇数与偶数<br>例如要使6个列表3个向左浮动3个向右浮动。</p>
-<blockquote>
-<p>li {float:left}<br>li:nth-child(even){float:right}<br>li:nth-child(odd){float:left}</p>
-</blockquote>
-</li>
-<li><p>display:inline-block<br>加了inline-block，会出现两个bug。<br>1.下面会出现一条缝隙，所以要加<code>vertical-align：top</code>。<br>2.</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/css入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/26/css入门/" itemprop="url">css入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T10:50:57+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/26/css入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/26/css入门/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="学习顺序"><a href="#学习顺序" class="headerlink" title="学习顺序"></a>学习顺序</h2><ol>
-<li>css</li>
-<li>css3</li>
-<li>LESS CSS</li>
-<li>SASS</li>
-<li>PostCSS</li>
-</ol>
-<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ol>
-<li>Google：关键词+MDN</li>
-<li>CSS Tricks</li>
-<li>Google：阮一峰 css</li>
-<li>张鑫旭的240多篇css博客</li>
-<li>Codrops炫酷css效果</li>
-<li>css揭秘</li>
-<li>css2.1中文spec</li>
-<li>Magic of css免费在线书</li>
-</ol>
-<h2 id="引进CSS的三-四种方式"><a href="#引进CSS的三-四种方式" class="headerlink" title="引进CSS的三/四种方式"></a>引进CSS的三/四种方式</h2><ol>
-<li>内联样式<br>/<h1 style="color:red">hello world</h1>，在开始标签处添加样式。  </li>
-<li><p>内部样式表。</p>
-<blockquote>
-<head>
-</head></blockquote>
-<p><style><br> p {color:red;}<br></style><br><br>在head标签里加入一个样式表style标签。  </p>
-</li>
-<li><p>外部样式表</p>
-<blockquote>
-<head>
-</head></blockquote>
-<p><link rel="stylesheet" type="text/css" href="mystyle.css"><br><br>在head标签里加一个link标签，新建一个css文件，链接到这个文件。</p>
-</li>
-</ol>
-<p>4.在css文件里链接到另一个css文件</p>
-<blockquote>
-<p>@import url(./b.css)<br>链接到当前同目录下的b.css文件</p>
-</blockquote>
-<h2 id="关于选择器"><a href="#关于选择器" class="headerlink" title="关于选择器"></a>关于选择器</h2><blockquote>
-<h1 class="key" id="principal">Hello World</h1>  
-</blockquote>
-<ol>
-<li><p>标签选择器</p>
-<blockquote>
-<p>h1 {<br> color:red;<br>}</p>
-</blockquote>
-</li>
-<li><p>类选择器<br>给元素设置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&gt;.key &#123;</span><br><span class="line">    color:red;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">3. ID选择器</span><br><span class="line">通过设置元素的ID属性为该元素指定ID，每个ID在文档中都是**唯一**的</span><br><span class="line">#principal &#123;</span><br><span class="line">    color:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### 关于优先级：</span><br><span class="line">如果多于一个规则指定了相同的属性都应用到一个元素上，css规定拥有更高确定度的选择器优先级更高。  </span><br><span class="line">&gt; ID选择器&gt;类选择器&gt;标签选择器</span><br><span class="line"></span><br><span class="line">### 关于选择子标签</span><br><span class="line">类选择器：类名与类名之间**隔一个空格**就可以了，只能递级下降，例：</span><br><span class="line">&gt; .爷爷  .爸爸 .我  </span><br><span class="line"></span><br><span class="line">标签选择器：使用“&gt;”连接，也是递级下降。例：</span><br><span class="line">&gt; 爷爷&gt;爸爸&gt;我  </span><br><span class="line"></span><br><span class="line">他们之间可以混合使用，例：</span><br><span class="line">&gt; .爷爷 .爸爸&gt;我</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 常见制作菜单栏，使列表浮动后</span><br><span class="line">1. 清除列表小圆点  </span><br><span class="line">```list-style:none```  </span><br><span class="line">2. 查看bug，给列表加边框  </span><br><span class="line">```border:1px solid red;</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>去除浮动后bug的方法（添加伪类），clearfix为浮动列表的<strong>父类元素（ul）</strong>的类名.(就是给浮动元素的爸爸添加以下样式)</p>
-<blockquote>
-<p>.clearfix::after{<br>   content: ‘’;<br>   display:block<br>   clear:both<br>}</p>
-</blockquote>
-</li>
-<li><p>浏览器上查看字体的大小。</p>
-<blockquote>
-<p>打开开发者工具<br>点击要查看大小的字体的元素<br>点击右边栏的Computed（展示计算它的样式，style为展示所有的样式）<br>在Filter一栏中输入font-size，看到的就是了</p>
-</blockquote>
-</li>
-<li><p>去掉链接下划线。</p>
-<blockquote>
-<p>text-decoration:none(用于设置元素中的文本的修饰类型)。</p>
-</blockquote>
-</li>
-<li><p>使菜单栏每个选项在鼠标移到上面的时候有下划线。</p>
-</li>
-</ol>
-<ul>
-<li>先给每个链接加个边框,并设置透明色。（如果不先加边框的话，到下一步的时候鼠标移上去菜单栏<strong>会动</strong>，因为相当于无中生有忽然出现个边框，会把旁边的选项挤开）。  <blockquote>
-<p>border:1px solid transparent，使边框透明。</p>
-</blockquote>
-</li>
-<li>只设置一个下边框透明就可以了。</li>
-<li>添加一个:hover伪类，这个伪类的作用是，当鼠标停在使用这个伪类的元素上时，会出现的效果。</li>
-<li>添加下边框颜色和宽度就可以了。</li>
-</ul>
-<ol start="7">
-<li>修改下划线与链接高度。<br>在网页中只有鼠标放在链接文本上才会出现下划线，那么怎么测试高度呢？<br>打开开发者工具———找到并点击代码中的链接文本————点击右边的:hov————然后勾选:hover。那个链接文本就一直处于鼠标指向它的状态了。<br>然后使用工具测出距离，再把距离拉开，然后发现li标签没有把a标签包裹着，然后使用<code>display：block</code>给a标签，让他变成一个块元素就好了。</li>
-</ol>
-<blockquote>
-<p>color: inherit;是继承的意思，就是祖先什么颜色，他就什么颜色。<br>例如：a标签本身是有浏览器给它的默认属性的，所以他不会继承他祖先的属性，但是我们让他要继承属性，因为我们的权限最大，所以他就继承了祖先的。（有些属性可以继承，有些属性不可以继承）</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTML/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/HTML/" itemprop="url">HTML</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T20:55:39+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/HTML/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTML/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>HTML的版本(W3C组织制定规范)<blockquote>
-<p>HTML 4.01<br>XHTML<br>HTML 5<br>HTML 5.1</p>
-</blockquote>
-</li>
-<li>规范文档（Specifications）<blockquote>
-<p>由W3C写文档<br>W3C根据浏览器的实际情况总结文档，并不是凭空想象。</p>
-</blockquote>
-</li>
-<li>DOCTYPE<blockquote>
-<p>用来选择文档类型</p>
-</blockquote>
-</li>
-<li>html/head/body，文档/头/身体</li>
-<li>常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg<blockquote>
-<p>基本上，知道标签对应的单词的意思，就知道标签怎么用了（语义化）<br>除了div和span，其他标签都有默认样式。div和span是没有语义的。</p>
-</blockquote>
-</li>
-<li>可替换标签，宽和高由里面的内容决定。如：<blockquote>
-<p><img>、<video>、<input></video></p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/Flag/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/Flag/" itemprop="url">Flag</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T18:49:45+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/Flag/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/Flag/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>昨天已经开始了，但是今天才看到，so我想，坚持65天后，能独立做出很好看的页面。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTTP状态码详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/HTTP状态码详解/" itemprop="url">HTTP状态码详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:51:25+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/HTTP状态码详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTTP状态码详解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1xx消息"><a href="#1xx消息" class="headerlink" title="1xx消息"></a>1xx消息</h3><hr>
-<p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应式临时响应，只包含状态航和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。  </p>
-<h3 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h3><hr>
-<p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</p>
-<h3 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h3><hr>
-<p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这类状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。</p>
-<h3 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h3><hr>
-<p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个HEAD请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。</p>
-<h1 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h1><hr>
-<p>表示服务器无法完成明显有效的请求。这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTTP入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/HTTP入门/" itemprop="url">HTTP入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T09:38:44+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/HTTP入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTTP入门/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>1990年，Tim Berners-Lee（李爵士）发明了用网址就能访问网页的办法，他发明了第一个网页、第一个浏览器和第一个服务器。<br>WWW（World Wide Web）万维网，也是李爵士发明的。<br>主要包含三个概念：</p>
-<blockquote>
-<ol>
-<li>URI，俗称网址。</li>
-<li>HTTP，文本传输协议（主要用来传输内容）。</li>
-<li>HTML，超文本标记语言。  </li>
-</ol>
-</blockquote>
-<p>URI的作用是能让你访问一个页面，HTTP的作用是让你能下载这个页面，HTML的作用是让你能看懂这个页面。</p>
-<p>URI分为URL（统一资源定位符）和URN（统一资源名称），我们一般使用URL作为网址，URN的作用是通过提供一种途径，用于在特定的名字空间资源的标识，以补充网址。</p>
-<h3 id="URL的常见组成："><a href="#URL的常见组成：" class="headerlink" title="URL的常见组成："></a>URL的常见组成：</h3><blockquote>
-<p><a href="https://www.baidu.com/s?wd=hello&amp;rsv_spt=1#5" target="_blank" rel="noopener">https://www.baidu.com/s?wd=hello&amp;rsv_spt=1#5</a><br>协议/域名/路径/查询参数/锚点</p>
-</blockquote>
-<h3 id="DNS（域名系统）"><a href="#DNS（域名系统）" class="headerlink" title="DNS（域名系统）"></a>DNS（域名系统）</h3><p>dns作为将域名与ip地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。使用53端口。</p>
-<h2 id="HTTP的请求与响应。"><a href="#HTTP的请求与响应。" class="headerlink" title="HTTP的请求与响应。"></a>HTTP的请求与响应。</h2><ol>
-<li>客户端负责发起请求</li>
-<li>服务端在80端口接收请求</li>
-<li>服务端负责返回内容（响应）</li>
-<li>浏览器负责下载响应内容<br>HTTP的作用就是知道浏览器和服务器如何沟通。</li>
-</ol>
-<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p><strong>curl命令的get请求</strong>（curl -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;）" target="_blank" rel="noopener">https://www.baidu.com&quot;）</a></p>
-<blockquote>
-<p>GET / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Frank: xxx<br>空行  </p>
-</blockquote>
-<p><strong>浏览器上的get请求</strong>（按f12，点击[network]，清空数据，网址输入栏输入url，点击第一个name为[]<a href="http://www.baidu.com的请求，点开Headers，点开[Request" target="_blank" rel="noopener">www.baidu.com的请求，点开Headers，点开[Request</a> Headers],<strong>点击[view source]</strong>,看到的就是请求头了。 ）</p>
-<blockquote>
-<p>GET / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>Connection: keep-alive<br>Cache-Control: max-age=0<br>Upgrade-Insecure-Requests: 1<br>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9<br>Cookie: BIDUPSID=E18C88A494C8C8CAD6AB6F9D867FD8ED; PSTM=1502351396; BAIDUID=0CAD62BFF9AB383ED11F170D25167CFC:FG=1; BDUSS=nRTMXN4TFE4ODYtRjJDdHBQRHlRflNnMkgya01JdFJ3UEtOdlBEbHc2OU5LZU5aTVFBQUFBJCQAAAAAAAAAAAEAAAAeiGAvTFVPSkpiYWJ5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE2cu1lNnLtZd; BD_UPN=12314353; ispeed_lsm=2; MCITY=-%3A; __cfduid=dcb47a9d7f8268165e3c68bd9749ddb0c1524018086; BD_CK_SAM=1; PSINO=6; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BDSFRCVID=9fLsJeCCxG3AyLrAYdtSEeWkY0CH6AQX2liC3J; H_BDCLCKID_SF=tbkD_C-MfIvhDRTvhCcjh-FSMgTBKI62aKDsVRQ1-hcqEpO9QTbN2fAXLJrb-pJ45GvWhCJnWIQNVfP4h-rTDUTh-p52f6_tfnPe3J; H_PS_PSSID=26255_1439_19033_21090_20880_20930; H_PS_645EC=8ee1dMHvA6DySPIBM8VlXCTAwigjEueOKFPbsRMk%2Br4HZrfNsoOfergg73g; BDRCVFR[dG2JNJb_ajR]=mk3SLVN4HKm; userFrom=ala; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm; BD_HOME=1; sugstore=1</p>
-</blockquote>
-<p><strong>curl的post请求</strong>(curl -X POST -d “1234567890” -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>)</p>
-<blockquote>
-<p>POST / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Frank: xxx<br>Content-Length: 10<br>Content-Type: application/x-www-form-urlencoded<br>空行<br>1234567890  </p>
-</blockquote>
-<p>浏览器上的post请求(找到一个Method为POST的请求，点进去，其他和get步骤相同。)</p>
-<blockquote>
-<p>POST /uc/loginService?uuid=40867cca-65eb-46cb-8c30-6b0f1113c57f&amp;ReturnUrl=https%3A%2F%2F<a href="http://www.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93&amp;r=0.12483624035079433&amp;version=2015" target="_blank" rel="noopener">www.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93&amp;r=0.12483624035079433&amp;version=2015</a> HTTP/1.1<br>Host: passport.jd.com<br>Connection: keep-alive<br>Content-Length: 2334<br>Accept: text/plain, <em>/</em>; q=0.01<br>Origin: <a href="https://passport.jd.com" target="_blank" rel="noopener">https://passport.jd.com</a><br>X-Requested-With: XMLHttpRequest<br>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br>Content-Type: application/x-www-form-urlencoded; charset=UTF-8<br>Referer: <a href="https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93" target="_blank" rel="noopener">https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93</a><br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9<br>Cookie: 3AB9D23F7A4B3C9B=6CVUBCO2KC3XULPXWVWLHEW4LBVLIZLYSYYM54B3MVIQF5NB6FFSVEYPCWI6QWZQ5NWURZO7G2LSNVKBZUK5HMFK2M; <strong>jdu=2094899509; TrackID=1h-4jh7Nfv-C2-ZAbJT5SRyZS1zfoXLMFrauDuEh_iQpfcOM9ddkELL6IQXDIcwDUYqFBnbRhaZF9ufLySf7uTlC0z2c80Di6QTf64XL6YmU; pinId=iuOl10w04HJvFIfjx0I4mA; DeviceSeq=b16968f5136a4f23be88aa1a7b277851; mt_xid=V2_52007VwATWlhRWlIbSBFsAGBREAEPUQBGG0hNWxliAxIFQVBUCRhVHF8GNAQVAV1dB1NMeRpdBW4fE1dBWFJLH0wSWQFsBxdiX2hSah9AGFsNbgAbVW1YV1wY; PCSYCityID=1601; ipLoc-djd=1-72-2799-0; unpl=V2_ZzNtbUACQBd2DxRSckxVAWIKFFwRVhQddlxCA35NW1BhVBpfclRCFXwUR1FnGlgUZwIZWUZcQBZFCHZXchBYAWcCGllyBBNNIEwHDCRSBUE3XHxcFVUWF3RaTwEoSVoAYwtBDkZUFBYhW0IAKElVVTUFR21yVEMldQl2V3oRWQxvCxZcSmdzEkU4dlJ%2bGl4FbjMTbUNnAUEpD0BTfB1USGQCGlhLX0sRdAB2VUsa; CCC_SE=ADC_HbIzFg4YSrQRLJUp1cL3AlU4jeiCj7JDPcTEgyuaAjydAVJnU8peeNBEgiGRBpg59Tdx57n3e5N5BrL65OZt64RPpDlv8B6cj30S7Vw4qJnF6j0totQcloutz5y5aLOQ4gBoleItMc7MFoBeiO0p11VMORAvjHlGVDs114UCvWTQ0S2J6vzy3Np8O%2fl%2ffuItRdVb9BBEaHxz7VuwZ2oU%2fqz9Vb1Ptcz8H62u3fVc5UYRRr%2bbPVV1o3KxmjrzKlRhJhWuGiHHxRoJH1PXxfEnlJT%2fnjL1yTZomA%2fTw%2f41H1%2bIksAprYR%2ftLgCmyj6vHf1CWDo3jiyWA8SyybZLRD%2fBIn0p1ldydlpFh%2fB%2fl8CnzPZX69CKVPGJzQDhgHe3%2bo1uIkeYTDXBj1sjou02pUsJ4pnUHS6gCo3MAU7xh1n44PbV65d9YLmOUZ%2fZJzJDMt8dnF2zd9NQfsx%2fs4vu4AaeqWHoWLp5U%2bIlbpZV5rBhnC00MP%2fKwIOt7GJAnwxrX%2f9HJ%2fJK%2fBcjQaMvkRxbukVqXeDiR7Vi3Ahq6rRBNpc0uy83TbtNwVVWUqZCVC8HHR7xWAruzE6Tjfpdjrd6Fg1qxS%2b3uOQevfO3sIztcn4jGHhhcHGDOOREXiucq5YYyAinCOX2zXJ%2f8fqC8p0C0kvQMHDy1sRyU8FXmX4ErSB0MIckP4YCWuFApVi5Qoh%2fIAlUYv4HgXVsSPRvsTIKJnBvL5z07Rpt9L%2b%2fWG1AHKe1y4%3d; </strong>jda=122270672.2094899509.1520152794.1524279303.1524624918.35; <strong>jdc=122270672; </strong>jdv=122270672|baidu-pinzhuan|t_288551095_baidupinzhuan|cpc|0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93|1524624917991; qr_t=c; alc=bPBMso8BuutmJGtuRs8/Kg==; _t=lTQF+Yfs1BTpf7cG64fq2WN+9/94DNEzKQrYTo3yHCU=; __jdb=122270672.3.2094899509|35.1524624918; _jrda=4; _jrdb=1524624923872; wlfstk_smdl=po3ebsmorum2y3lph5b62dh0sevp7azx</p>
-</blockquote>
-<p>##请求的格式<br>看起来那么多，，格式都差不多的。</p>
-<blockquote>
-<p>1 动词 路径 协议/版本<br>2 Key1: value1<br>2 Key2: value2<br>2 Key3: value3<br>2 Content-Type: application/x-www-form-urlencoded<br>2 Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>2 User-Agent: curl/7.54.0<br>3<br>4 要上传的数据  </p>
-</blockquote>
-<ol>
-<li>请求最多包含四部分，最少包含三部分。（也就是说第四部分可以为空）</li>
-<li>第三部分永远是一个回车（\n）</li>
-<li>动词有<code>GET POST PUT PATCH DELETE HEAD OPTIONS</code>等。  </li>
-<li>这里的路径包括[查询参数]，但不包括[锚点]。</li>
-<li>如果你没有写路径，那么路径默认为/。</li>
-<li>第二部分中的Content-Type标注了第四部分的格式。</li>
-<li>如果有请求的第四部分，那么在FormData或Payload里面可以看到。</li>
-</ol>
-<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>请求之后，除非断网或者服务器宕机了，否则都应该能的要一个响应。<br>响应的格式：</p>
-<blockquote>
-<p>1 协议/版本号 状态码 状态解释<br>2 Key1: value1<br>2 Key2: value2<br>2 Content-Length: 17931<br>2 Content-Type: text/html<br>3<br>4 要下载的内容</p>
-</blockquote>
-<h3 id="用Chrome查看响应"><a href="#用Chrome查看响应" class="headerlink" title="用Chrome查看响应"></a>用Chrome查看响应</h3><ol>
-<li>打开 Network</li>
-<li>输入网址</li>
-<li>选中第一个响应</li>
-<li>查看 Response Headers，点击「view source」，点击「view source」，点击「view source」</li>
-<li>你会看到响应的前两部分</li>
-<li>查看 Response 或者 Preview，你会看到响应的第 4 部分</li>
-</ol>
-<h2 id="HTTP状态码，状态码是服务器对浏览器说的话。"><a href="#HTTP状态码，状态码是服务器对浏览器说的话。" class="headerlink" title="HTTP状态码，状态码是服务器对浏览器说的话。"></a>HTTP状态码，状态码是服务器对浏览器说的话。</h2><ul>
-<li>1xx消息——请求已被服务器接收，继续处理。</li>
-<li>2xx成功——请求已成功被服务器接收、理解、并接收。</li>
-<li>3xx重定向——需要后续操作才能完成这一请求。</li>
-<li>4xx请求错误——请求含有词法错误或者无法被执行。</li>
-<li>5xx服务器错误——服务器在出路某个正确请求时发生错误</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1976,7 +1844,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

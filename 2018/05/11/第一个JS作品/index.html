@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="键盘 加一个边框，然后边框外再加一个阴影。 1px 1px 2px 10px red;```12345678&amp;gt; 第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。&amp;gt; 第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。&amp;gt; 第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。&amp;gt; 第五个为阴影颜色。#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一个JS作品">
 <meta property="og:url" content="http://yoursite.com/2018/05/11/第一个JS作品/index.html">
 <meta property="og:site_name" content="心剑无痕">
+<meta property="og:description" content="键盘 加一个边框，然后边框外再加一个阴影。 1px 1px 2px 10px red;```12345678&amp;gt; 第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。&amp;gt; 第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。&amp;gt; 第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。&amp;gt; 第五个为阴影颜色。#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T08:25:48.352Z">
+<meta property="og:updated_time" content="2018-05-16T12:29:56.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一个JS作品">
+<meta name="twitter:description" content="键盘 加一个边框，然后边框外再加一个阴影。 1px 1px 2px 10px red;```12345678&amp;gt; 第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。&amp;gt; 第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。&amp;gt; 第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。&amp;gt; 第五个为阴影颜色。#">
 
 
 
@@ -326,7 +329,29 @@
       
 
       
-        
+        <h3 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h3><ol>
+<li>加一个边框，然后边框外再加一个阴影。</li>
+<li><figure class="highlight plain"><figcaption><span>1px 1px 2px 10px red;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; 第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。</span><br><span class="line">&gt; 第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。</span><br><span class="line">&gt; 第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。</span><br><span class="line">&gt; 第五个为阴影颜色。</span><br><span class="line"></span><br><span class="line">####改变元素的class名：</span><br><span class="line">```divxxx = document.createElement(&apos;div&apos;)</span><br><span class="line">divxxx.className = &apos;name&apos;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面创建的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### flex布局</span><br><span class="line">布局的传统解决方案，基于**盒状模型**，依赖```display```属性 + ```position```属性 + ```float```属性。它对于那些特殊布局非常不方便，比如，**垂直居中**就不容易实现。  </span><br><span class="line">2009年，W3C提出了一种新的方案----Flex布局，可以渐变、完整、响应式地实现各种页面布局，目前已经得到所有浏览器的支持。Flex布局将成为未来布局的首选方案。</span><br><span class="line">#### Flex布局是什么？</span><br><span class="line">--- </span><br><span class="line">Flex 是 Flexible Box的缩写，意味“弹性布局”，用来为盒状模型提供最大的灵活性。  </span><br><span class="line">任何一个容器都可以指定Flex布局</span><br></pre></td></tr></table></figure></p>
+<p>.box{<br>    display: flex;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">行内元素也可以使用Flex布局。</span><br></pre></td></tr></table></figure>
+<p>.box{<br>    display: inline-flex;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Webkit内核的浏览器，必须加上```-webkit```前缀。</span><br></pre></td></tr></table></figure></p>
+<p>.box{<br>    display:-webkit-flex;<br>    display:flex;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**注意：设为Flex布局以后，子元素的```float```、```clear```和```vartical-align```属性将失效**  </span><br><span class="line"></span><br><span class="line">#### 用flex设置元素绝对居中(给它的父元素加下面三行代码)</span><br></pre></td></tr></table></figure>
+<p>.box{<br>    display:flex;/如果是内联元素使用inline-flex<br>    align-items: center;/水平居中<br>    justify-content: center;/垂直居中<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### vh、vw单位</span><br><span class="line">viewport height（可视高度），相对于视窗的高度：视窗高度为100vh</span><br><span class="line">viewport width（可视宽度），想对于视窗的宽度：视窗宽度为100vw</span><br><span class="line"></span><br><span class="line">#### background属性</span><br><span class="line">```background-color```背景颜色。  </span><br><span class="line">```background-position```背景图像的位置。例：```background-position:left top</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><figcaption><span>100px```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-repeat```指定如何重复背景图像。例：```background-repeat：repeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-clip```背景图像的绘画区域。例：```background-clip：border-box</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-image```要使用一个还是多个图像。例：```background-image:url(./img/img.jpg)</span><br></pre></td></tr></table></figure>
+<p>**这几个值在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 模拟3g网速</span><br><span class="line">在浏览器开发者界面——Network——Online——选择3G。然后把Disable cache勾选栏去掉（清除缓存），刷新。</span><br><span class="line"></span><br><span class="line">#### 使背景图自适应</span><br><span class="line">background-size:cover，使这个背景把当前元素覆盖住，例如给body元素这个背景属性，这个背景会覆盖整个body，无论浏览器大小或者显示大小多大，都会自适应覆盖住。</span><br><span class="line"></span><br><span class="line">### web窗口栏上的图标---Favicon</span><br><span class="line">Favicon是favorites icon的缩写，亦被称为website icon（网页图标）、page icon（页面图标）或urlicon（URL图标）。Favicon是与某个网站或网页相关联的图标。</span><br><span class="line">**标准：**  </span><br><span class="line">1. 最初，定义一个favicon的方法是将一个名为“favicon.ico”的文件置于web服务器的根目录下，**想要访问图标就去网站根目录下的Favicon.ico即可。**例：浏览器url输入栏输入www.baidu.com/favicon.ico，即可访问百度的网页图标。</span><br><span class="line">2. 后来出现了一种更为灵活的方法，即使用HTML来为任何一个网页指示其图标所存储的位置，通过在页面的&lt;head&gt;部分添加两个link组件来实现的。</span><br><span class="line"></span><br><span class="line">### onerror请求失败</span><br><span class="line">捕抓错误信息：</span><br></pre></td></tr></table></figure></p>
+<p>img.onerror = function(xxx){<br>    console.log(xxx)<br>    xxx.target.src = ‘url’<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">把请求失败的img的src换成不会失败的，即自己上传的图片。</span><br><span class="line"></span><br><span class="line">#### 重设url以后使图标变化</span><br><span class="line">首先，获取我们点击的button标签，```button2 = xxx.target```  </span><br><span class="line">然后，我们发现img标签，是button标签的兄弟标签。```img2 = button2.previousSibling</span><br></pre></td></tr></table></figure></p>
+<p>然后，使变更后的url的图标覆盖已代替原来的图标。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 封装成函数</span><br><span class="line">例：</span><br></pre></td></tr></table></figure></p>
+<p>function tag(tagName){<br>    return document.createElement(tagName)<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">var div = tag(&apos;div&apos;)//就可以创建div标签了</span><br></pre></td></tr></table></figure></p>
+<p><strong>创建一个生成标签，并给元素类名（row）的函数</strong><br>function tag(tagName,attributes){<br>    var element = document.createElement(tagName)<br>    for(var key in attributes){<br>        element[key] = attributes[key]<br>    }<br>    return element</p>
+<p>}<br><code>divxxx = tag(&#39;div&#39;,{className:&#39;row&#39;})</code>//创建一个div标签，它的classname是row,把attributes的key，也就是className赋值给element的key。</p>
+<p>//attributes是一个属性，我们要遍历这个属性。for…in..循环可以遍历一个哈希。<br>element也是一个哈希，<code>div.className=&#39;xxx&#39;</code>,div也是个哈希，className是个key，xxx是key对应的value。<br>className、id、textContent都是key。<br><strong>使用函数封装后，代码变成树形的，然后这样更容易理解，更容易区分，更容易排错</strong></p>
+
       
     </div>
     
@@ -359,6 +384,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/12/Flex布局/" rel="prev" title="Flex布局">
+                Flex布局 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -417,8 +446,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -433,7 +471,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -469,6 +507,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘"><span class="nav-number">1.</span> <span class="nav-text">键盘</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

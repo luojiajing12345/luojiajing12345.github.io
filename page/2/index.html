@@ -249,6 +249,1057 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/css布局与定位/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/27/css布局与定位/" itemprop="url">css布局与定位</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-27T14:59:23+08:00">
+                2018-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/27/css布局与定位/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/27/css布局与定位/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##高度是由什么决定的？</p>
+<p><strong>内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同</strong><br>字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。<br>把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。<br>例如把span里的文字设为100px，那么span的高度会比100px高，因为会有个<strong>建议行高</strong>，每种字体的默认行高不一样。  </p>
+<pre><code class="line-height```能使文字自动垂直居中">
+**块级元素:高度有其内部文档流元素的高度总和决定。决定，但不相等。**（假设body里什么都没有，那么他的高度是0（只有个回车不算））
+
+##文档流是什么？
+文档内元素的流动方向。
+**内联元素从左往右流，如果流动遇到阻碍，那就换行继续从左往右流动。**   
+ 如果一个元素例如&lt;span&gt;，中间类截断，假设这个元素有加边框，那么那个元素会被分开，但还是一个元素，边框也还是一个，只是头在第一行，身体在第二行。  
+ 如果被截断的是英文单词，那么英文单词并不会换行，会缩到里面去。因为中文每个字是一个东西，而英文单词也是一个东西，所以默认不会被分开。如果要想使其可以被截断：  
+ &gt; 添加css属性:```word-break:break-all
+</code></pre>
+<p><strong>块级元素从上往下流，每一块都占一行，新的一块换新一行。</strong><br>把块级元素也变成从左往右流：<code>display：inline-block</code>（不推荐使用，建议用floot浮动）</p>
+<h2 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position fixed"></a>position fixed</h2><p>position属性用于指定一个元素在文档中的定位方式。<br>相对定位：<code>relative</code>。<br>绝对定位：<code>absolute</code>（基于祖先元素定位）和<code>fixed</code>(基于屏幕视口定位，元素位置在屏幕滚动时不会改变，会创建新的层叠上下文，脱离文档流)。<br>以下是基于屏幕左上角视口定位，创建新的层叠上下文</p>
+<blockquote>
+<p>div {<br>    position fixed;<br>    top 0;<br>    left 0;<br>}  </p>
+</blockquote>
+<p><strong>脱离文档流，使用<code>position fixed</code>后，该元素会脱离文档流，脱离文档流后，其父级元素的高度就不受其影响了，因为块元素的高度为其内部文档流高度总和，脱离后就没关系了</strong><br>当使用<code>position fixd</code>后，此元素就不会往外扩展了，它有多大，就占用多大范围。</p>
+<h2 id="css三角形"><a href="#css三角形" class="headerlink" title="css三角形"></a>css三角形</h2><ol>
+<li><p>使一个背景图片变暗，放一个div在图片的div里，高度设置成一样，宽度不设置（它会自适应），然后把这个div的背景色设置成黑色，然后使其半透明。<br>rgba()允许设定一个颜色的透明度，0=透明，1=不透明。</p>
+<blockquote>
+<p>rgba(255,0,0,0.1) /<em>百分之10红色透明</em>/<br>rgba(255,0,0,0.5) /<em>百分之50红色透明</em>/<br>rgba(255,0,0,1) /<em>不透明，显示全红</em>/  </p>
+</blockquote>
+</li>
+<li><p>背景图片居中并按比例缩放<br><code>background-position: center center</code>第一个为水平居中，第二个是垂直居中。<br><code>background-size: cover</code>盖住所有面积，并按比例缩放。</p>
+</li>
+<li><p>宽度与最大宽度。<br>假设设置一个div的宽度为1000px，<code>width:1000px</code>如果屏幕被缩小到小于1000px的时候，不会出现自适应，还是1000px，会出现一个滚动条，如果屏幕大于1000px的时候，它也是1000px。<br>假设设置一个div的最大宽度为1000px，<code>max-width:1000px</code>如果屏幕被缩小到小于1000px的时候，那么它就会自适应，如果大于1000px的时候，它最大就1000px。</p>
+</li>
+<li><p>修改span（内联元素）宽高<br>内联元素是不接受修改宽高的，要把它修改为行内块元素<code>display:inline-block</code>,它就接受宽高了。<br><strong>并不推荐直接设置宽高，因为如果修改里面的内容，长度不一样的话，显示会出问题，建议使用padding，这样盒子没有固定宽度的话，增加了内容宽度也会增加，实现自适应。但为了防止不同浏览器出现不一样的高，我们可以使用<code>line-height</code>固定一下高度</strong>   </p>
+</li>
+<li><p>画三角形</p>
+<blockquote>
+<p>写个div，然后里面没有内容，就是<code>height：0px</code>，<code>width: 0px</code>。<br>然后设置一个大边框<code>border: 10px solid</code>。<br>然后给每个边框不一样的颜色<code>border-top-color:bule</code>，就出现4个等腰三角形了。<br>然后把三个设置为透明就可以了。</p>
+<blockquote>
+<p>还可以设置另一种三角形，就是把一个边框宽度大小设置为0px<code>border-top-width:0px</code>，然后再把两个设置为透明。  </p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<p>我们在span里面最好不要放div,容易出bug。span加个<code>display:block</code>就是div了。  </p>
+<p>更多图形小技巧：搜索<code>css tricks shape</code>。<br><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">画各种形状网站</a>。      </p>
+<ol start="6">
+<li><p>绝对定位 </p>
+<blockquote>
+<p>当一个元素在另一个元素里面，我们需要把子元素拿出来，并依附着父元素定位是，就要用到绝对定位（脱离文档流，然后定位）。  </p>
+<blockquote>
+<p>在子元素上面写<code>position: absolute</code>。<br>在父元素上面写<code>position: relative</code>。<br>这就是子元素相对于父元素定位。</p>
+<blockquote>
+<p>如果要紧贴父元素下方，子元素上写<code>top:100%</code>,紧贴左边<code>right:100%</code>,依此类推。。。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li><p>初始化所有元素。<br>因为一些元素会有浏览器的自带内边距和外边距，这样会导致不好调距离，所以把他们都干掉。</p>
+<blockquote>
+<p>*{<br> margin:0;<br> padding:0;<br>}</p>
+</blockquote>
+</li>
+<li><p>修改分界线hr标签</p>
+<blockquote>
+<p>把hr的<code>border</code>去掉，<code>border:none</code>。<br>重写<code>border</code>，<code>border:1px solid red</code>。  </p>
+</blockquote>
+</li>
+<li><p>使用svn链接图标。<br><a href="http://www.iconfont.cn/" target="_blank" rel="noopener">阿里巴巴矢量图</a></p>
+</li>
+<li><p>伪类与伪元素<br>默认情况下div就有个::before和::after，但是它是隐藏的。</p>
+<blockquote>
+<p>div::before {content: ‘[‘}所有div前面有个“[”。<br>div::after {content: ‘]’}所有div后面有个“]”。</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>一个冒号开头的叫做伪类，例如：：hover。两个冒号开头的叫做伪元素::after。</strong></p>
+<ol start="11">
+<li><p>下载按钮<br>制作下载按钮要用a标签。样式加了download的话就一定是下载，不然可能是预览。<br>a按钮是内联元素，不能设置宽高（左右padding有用，上下pandding没用），所以要设置’’’display:inline-block’’’，然后内联要居中的话，要在父级元素上设置<code>text-align:center</code>,可以额外加一个父级元素，例如p，span等。</p>
+</li>
+<li><p>box-sizing<br>box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒子模型。</p>
+<blockquote>
+<p>box-sizing: content-box</p>
+</blockquote>
+</li>
+</ol>
+<p>默认值，标准盒子模型。<code>width</code>与<code>height</code>只包括内容的宽和高，不包括边框（<code>border</code>），内边距（<code>padding</code>），外边距（<code>margin</code>）。</p>
+<blockquote>
+<p>box-sizing: border-box</p>
+</blockquote>
+<p>width和height属性包括内容，内边距和边框，但不包括外边距。</p>
+<ol start="13">
+<li><p>选择奇数与偶数<br>例如要使6个列表3个向左浮动3个向右浮动。</p>
+<blockquote>
+<p>li {float:left}<br>li:nth-child(even){float:right}<br>li:nth-child(odd){float:left}</p>
+</blockquote>
+</li>
+<li><p>display:inline-block<br>加了inline-block，会出现两个bug。<br>1.下面会出现一条缝隙，所以要加<code>vertical-align：top</code>。<br>2.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/css入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/26/css入门/" itemprop="url">css入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T10:50:57+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/26/css入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/26/css入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="学习顺序"><a href="#学习顺序" class="headerlink" title="学习顺序"></a>学习顺序</h2><ol>
+<li>css</li>
+<li>css3</li>
+<li>LESS CSS</li>
+<li>SASS</li>
+<li>PostCSS</li>
+</ol>
+<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ol>
+<li>Google：关键词+MDN</li>
+<li>CSS Tricks</li>
+<li>Google：阮一峰 css</li>
+<li>张鑫旭的240多篇css博客</li>
+<li>Codrops炫酷css效果</li>
+<li>css揭秘</li>
+<li>css2.1中文spec</li>
+<li>Magic of css免费在线书</li>
+</ol>
+<h2 id="引进CSS的三-四种方式"><a href="#引进CSS的三-四种方式" class="headerlink" title="引进CSS的三/四种方式"></a>引进CSS的三/四种方式</h2><ol>
+<li>内联样式<br>/<h1 style="color:red">hello world</h1>，在开始标签处添加样式。  </li>
+<li><p>内部样式表。</p>
+<blockquote>
+<head>
+</head></blockquote>
+<p><style><br> p {color:red;}<br></style><br><br>在head标签里加入一个样式表style标签。  </p>
+</li>
+<li><p>外部样式表</p>
+<blockquote>
+<head>
+</head></blockquote>
+<p><link rel="stylesheet" type="text/css" href="mystyle.css"><br><br>在head标签里加一个link标签，新建一个css文件，链接到这个文件。</p>
+</li>
+</ol>
+<p>4.在css文件里链接到另一个css文件</p>
+<blockquote>
+<p>@import url(./b.css)<br>链接到当前同目录下的b.css文件</p>
+</blockquote>
+<h2 id="关于选择器"><a href="#关于选择器" class="headerlink" title="关于选择器"></a>关于选择器</h2><blockquote>
+<h1 class="key" id="principal">Hello World</h1>  
+</blockquote>
+<ol>
+<li><p>标签选择器</p>
+<blockquote>
+<p>h1 {<br> color:red;<br>}</p>
+</blockquote>
+</li>
+<li><p>类选择器<br>给元素设置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&gt;.key &#123;</span><br><span class="line">    color:red;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">3. ID选择器</span><br><span class="line">通过设置元素的ID属性为该元素指定ID，每个ID在文档中都是**唯一**的</span><br><span class="line">#principal &#123;</span><br><span class="line">    color:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### 关于优先级：</span><br><span class="line">如果多于一个规则指定了相同的属性都应用到一个元素上，css规定拥有更高确定度的选择器优先级更高。  </span><br><span class="line">&gt; ID选择器&gt;类选择器&gt;标签选择器</span><br><span class="line"></span><br><span class="line">### 关于选择子标签</span><br><span class="line">类选择器：类名与类名之间**隔一个空格**就可以了，只能递级下降，例：</span><br><span class="line">&gt; .爷爷  .爸爸 .我  </span><br><span class="line"></span><br><span class="line">标签选择器：使用“&gt;”连接，也是递级下降。例：</span><br><span class="line">&gt; 爷爷&gt;爸爸&gt;我  </span><br><span class="line"></span><br><span class="line">他们之间可以混合使用，例：</span><br><span class="line">&gt; .爷爷 .爸爸&gt;我</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 常见制作菜单栏，使列表浮动后</span><br><span class="line">1. 清除列表小圆点  </span><br><span class="line">```list-style:none```  </span><br><span class="line">2. 查看bug，给列表加边框  </span><br><span class="line">```border:1px solid red;</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>去除浮动后bug的方法（添加伪类），clearfix为浮动列表的<strong>父类元素（ul）</strong>的类名.(就是给浮动元素的爸爸添加以下样式)</p>
+<blockquote>
+<p>.clearfix::after{<br>   content: ‘’;<br>   display:block<br>   clear:both<br>}</p>
+</blockquote>
+</li>
+<li><p>浏览器上查看字体的大小。</p>
+<blockquote>
+<p>打开开发者工具<br>点击要查看大小的字体的元素<br>点击右边栏的Computed（展示计算它的样式，style为展示所有的样式）<br>在Filter一栏中输入font-size，看到的就是了</p>
+</blockquote>
+</li>
+<li><p>去掉链接下划线。</p>
+<blockquote>
+<p>text-decoration:none(用于设置元素中的文本的修饰类型)。</p>
+</blockquote>
+</li>
+<li><p>使菜单栏每个选项在鼠标移到上面的时候有下划线。</p>
+</li>
+</ol>
+<ul>
+<li>先给每个链接加个边框,并设置透明色。（如果不先加边框的话，到下一步的时候鼠标移上去菜单栏<strong>会动</strong>，因为相当于无中生有忽然出现个边框，会把旁边的选项挤开）。  <blockquote>
+<p>border:1px solid transparent，使边框透明。</p>
+</blockquote>
+</li>
+<li>只设置一个下边框透明就可以了。</li>
+<li>添加一个:hover伪类，这个伪类的作用是，当鼠标停在使用这个伪类的元素上时，会出现的效果。</li>
+<li>添加下边框颜色和宽度就可以了。</li>
+</ul>
+<ol start="7">
+<li>修改下划线与链接高度。<br>在网页中只有鼠标放在链接文本上才会出现下划线，那么怎么测试高度呢？<br>打开开发者工具———找到并点击代码中的链接文本————点击右边的:hov————然后勾选:hover。那个链接文本就一直处于鼠标指向它的状态了。<br>然后使用工具测出距离，再把距离拉开，然后发现li标签没有把a标签包裹着，然后使用<code>display：block</code>给a标签，让他变成一个块元素就好了。</li>
+</ol>
+<blockquote>
+<p>color: inherit;是继承的意思，就是祖先什么颜色，他就什么颜色。<br>例如：a标签本身是有浏览器给它的默认属性的，所以他不会继承他祖先的属性，但是我们让他要继承属性，因为我们的权限最大，所以他就继承了祖先的。（有些属性可以继承，有些属性不可以继承）</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/HTML/" itemprop="url">HTML</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T20:55:39+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/25/HTML/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTML/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>HTML的版本(W3C组织制定规范)<blockquote>
+<p>HTML 4.01<br>XHTML<br>HTML 5<br>HTML 5.1</p>
+</blockquote>
+</li>
+<li>规范文档（Specifications）<blockquote>
+<p>由W3C写文档<br>W3C根据浏览器的实际情况总结文档，并不是凭空想象。</p>
+</blockquote>
+</li>
+<li>DOCTYPE<blockquote>
+<p>用来选择文档类型</p>
+</blockquote>
+</li>
+<li>html/head/body，文档/头/身体</li>
+<li>常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg<blockquote>
+<p>基本上，知道标签对应的单词的意思，就知道标签怎么用了（语义化）<br>除了div和span，其他标签都有默认样式。div和span是没有语义的。</p>
+</blockquote>
+</li>
+<li>可替换标签，宽和高由里面的内容决定。如：<blockquote>
+<p><img>、<video>、<input></video></p>
+</blockquote>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/Flag/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/Flag/" itemprop="url">Flag</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T18:49:45+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/25/Flag/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/Flag/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>昨天已经开始了，但是今天才看到，so我想，坚持65天后，能独立做出很好看的页面。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTTP状态码详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/HTTP状态码详解/" itemprop="url">HTTP状态码详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:51:25+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/25/HTTP状态码详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTTP状态码详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1xx消息"><a href="#1xx消息" class="headerlink" title="1xx消息"></a>1xx消息</h3><hr>
+<p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应式临时响应，只包含状态航和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。  </p>
+<h3 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h3><hr>
+<p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</p>
+<h3 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h3><hr>
+<p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这类状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。</p>
+<h3 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h3><hr>
+<p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个HEAD请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。</p>
+<h1 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h1><hr>
+<p>表示服务器无法完成明显有效的请求。这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTTP入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/25/HTTP入门/" itemprop="url">HTTP入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T09:38:44+08:00">
+                2018-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/25/HTTP入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTTP入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>1990年，Tim Berners-Lee（李爵士）发明了用网址就能访问网页的办法，他发明了第一个网页、第一个浏览器和第一个服务器。<br>WWW（World Wide Web）万维网，也是李爵士发明的。<br>主要包含三个概念：</p>
+<blockquote>
+<ol>
+<li>URI，俗称网址。</li>
+<li>HTTP，文本传输协议（主要用来传输内容）。</li>
+<li>HTML，超文本标记语言。  </li>
+</ol>
+</blockquote>
+<p>URI的作用是能让你访问一个页面，HTTP的作用是让你能下载这个页面，HTML的作用是让你能看懂这个页面。</p>
+<p>URI分为URL（统一资源定位符）和URN（统一资源名称），我们一般使用URL作为网址，URN的作用是通过提供一种途径，用于在特定的名字空间资源的标识，以补充网址。</p>
+<h3 id="URL的常见组成："><a href="#URL的常见组成：" class="headerlink" title="URL的常见组成："></a>URL的常见组成：</h3><blockquote>
+<p><a href="https://www.baidu.com/s?wd=hello&amp;rsv_spt=1#5" target="_blank" rel="noopener">https://www.baidu.com/s?wd=hello&amp;rsv_spt=1#5</a><br>协议/域名/路径/查询参数/锚点</p>
+</blockquote>
+<h3 id="DNS（域名系统）"><a href="#DNS（域名系统）" class="headerlink" title="DNS（域名系统）"></a>DNS（域名系统）</h3><p>dns作为将域名与ip地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。使用53端口。</p>
+<h2 id="HTTP的请求与响应。"><a href="#HTTP的请求与响应。" class="headerlink" title="HTTP的请求与响应。"></a>HTTP的请求与响应。</h2><ol>
+<li>客户端负责发起请求</li>
+<li>服务端在80端口接收请求</li>
+<li>服务端负责返回内容（响应）</li>
+<li>浏览器负责下载响应内容<br>HTTP的作用就是知道浏览器和服务器如何沟通。</li>
+</ol>
+<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p><strong>curl命令的get请求</strong>（curl -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;）" target="_blank" rel="noopener">https://www.baidu.com&quot;）</a></p>
+<blockquote>
+<p>GET / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Frank: xxx<br>空行  </p>
+</blockquote>
+<p><strong>浏览器上的get请求</strong>（按f12，点击[network]，清空数据，网址输入栏输入url，点击第一个name为[]<a href="http://www.baidu.com的请求，点开Headers，点开[Request" target="_blank" rel="noopener">www.baidu.com的请求，点开Headers，点开[Request</a> Headers],<strong>点击[view source]</strong>,看到的就是请求头了。 ）</p>
+<blockquote>
+<p>GET / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>Connection: keep-alive<br>Cache-Control: max-age=0<br>Upgrade-Insecure-Requests: 1<br>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9<br>Cookie: BIDUPSID=E18C88A494C8C8CAD6AB6F9D867FD8ED; PSTM=1502351396; BAIDUID=0CAD62BFF9AB383ED11F170D25167CFC:FG=1; BDUSS=nRTMXN4TFE4ODYtRjJDdHBQRHlRflNnMkgya01JdFJ3UEtOdlBEbHc2OU5LZU5aTVFBQUFBJCQAAAAAAAAAAAEAAAAeiGAvTFVPSkpiYWJ5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE2cu1lNnLtZd; BD_UPN=12314353; ispeed_lsm=2; MCITY=-%3A; __cfduid=dcb47a9d7f8268165e3c68bd9749ddb0c1524018086; BD_CK_SAM=1; PSINO=6; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BDSFRCVID=9fLsJeCCxG3AyLrAYdtSEeWkY0CH6AQX2liC3J; H_BDCLCKID_SF=tbkD_C-MfIvhDRTvhCcjh-FSMgTBKI62aKDsVRQ1-hcqEpO9QTbN2fAXLJrb-pJ45GvWhCJnWIQNVfP4h-rTDUTh-p52f6_tfnPe3J; H_PS_PSSID=26255_1439_19033_21090_20880_20930; H_PS_645EC=8ee1dMHvA6DySPIBM8VlXCTAwigjEueOKFPbsRMk%2Br4HZrfNsoOfergg73g; BDRCVFR[dG2JNJb_ajR]=mk3SLVN4HKm; userFrom=ala; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm; BD_HOME=1; sugstore=1</p>
+</blockquote>
+<p><strong>curl的post请求</strong>(curl -X POST -d “1234567890” -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>)</p>
+<blockquote>
+<p>POST / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Frank: xxx<br>Content-Length: 10<br>Content-Type: application/x-www-form-urlencoded<br>空行<br>1234567890  </p>
+</blockquote>
+<p>浏览器上的post请求(找到一个Method为POST的请求，点进去，其他和get步骤相同。)</p>
+<blockquote>
+<p>POST /uc/loginService?uuid=40867cca-65eb-46cb-8c30-6b0f1113c57f&amp;ReturnUrl=https%3A%2F%2F<a href="http://www.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93&amp;r=0.12483624035079433&amp;version=2015" target="_blank" rel="noopener">www.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93&amp;r=0.12483624035079433&amp;version=2015</a> HTTP/1.1<br>Host: passport.jd.com<br>Connection: keep-alive<br>Content-Length: 2334<br>Accept: text/plain, <em>/</em>; q=0.01<br>Origin: <a href="https://passport.jd.com" target="_blank" rel="noopener">https://passport.jd.com</a><br>X-Requested-With: XMLHttpRequest<br>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br>Content-Type: application/x-www-form-urlencoded; charset=UTF-8<br>Referer: <a href="https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93" target="_blank" rel="noopener">https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93</a><br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9<br>Cookie: 3AB9D23F7A4B3C9B=6CVUBCO2KC3XULPXWVWLHEW4LBVLIZLYSYYM54B3MVIQF5NB6FFSVEYPCWI6QWZQ5NWURZO7G2LSNVKBZUK5HMFK2M; <strong>jdu=2094899509; TrackID=1h-4jh7Nfv-C2-ZAbJT5SRyZS1zfoXLMFrauDuEh_iQpfcOM9ddkELL6IQXDIcwDUYqFBnbRhaZF9ufLySf7uTlC0z2c80Di6QTf64XL6YmU; pinId=iuOl10w04HJvFIfjx0I4mA; DeviceSeq=b16968f5136a4f23be88aa1a7b277851; mt_xid=V2_52007VwATWlhRWlIbSBFsAGBREAEPUQBGG0hNWxliAxIFQVBUCRhVHF8GNAQVAV1dB1NMeRpdBW4fE1dBWFJLH0wSWQFsBxdiX2hSah9AGFsNbgAbVW1YV1wY; PCSYCityID=1601; ipLoc-djd=1-72-2799-0; unpl=V2_ZzNtbUACQBd2DxRSckxVAWIKFFwRVhQddlxCA35NW1BhVBpfclRCFXwUR1FnGlgUZwIZWUZcQBZFCHZXchBYAWcCGllyBBNNIEwHDCRSBUE3XHxcFVUWF3RaTwEoSVoAYwtBDkZUFBYhW0IAKElVVTUFR21yVEMldQl2V3oRWQxvCxZcSmdzEkU4dlJ%2bGl4FbjMTbUNnAUEpD0BTfB1USGQCGlhLX0sRdAB2VUsa; CCC_SE=ADC_HbIzFg4YSrQRLJUp1cL3AlU4jeiCj7JDPcTEgyuaAjydAVJnU8peeNBEgiGRBpg59Tdx57n3e5N5BrL65OZt64RPpDlv8B6cj30S7Vw4qJnF6j0totQcloutz5y5aLOQ4gBoleItMc7MFoBeiO0p11VMORAvjHlGVDs114UCvWTQ0S2J6vzy3Np8O%2fl%2ffuItRdVb9BBEaHxz7VuwZ2oU%2fqz9Vb1Ptcz8H62u3fVc5UYRRr%2bbPVV1o3KxmjrzKlRhJhWuGiHHxRoJH1PXxfEnlJT%2fnjL1yTZomA%2fTw%2f41H1%2bIksAprYR%2ftLgCmyj6vHf1CWDo3jiyWA8SyybZLRD%2fBIn0p1ldydlpFh%2fB%2fl8CnzPZX69CKVPGJzQDhgHe3%2bo1uIkeYTDXBj1sjou02pUsJ4pnUHS6gCo3MAU7xh1n44PbV65d9YLmOUZ%2fZJzJDMt8dnF2zd9NQfsx%2fs4vu4AaeqWHoWLp5U%2bIlbpZV5rBhnC00MP%2fKwIOt7GJAnwxrX%2f9HJ%2fJK%2fBcjQaMvkRxbukVqXeDiR7Vi3Ahq6rRBNpc0uy83TbtNwVVWUqZCVC8HHR7xWAruzE6Tjfpdjrd6Fg1qxS%2b3uOQevfO3sIztcn4jGHhhcHGDOOREXiucq5YYyAinCOX2zXJ%2f8fqC8p0C0kvQMHDy1sRyU8FXmX4ErSB0MIckP4YCWuFApVi5Qoh%2fIAlUYv4HgXVsSPRvsTIKJnBvL5z07Rpt9L%2b%2fWG1AHKe1y4%3d; </strong>jda=122270672.2094899509.1520152794.1524279303.1524624918.35; <strong>jdc=122270672; </strong>jdv=122270672|baidu-pinzhuan|t_288551095_baidupinzhuan|cpc|0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93|1524624917991; qr_t=c; alc=bPBMso8BuutmJGtuRs8/Kg==; _t=lTQF+Yfs1BTpf7cG64fq2WN+9/94DNEzKQrYTo3yHCU=; __jdb=122270672.3.2094899509|35.1524624918; _jrda=4; _jrdb=1524624923872; wlfstk_smdl=po3ebsmorum2y3lph5b62dh0sevp7azx</p>
+</blockquote>
+<p>##请求的格式<br>看起来那么多，，格式都差不多的。</p>
+<blockquote>
+<p>1 动词 路径 协议/版本<br>2 Key1: value1<br>2 Key2: value2<br>2 Key3: value3<br>2 Content-Type: application/x-www-form-urlencoded<br>2 Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>2 User-Agent: curl/7.54.0<br>3<br>4 要上传的数据  </p>
+</blockquote>
+<ol>
+<li>请求最多包含四部分，最少包含三部分。（也就是说第四部分可以为空）</li>
+<li>第三部分永远是一个回车（\n）</li>
+<li>动词有<code>GET POST PUT PATCH DELETE HEAD OPTIONS</code>等。  </li>
+<li>这里的路径包括[查询参数]，但不包括[锚点]。</li>
+<li>如果你没有写路径，那么路径默认为/。</li>
+<li>第二部分中的Content-Type标注了第四部分的格式。</li>
+<li>如果有请求的第四部分，那么在FormData或Payload里面可以看到。</li>
+</ol>
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>请求之后，除非断网或者服务器宕机了，否则都应该能的要一个响应。<br>响应的格式：</p>
+<blockquote>
+<p>1 协议/版本号 状态码 状态解释<br>2 Key1: value1<br>2 Key2: value2<br>2 Content-Length: 17931<br>2 Content-Type: text/html<br>3<br>4 要下载的内容</p>
+</blockquote>
+<h3 id="用Chrome查看响应"><a href="#用Chrome查看响应" class="headerlink" title="用Chrome查看响应"></a>用Chrome查看响应</h3><ol>
+<li>打开 Network</li>
+<li>输入网址</li>
+<li>选中第一个响应</li>
+<li>查看 Response Headers，点击「view source」，点击「view source」，点击「view source」</li>
+<li>你会看到响应的前两部分</li>
+<li>查看 Response 或者 Preview，你会看到响应的第 4 部分</li>
+</ol>
+<h2 id="HTTP状态码，状态码是服务器对浏览器说的话。"><a href="#HTTP状态码，状态码是服务器对浏览器说的话。" class="headerlink" title="HTTP状态码，状态码是服务器对浏览器说的话。"></a>HTTP状态码，状态码是服务器对浏览器说的话。</h2><ul>
+<li>1xx消息——请求已被服务器接收，继续处理。</li>
+<li>2xx成功——请求已成功被服务器接收、理解、并接收。</li>
+<li>3xx重定向——需要后续操作才能完成这一请求。</li>
+<li>4xx请求错误——请求含有词法错误或者无法被执行。</li>
+<li>5xx服务器错误——服务器在出路某个正确请求时发生错误</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/24/脚本/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -928,521 +1979,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/计算机存储各种数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/计算机存储各种数据/" itemprop="url">计算机存储各种数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T20:18:46+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/21/计算机存储各种数据/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/计算机存储各种数据/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##为什么要学习编程基础</p>
-<blockquote>
-<p>因为要成为个前端，首先要成为个程序员。<br>一个程序员需要知道</p>
-<ol>
-<li>硬件与软件：计算机的运行原理（《编码》）</li>
-<li>最大的软件：操作系统（《现代操作系统》、维基百科）</li>
-<li>自己写软件：数据结构 &amp; 算法（《数据结构与算法分析》，所有的排序算法）</li>
-<li>多人写软件：软件工程（《代码大全2》）  </li>
-</ol>
-</blockquote>
-<p>##（内存）存储0和1<br>计算机的存储单位：  </p>
-<blockquote>
-<p>计算机系统数据只用0和1这种表现形式，（这里只表示一个数据点，不是数字），一个0或者1占一个“位”，而系统中规定8个位为一个字节。<br>电脑的各种存储器的最小的存储单位是<strong>比特</strong>，也就是位（<strong>bit，简称b</strong>），它表示一个二进制位。比位大的单位是<strong>字节（byte，简称B）</strong>，它等于8个二进制位。<br>因为在存储器中含有大量的存储单元，每个存储单元可以存放8个二进制位，所以存储器的容量是<strong>以字节为基本单位</strong>的。</p>
-</blockquote>
-<p>###存储</p>
-<ul>
-<li>1就充电</li>
-<li>0就不充电<br>###读取</li>
-<li>电量大于50%就是1</li>
-<li>电量小于50%就是0</li>
-</ul>
-<h2 id="存储数字"><a href="#存储数字" class="headerlink" title="存储数字"></a>存储数字</h2><p>把十进制变成二进制，为了方便书写，一般会将二进制数写为十六进制数。  </p>
-<h2 id="如何存储字符"><a href="#如何存储字符" class="headerlink" title="如何存储字符"></a>如何存储字符</h2><p>将每个字符编号，<strong>ASCII美国信息交换标准代码</strong>。<br>在ascii码表上每个字符有相对应的ASCII值。</p>
-<blockquote>
-<p>假如我们要存储a，那么就存储a对应的ASCII值97（十进制）对应的二进制。<br>a -&gt; 0110 0001(2) -&gt; 61(16)（为了书写方便，最终都会写成十六进制）<br>如果我们要存储1，那么就存储1对应的ASCII值49对应的二进制。<br>1 -&gt; 0011 0001(2) -&gt; 31(16)<br>存字符用单字节</p>
-</blockquote>
-<h2 id="如何存储中文"><a href="#如何存储中文" class="headerlink" title="如何存储中文"></a>如何存储中文</h2><p>中国推出了<strong>GB 2312中国国家标准简体中文字符集</strong><br>后来为了存储生僻字、繁体字、日语等，微软推出了<strong>GBK 字符集</strong><br>存中文用双字符</p>
-<h2 id="如何存储所有字符"><a href="#如何存储所有字符" class="headerlink" title="如何存储所有字符"></a>如何存储所有字符</h2><p>将全球字符编号 -&gt; <strong>Unicode字符集</strong></p>
-<blockquote>
-<p>然后发现用Unicode字符存所有的文字都要用到4个字节。（之前存字符只需单字节，存中文只要双字节）<br>utf-8就是Unicode最重要的实现方式之一(高性价比)，UTF-8不是固定字长编码的，而是一种变长的<strong>编码方式</strong>。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。<strong>如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节</strong>：<br>Unicode:a -&gt; 00000000 00000000 00000000 01100001<br>UTF-8:a -&gt; 01100001（第一个字节的第一位是0）<br>Unicode:你 -&gt; 00000000 00000000 01001111 01100000<br>UTF-8:你 -&gt; 1110100 10111101 10100000（第一个字节的第一位是1，连续3个111，则占3个字节）  </p>
-</blockquote>
-<p><strong>转换</strong><br>Unicode:00000000 00000000 00000000 01111111（2）(7位及以内)<br>UTF-8:0XXXXXXX<br>Unicode:00000000 00000000 00000111 11111111（2）(11位及以内)<br>UTF-8:110XXXXX 10XXXXXX<br>Unicode:00000000 00000000 11111111 11111111（2）(16位及以内)<br>UTF-8:1110XXXX 10XXXXXX 10XXXXXX（2）<br>Unicode:00000000 00011111 11111111 11111111（2）（21位及以内）<br>UTF-8:11110XXX 10XXXXXX 10XXXXXX 10XXXXXX</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/MarkDown基础语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/MarkDown基础语法/" itemprop="url">MarkDown基础语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T19:55:37+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/21/MarkDown基础语法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/MarkDown基础语法/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: Markdown基本语法</p>
-<h2 id="date-2018-04-21-10-59-19"><a href="#date-2018-04-21-10-59-19" class="headerlink" title="date: 2018-04-21 10:59:19"></a>date: 2018-04-21 10:59:19</h2><h2 id="MarkDown定义："><a href="#MarkDown定义：" class="headerlink" title="MarkDown定义："></a>MarkDown定义：</h2><ul>
-<li>MarkDown是一种轻量级语言。</li>
-<li>它使我们专心于码字，用[标记]语法，来代替常见的排版方法，可以使普通文本内容具有一定的格式。</li>
-</ul>
-<h2 id="为什么要学习MarkDown（优点）？"><a href="#为什么要学习MarkDown（优点）？" class="headerlink" title="为什么要学习MarkDown（优点）？"></a>为什么要学习MarkDown（优点）？</h2><ul>
-<li>纯文本内容，兼容所有的文本编辑器与字处理软件</li>
-<li>可以放在版本管理系统中，追踪历史变更</li>
-<li>轻松的导出HTML、PDF和本身的.md文件</li>
-<li>简洁、高效、可读、直观、学习成本低</li>
-</ul>
-<h2 id="Markdown语法主要分为如下几大部分："><a href="#Markdown语法主要分为如下几大部分：" class="headerlink" title="Markdown语法主要分为如下几大部分："></a>Markdown语法主要分为如下几大部分：</h2><p><strong>1. 标题</strong></p>
-<blockquote>
-<p>#对应h1  </p>
-<p>##对应h2  </p>
-<p>###对应h3  </p>
-<p>####对应h4  </p>
-<p>#####对应h5  </p>
-<p>######对应h6<br>符号与文字之间要加<strong>一个空格</strong>  </p>
-</blockquote>
-<p><strong>2. 段落</strong> </p>
-<blockquote>
-<p>段落前后都要有空行，若想在段内强制换行，使用<strong>两个或以上空格加回车</strong>  </p>
-</blockquote>
-<p><strong>3. 区块引用</strong>  </p>
-<blockquote>
-<p>在文字每行或只在第一行使用符号“&gt;”,还可以使用多个嵌套使用“&gt;&gt;”,“&gt;&gt;&gt;”等；符号与文字之间要用一个空格隔开。  </p>
-</blockquote>
-<p><strong>4. 代码区块</strong></p>
-<blockquote>
-<p>代码区块要每行加上四个空格或一个制表符（tab）。如：<br>        function print(){<br>            console.log(“Hello World”);<br>        }  </p>
-</blockquote>
-<p><strong>5. 强调</strong>  </p>
-<blockquote>
-<p>加粗使用4个<em>或_把文字包起来。<br>斜体使用2个</em>或_</p>
-</blockquote>
-<p><strong>6. 列表分割线</strong></p>
-<blockquote>
-<p>使用三个或以上的*，或-或_。</p>
-</blockquote>
-<p><strong>7. 链接</strong>  </p>
-<p>链接有两种形式：<strong>行内式</strong>和<strong>参考式</strong>。<br><strong>行内式</strong>  </p>
-<blockquote>
-<p>[name](url),例：<br>[这是百度](<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>)</p>
-</blockquote>
-<p><strong>参考式</strong></p>
-<blockquote>
-<p>[name](key)<br>[key]:url<br>例：<br>[这是百度](a)<br>[a]:<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>  </p>
-</blockquote>
-<p><strong>8. 图片</strong></p>
-<blockquote>
-<p>添加图片的形式与链接相似，只需在链接的基础上前方加一个“！”。<br><strong>9. 反斜杠\</strong><br>相当于<strong>反转义</strong>作用，使符号变成普通符号。</p>
-</blockquote>
-<p><strong>10.列表</strong></p>
-<blockquote>
-<p>有序列表使用<strong>1.和2.和3.</strong>。<br>无序列表使用-或*或+加个空格</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/开始/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/开始/" itemprop="url">开始</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T19:29:31+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/21/开始/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/开始/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#内容</p>
-<ul>
-<li>V1.0：一个在线网页（HTML+CSS）</li>
-<li>V2.0: 支持手机端查看，附加一个画板功能</li>
-<li>v3.0: 添加轮播、Tab、CSS3动画等特效。</li>
-<li>v4.0：添加留言板功能</li>
-<li>v5.0：添加作品：仿站、时钟、皮卡丘</li>
-<li>v6.0：添加JS作品：DOM库、MVVM库</li>
-<li>v7.0：使用Vue</li>
-<li>v8.0：使用React</li>
-</ul>
-<hr>
-<p>###C-R-M 学习法</p>
-<ul>
-<li>Copy 抄——mdn</li>
-<li>Run 运行——js.jirengu.com</li>
-<li>Modify 修改——自学，尝试</li>
-</ul>
-<hr>
-<p>###学习资料</p>
-<ul>
-<li>HTML - MDN</li>
-<li>CSS - MDN + CSS Tricks</li>
-<li>JavaScript - MDN + <a href="http://javascript.ruanyifeng.com" target="_blank" rel="noopener">阮一峰的书</a></li>
-<li>HTTP - frankfang/nodejs-test</li>
-<li>其他 - GitHub</li>
-</ul>
-<p>###知识分类</p>
-<ol>
-<li>工具使用知识</li>
-<li>概念知识（名词的意思，css先用再学，js线理解概念再用。）</li>
-<li>工程实践知识（实践出来的知识，例如自己容易写错的单词，多写多总结）</li>
-<li>经验（人码合一，<strong>总结</strong>输出）</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1488,7 +2029,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
