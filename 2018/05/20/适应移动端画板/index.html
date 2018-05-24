@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="pc端到移动端 页面缩小。   按照980px宽度的大小放进移动端，假设本来就显示980px，那么就占整个移动端屏幕按比例缩小放进去。 假设本来为490px，那么就占屏幕的一半，会空出一半位置 如果超过980px那么就会出现滚动条。   双击放大。   响应式Web设计-viewport什么是viewport?viewport是用户网页的可视区域，翻译为中文叫做“视区”。&amp;lt;meta name">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-24T10:57:43.045Z">
+<meta property="og:updated_time" content="2018-05-24T12:31:14.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适应移动端">
 <meta name="twitter:description" content="pc端到移动端 页面缩小。   按照980px宽度的大小放进移动端，假设本来就显示980px，那么就占整个移动端屏幕按比例缩小放进去。 假设本来为490px，那么就占屏幕的一半，会空出一半位置 如果超过980px那么就会出现滚动条。   双击放大。   响应式Web设计-viewport什么是viewport?viewport是用户网页的可视区域，翻译为中文叫做“视区”。&amp;lt;meta name">
@@ -352,9 +352,21 @@
 <li>user-scalable：用户是否可以手动缩放。yes或no</li>
 </ol>
 <h3 id="touch触摸事件"><a href="#touch触摸事件" class="headerlink" title="touch触摸事件"></a>touch触摸事件</h3><p>触摸事件的种类，有以下几种。可以通过TouchEvent。type属性，查看到底发生的是哪一种事件。</p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- ```touchend```:用户不在接触触摸屏时（或移除屏幕边缘时）触发，它的```target```属性与```touchstart```事件一致的，就是开始触摸时所在的元素节点。它的```changedTouches```属性返回一个```TouchList```实例，包含所有不在触摸的触摸点（即```Touch实例对象```）</span><br><span class="line">- ```touchmove```:用户移动触摸点时触发，它的```target```属性与```touchstart```事件一致。如果触摸的半径、角度、力度发生变化，也会触发该事件。</span><br><span class="line">- ```touchcancel```:触摸点取消时触发，比如在触摸区域跳出一个情态窗口（modal window）、触摸点离开了文档区域（进入浏览器菜单栏）、用户的触摸点太多，超过了支持的上限（自动取消早先的触摸点）。</span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">### 查看设备是否支持触摸(特性检测)</span><br><span class="line">1. ```canvas.ontouchstart```，如果显示为null，则为可触摸设备，表示支持该功能，不支持显示为undefined。canvas为变量名。  </span><br><span class="line">2. 查看```ontouchstart```是否body的一个属性。例：```&apos;ontouchstart&apos; in document.body```显示true，代表是，那么可触摸。  </span><br><span class="line">3. ```document.body.touchstart == undefinede```为非触屏设备。```document.body.touchstart == null```为触屏设备。  </span><br><span class="line">in，用于查看什么属性或者什么值在不在xxx里面，例如：查看一个key在不在哈希里。```&apos;key&apos; in hash```，在就输出```true```，不在就输出```false```。  </span><br><span class="line"></span><br><span class="line">### 获取触摸位置</span><br><span class="line">在触摸事件属性里，在```touches:TouchList```里的第0项，有那个触摸点的clienX和clineY坐标，为什么是第0项呢？因为在触摸设备里，可能有二点触控，三点触控，五点触控，这是一个触摸点列表集合。  </span><br><span class="line">```canvas.ontouchstart = function(a)&#123;</span><br><span class="line">    var x = a.touches[0].clientX</span><br><span class="line">    var y = a.touches[0].clientY </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<ol>
+<li><code>touchstart</code>:用户开始触摸时触发，它的<code>target</code>属性返回发生触摸的元素节点。</li>
+<li><code>touchend</code>:用户不在接触触摸屏时（或移除屏幕边缘时）触发，它的<code>target</code>属性与<code>touchstart</code>事件一致的，就是开始触摸时所在的元素节点。它的<code>changedTouches</code>属性返回一个<code>TouchList</code>实例，包含所有不在触摸的触摸点（即<code>Touch实例对象</code>）</li>
+<li><code>touchmove</code>:用户移动触摸点时触发，它的<code>target</code>属性与<code>touchstart</code>事件一致。如果触摸的半径、角度、力度发生变化，也会触发该事件。</li>
+<li><code>touchcancel</code>:触摸点取消时触发，比如在触摸区域跳出一个情态窗口（modal window）、触摸点离开了文档区域（进入浏览器菜单栏）、用户的触摸点太多，超过了支持的上限（自动取消早先的触摸点）。  </li>
+</ol>
+<h3 id="查看设备是否支持触摸-特性检测"><a href="#查看设备是否支持触摸-特性检测" class="headerlink" title="查看设备是否支持触摸(特性检测)"></a>查看设备是否支持触摸(特性检测)</h3><ol>
+<li><code>canvas.ontouchstart</code>，如果显示为null，则为可触摸设备，表示支持该功能，不支持显示为undefined。canvas为变量名。  </li>
+<li>查看<code>ontouchstart</code>是否body的一个属性。例：<code>&#39;ontouchstart&#39; in document.body</code>显示true，代表是，那么可触摸。  </li>
+<li><code>document.body.touchstart == undefinede</code>为非触屏设备。<code>document.body.touchstart == null</code>为触屏设备。<br>in，用于查看什么属性或者什么值在不在xxx里面，例如：查看一个key在不在哈希里。<code>&#39;key&#39; in hash</code>，在就输出<code>true</code>，不在就输出<code>false</code>。  </li>
+</ol>
+<h3 id="获取触摸位置"><a href="#获取触摸位置" class="headerlink" title="获取触摸位置"></a>获取触摸位置</h3><p>在触摸事件属性里，在<code>touches:TouchList</code>里的第0项，有那个触摸点的clienX和clineY坐标，为什么是第0项呢？因为在触摸设备里，可能有二点触控，三点触控，五点触控，这是一个触摸点列表集合。<br><code>canvas.ontouchstart = function(a){
+    var x = a.touches[0].clientX
+    var y = a.touches[0].clientY 
+}</code></p>
 
       
     </div>
@@ -521,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pc端到移动端"><span class="nav-number">1.</span> <span class="nav-text">pc端到移动端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式Web设计-viewport"><span class="nav-number">2.</span> <span class="nav-text">响应式Web设计-viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是viewport"><span class="nav-number">2.1.</span> <span class="nav-text">什么是viewport?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch触摸事件"><span class="nav-number">3.</span> <span class="nav-text">touch触摸事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pc端到移动端"><span class="nav-number">1.</span> <span class="nav-text">pc端到移动端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式Web设计-viewport"><span class="nav-number">2.</span> <span class="nav-text">响应式Web设计-viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是viewport"><span class="nav-number">2.1.</span> <span class="nav-text">什么是viewport?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch触摸事件"><span class="nav-number">3.</span> <span class="nav-text">touch触摸事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看设备是否支持触摸-特性检测"><span class="nav-number">4.</span> <span class="nav-text">查看设备是否支持触摸(特性检测)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取触摸位置"><span class="nav-number">5.</span> <span class="nav-text">获取触摸位置</span></a></li></ol></div>
             
 
           </div>
