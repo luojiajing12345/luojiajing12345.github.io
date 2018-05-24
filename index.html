@@ -249,6 +249,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/23/JS里的类型/" itemprop="url">JS里的类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T21:19:02+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/23/JS里的类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/23/JS里的类型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h4 id="强制转换"><a href="#强制转换" class="headerlink" title="强制转换"></a>强制转换</h4><ol>
+<li>其他类型转化为数值类型<br><strong>可使用：全局函数Number()，全局函数parseInt()(重要),全局函数parseFoat(),减0，取正(就是前面加个+)</strong><br>字符串<br>Number(‘123’)//123  //如果可以被解析为数值，则转换为相应的数值。<br>Number(‘123a’)//NaN //如果有一个字符无法转成数值，那么整个字符串就会被转为NaN<br>Number(‘’) //0 //空字符串转为0<br>布尔值<br>Number(true) //1<br>Number(flase) //0<br>undefined<br>Number(undefined) //NaN<br>null<br>Number(null) //0<br>对象<br>Number({a:1}) //NaN<br>Number({}) //NaN<br>Number([5]) //5 除了包含单个数值的数组，会返回那个数值，其他都返回NaN  </li>
+</ol>
+<hr>
+<ol start="2">
+<li>其他类型转化为字符串类型<br><strong>可使用的API:toString()，全局函数String(),加个’’空字符串</strong><br>数值<br>var a = 1; a.toString() //‘1’ //这个要使用变量<br>String(123) //‘123’ //转为相应的字符串。<br>字符串<br>String(‘abc’) //‘abc’ //不变。<br>布尔值<br>String(true) //‘ture’ //转为相应的字符串。<br>undefined<br>String(undefined) //‘undefined’ //转为字符’undefined’。<br><strong>undefined.toString() //报错，Cannot read property ‘toString’ of undefined</strong>，无法读取undefied的toString属性。<br>null<br>String(null) //‘null’ //转为字符串’null’<br><strong>null.toString() //报错，Cannot read property ‘toString’ of null</strong> ,意思是null没有toString()这个API，无法读取null的toString属性。<br>对象<br>String({a:1}) //‘[object Object]’ //参数是对象，返回一个类型字符串<br>String([1,2,3]) //‘1,2,3’ //参数是数组，返回该数组的字符串形式<br><code>console.log(1)</code>==<code>console.log((1).toString())</code>，发现你不是字符串，会转化为字符串。<br><strong>小技巧：想把其他类型转换为字符串，直接让那个值加一个空字符串，1 + ‘’ ==’1’</strong>   </li>
+</ol>
+<hr>
+<ol start="3">
+<li>其他类型转化为布尔类型<br><strong>可使用：全局函数Boolean()，取返2次（在其他值面前加两个！）</strong><br>除了以下五个值的转换结果为false，这五个值叫falsy值，其他的值全部都是ture。<blockquote>
+<p>undefined<br>null<br>-0或+0<br>NaN<br>‘’(空字符串)</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h4 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h4><ol>
+<li><p>不同类型互相运算<br><code>123 + &#39;abc&#39;</code> //“123abc”  //会把前面的123，先123.toString(),转化为字符串，然后两个字符串相加。</p>
+</li>
+<li><p>对非布尔值类型的数据求布尔值<br>‘’’if(‘abc’){<br> console.log(‘hello’)<br>} //“hello”<br>‘’’</p>
+</li>
+<li>对非数值类型的值使用运算符（+和-）</li>
+</ol>
+<ul>
+<li>{foo:’bar’} //NaN</li>
+</ul>
+<ul>
+<li>[1,2,3] //NaN</li>
+</ul>
+<ol start="4">
+<li>除了加法运算符(+)有可能吧运算子转为字符串，其他运算符都会把运算自自动转成数值。<br><code>&#39;5&#39;-&#39;2&#39;</code> //3<br><code>&#39;abc&#39; - 1</code> //NaN</li>
+</ol>
+<h3 id="javascript基本类型和引用类型在内存中的值"><a href="#javascript基本类型和引用类型在内存中的值" class="headerlink" title="javascript基本类型和引用类型在内存中的值"></a>javascript基本类型和引用类型在内存中的值</h3><hr>
+<h4 id="内存基本概念"><a href="#内存基本概念" class="headerlink" title="内存基本概念"></a>内存基本概念</h4><p><strong>内存的生存周期：</strong></p>
+<ol>
+<li>分配所需的内存</li>
+<li>内存的读与写</li>
+<li>不需要时将其释放<br>所有语言的内存生命周期都基本一致，不同的是最后一步在低级语言中很清晰，但是在像JavaScript等高级语言中，这一步是隐藏的、透明的。  </li>
+</ol>
+<p><strong>js内存生命周期：</strong>  </p>
+<ol>
+<li>定义变量时就完成了内存分配</li>
+<li>使用值的过程实际上是对分配内存进行读取与写入的操作，读取与写入可能是写入一个变量或者一个对象的属性值，甚至传递函数的参数。</li>
+<li>内存的释放依赖GC机制（高级语言解释器嵌入的“垃圾回收器”）。   </li>
+</ol>
+<hr>
+<p>js程序在运行的时候，需要内存空间存放代码和数据，所以分为代码区和数据区。而数据区又分为栈(stack)和堆(heap)两种内存空间。  </p>
+<ul>
+<li>栈(stak)是有结构的，每个块区按照一定次序存放（先进后出），sack中主要存放一些基本的变量和对象的引用，存在栈中的数据大小与生存期必须是确定的。可以明确知道每个区块的大小，因此，stack的寻址速度要快于heap。它的存储方式是一行一行的和栈类似。简单数据类型都存在这（6种）。  </li>
+<li>堆(heap)是没有结构的，数据可以任意存放。heap用于复杂数据类型（引用类型）分配空间，例如数组对象、object对象。它的存储方式跟堆类似。<br>例<code>var a = 1</code>,首先变量a提升，此时a等于undefined，然后a放在代码区，1放在数据区的栈里。在js内部，所有数字都是以64位浮点数形式储存，所以这个1在内存里占了64位。ECMAScript规定。<br>复制基本类型：<code>var b = 2</code>,也和上面一样，当<code>b=a</code>，那么就把a对应的在栈里的64位浮点数形式的1覆盖在b对应的栈的位置。<br>js在存字符的时候，每个字符占16位。ECMAScript规定<br>存对象：<code>var a = {name:&#39;luo&#39;,age:18}</code>,那么会把a放在代码区，然后a对应的栈内存里有个ADDR（地址），那个地址是堆内存中的一块空间的地址，这块空间大小可以变化，就可以不受影响的增加或减少对象里的东西了。<br>复制对象：相当于把变量对应的栈里面的ADDR复制给另一个变量。  </li>
+</ul>
+<hr>
+<p>引用：当复制保存着对象的某个变量时，操作的是对象的引用（就是那个地址）。但在为对象添加属性时，操作的是实际的对象。  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的数据/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -384,7 +565,7 @@ for(var key in obj){
 for(var key in obj){  
     console.log(obj[key])
         }</code></p>
-<p>遍历key和value  </p>
+<p>遍历key和value<br>in</p>
 <p><code>var obj = {name:&#39;luojj&#39;,age:18}  
 for(var key in obj){  
     console.log(key,obj[key])  
@@ -536,8 +717,20 @@ for(var key in obj){
 <li>双击放大。</li>
 </ol>
 <hr>
-<h3 id="响应式Web设计-viewport"><a href="#响应式Web设计-viewport" class="headerlink" title="响应式Web设计-viewport"></a>响应式Web设计-viewport</h3><h4 id="什么是viewport"><a href="#什么是viewport" class="headerlink" title="什么是viewport?"></a>什么是viewport?</h4><p>viewport是用户网页的可视区域，翻译为中文叫做“视区”。<br><figure class="highlight plain"><figcaption><span>name</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">宽度=设备宽度，不允许缩放，所有比例都是1比1.   </span><br><span class="line"></span><br><span class="line">六个属性：</span><br><span class="line">1. width:控制viewport的大小，可以指定的一个值，如600，或者特殊的值，如device-width为设备的宽度（相当于100%的css像素）</span><br><span class="line">2. height：和width相对应，指定高度。</span><br><span class="line">3. initial-scale：初始缩放比例，也即是当页面第一次load的时候缩放比例。1.0，就是1：1</span><br><span class="line">4. maximum-scale：允许用户缩放到的最大比例。1.0</span><br><span class="line">5. minimum-scale：允许用户缩放到的最小比例。1.0</span><br><span class="line">6. user-scalable：用户是否可以手动缩放。yes或no</span><br><span class="line"></span><br><span class="line">### touch触摸事件</span><br><span class="line">触摸事件的种类，有以下几种。可以通过TouchEvent。type属性，查看到底发生的是哪一种事件。</span><br><span class="line">- ```touchstart```:用户开始触摸时触发，它的```target```属性返回发生触摸的元素节点。</span><br><span class="line">- ```touchend```:用户不在接触触摸屏时（或移除屏幕边缘时）触发，它的```target```属性与```touchstart```事件一致的，就是开始触摸时所在的元素节点。它的```changedTouches```属性返回一个```TouchList```实例，包含所有不在触摸的触摸点（即```Touch实例对象```）</span><br><span class="line">- ```touchmove```:用户移动触摸点时触发，它的```target```属性与```touchstart```事件一致。如果触摸的半径、角度、力度发生变化，也会触发该事件。</span><br><span class="line">- ```touchcancel```:触摸点取消时触发，比如在触摸区域跳出一个情态窗口（modal window）、触摸点离开了文档区域（进入浏览器菜单栏）、用户的触摸点太多，超过了支持的上限（自动取消早先的触摸点）。</span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">### 查看设备是否支持触摸(特性检测)</span><br><span class="line">1. ```canvas.ontouchstart```，如果显示为null，则为可触摸设备，表示支持该功能，不支持显示为undefined。canvas为变量名。  </span><br><span class="line">2. 查看```ontouchstart```是否body的一个属性。例：```&apos;ontouchstart&apos; in document.body```显示true，代表是，那么可触摸。  </span><br><span class="line">3. ```document.body.touchstart == undefinede```为非触屏设备。```document.body.touchstart == null```为触屏设备。  </span><br><span class="line">in，用于查看什么属性或者什么值在不在xxx里面，例如：查看一个key在不在哈希里。```&apos;key&apos; in hash```，在就输出```true```，不在就输出```false</span><br></pre></td></tr></table></figure></p>
-<h3 id="获取触摸位置"><a href="#获取触摸位置" class="headerlink" title="获取触摸位置"></a>获取触摸位置</h3><p>在触摸事件属性里，在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">canvas.ontouchstart = function(a)&#123;</span><br><span class="line">    var x = a.touches[0].clientX</span><br><span class="line">    var y = a.touches[0].clientY </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="响应式Web设计-viewport"><a href="#响应式Web设计-viewport" class="headerlink" title="响应式Web设计-viewport"></a>响应式Web设计-viewport</h3><h4 id="什么是viewport"><a href="#什么是viewport" class="headerlink" title="什么是viewport?"></a>什么是viewport?</h4><p>viewport是用户网页的可视区域，翻译为中文叫做“视区”。<br><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0&quot;&gt;</code><br>宽度=设备宽度，不允许缩放，所有比例都是1比1.   </p>
+<p>六个属性：</p>
+<ol>
+<li>width:控制viewport的大小，可以指定的一个值，如600，或者特殊的值，如device-width为设备的宽度（相当于100%的css像素）</li>
+<li>height：和width相对应，指定高度。</li>
+<li>initial-scale：初始缩放比例，也即是当页面第一次load的时候缩放比例。1.0，就是1：1</li>
+<li>maximum-scale：允许用户缩放到的最大比例。1.0</li>
+<li>minimum-scale：允许用户缩放到的最小比例。1.0</li>
+<li>user-scalable：用户是否可以手动缩放。yes或no</li>
+</ol>
+<h3 id="touch触摸事件"><a href="#touch触摸事件" class="headerlink" title="touch触摸事件"></a>touch触摸事件</h3><p>触摸事件的种类，有以下几种。可以通过TouchEvent。type属性，查看到底发生的是哪一种事件。</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- ```touchend```:用户不在接触触摸屏时（或移除屏幕边缘时）触发，它的```target```属性与```touchstart```事件一致的，就是开始触摸时所在的元素节点。它的```changedTouches```属性返回一个```TouchList```实例，包含所有不在触摸的触摸点（即```Touch实例对象```）</span><br><span class="line">- ```touchmove```:用户移动触摸点时触发，它的```target```属性与```touchstart```事件一致。如果触摸的半径、角度、力度发生变化，也会触发该事件。</span><br><span class="line">- ```touchcancel```:触摸点取消时触发，比如在触摸区域跳出一个情态窗口（modal window）、触摸点离开了文档区域（进入浏览器菜单栏）、用户的触摸点太多，超过了支持的上限（自动取消早先的触摸点）。</span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">### 查看设备是否支持触摸(特性检测)</span><br><span class="line">1. ```canvas.ontouchstart```，如果显示为null，则为可触摸设备，表示支持该功能，不支持显示为undefined。canvas为变量名。  </span><br><span class="line">2. 查看```ontouchstart```是否body的一个属性。例：```&apos;ontouchstart&apos; in document.body```显示true，代表是，那么可触摸。  </span><br><span class="line">3. ```document.body.touchstart == undefinede```为非触屏设备。```document.body.touchstart == null```为触屏设备。  </span><br><span class="line">in，用于查看什么属性或者什么值在不在xxx里面，例如：查看一个key在不在哈希里。```&apos;key&apos; in hash```，在就输出```true```，不在就输出```false```。  </span><br><span class="line"></span><br><span class="line">### 获取触摸位置</span><br><span class="line">在触摸事件属性里，在```touches:TouchList```里的第0项，有那个触摸点的clienX和clineY坐标，为什么是第0项呢？因为在触摸设备里，可能有二点触控，三点触控，五点触控，这是一个触摸点列表集合。  </span><br><span class="line">```canvas.ontouchstart = function(a)&#123;</span><br><span class="line">    var x = a.touches[0].clientX</span><br><span class="line">    var y = a.touches[0].clientY </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
           
         
@@ -605,7 +798,7 @@ for(var key in obj){
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/17/Canvas画板/" itemprop="url">Canvas绘图</a></h1>
+                <a class="post-title-link" href="/2018/05/17/Canvas画板/" itemprop="url">Canvas绘画板</a></h1>
         
 
         <div class="post-meta">
@@ -669,39 +862,18 @@ for(var key in obj){
           
             <h3 id="mouse事件"><a href="#mouse事件" class="headerlink" title="mouse事件"></a>mouse事件</h3><ul>
 <li><p>onmousedown:在用户按下了任意鼠标按键时触发。不能通过键盘触发这个事件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.onmousedown = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.onmousemove = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    console.log(x)</span><br><span class="line">&#125;```  </span><br><span class="line"></span><br><span class="line">- onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。</span><br><span class="line"></span><br><span class="line">```document.onmousemove = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>onmouseup:当用户释放鼠标按键时触发。不能通过键盘触发这个事件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.onmousemove = function(x)&#123;</span><br><span class="line">    console.log(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>这些事件，前面可加on可不加on，即onmousedown和mousedown一样</strong></p>
-<hr>
-<h3 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h3><ol>
-<li>定义一个变量赋值为false.</li>
-<li>按下鼠标任意键，即触发mousedown时，给变量赋值true</li>
-<li>在鼠标指针滑动，即触发mousemove时，判断变量是否为true，即是否已按下鼠标按键，如果是，执行代码，如果不是，就不执行。</li>
-<li>当鼠标释放时，即触发mouseup事件时，非变量赋值false，即停止鼠标指针滑动时的执行的代码。</li>
-</ol>
-<hr>
-<h3 id="canvas里，图像生成位置"><a href="#canvas里，图像生成位置" class="headerlink" title="canvas里，图像生成位置"></a>canvas里，图像生成位置</h3><p>canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    margin:0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>生成一条路径：<br>开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</p>
-<hr>
-<h3 id="使画板全屏"><a href="#使画板全屏" class="headerlink" title="使画板全屏"></a>使画板全屏</h3><p>对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var drawWidth = document.documentElement.clientWintd//获取页面宽度</span><br><span class="line">var drawHeight = document.documentElement.clientHeight//获取页面高度</span><br><span class="line">canvas.width = drawWidth</span><br><span class="line">canvas.height = drawHeight</span><br></pre></td></tr></table></figure></p>
-<h3 id="onresize-事件"><a href="#onresize-事件" class="headerlink" title="onresize 事件"></a>onresize 事件</h3><p>onresize 事件会在窗口或框架被调整大小时发生。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    var drawWidth = document.documentElement.clientWintd//获取页面宽度</span><br><span class="line">    var drawHeight = document.documentElement.clientHeight//获取页面高度</span><br><span class="line">    canvas.width = drawWidth</span><br><span class="line">    canvas.height = drawHeight</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</p>
-<h3 id="HTML-DOM-classList属性"><a href="#HTML-DOM-classList属性" class="headerlink" title="HTML DOM classList属性"></a>HTML DOM classList属性</h3><p>classList 属性返回元素的类名，作为 DOMTokenList 对象。<br>该属性用于在元素中添加，移除及切换 CSS 类。<br>classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  </span><br><span class="line">- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 </span><br><span class="line"></span><br><span class="line">### 防止移动端滑动时抖动</span><br></pre></td></tr></table></figure></p>
-<p>body{<br>    overflow:hidden;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">不要出现滚动条。</span><br><span class="line"></span><br><span class="line">### 清空整个画板。</span><br><span class="line">```context.clearRect(0,0,canvas.width,canvas.height)``` </span><br><span class="line">使用```clerrRect()```方法清除一个和画板一样大的矩形就行了</span><br><span class="line"></span><br><span class="line">### 把canvas保存为图片</span><br></pre></td></tr></table></figure></p>
-<p>download.onclick = function(){<br>    var url = canvas.toDataURL(‘image/png)<br>    var a = document.createElement(‘aa’)<br>    document.body.appendChild(a)<br>    a.href = url<br>    a.download = ‘图片’<br>    a.click()<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 完全固定住，在手机上不会滑动(绝对定位住)</span><br></pre></td></tr></table></figure></p>
-<p>#canvas{<br>    position: fixed;<br>    top: 0;<br>    left: 0;<br>}</p>
-<pre><code>
-### className和classList
-className用于 **更改** 某个标签的类名，来达到更改类属性的效果。  
-```element.className = &apos;xxx&apos;
-</code></pre><p>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    console.log(x)</span><br><span class="line">&#125;```  </span><br><span class="line"></span><br><span class="line">**这些事件，前面可加on可不加on，即onmousedown和mousedown一样**</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 画线</span><br><span class="line">1. 定义一个变量赋值为false.</span><br><span class="line">2. 按下鼠标任意键，即触发mousedown时，给变量赋值true</span><br><span class="line">3. 在鼠标指针滑动，即触发mousemove时，判断变量是否为true，即是否已按下鼠标按键，如果是，执行代码，如果不是，就不执行。</span><br><span class="line">4. 当鼠标释放时，即触发mouseup事件时，非变量赋值false，即停止鼠标指针滑动时的执行的代码。</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### canvas里，图像生成位置</span><br><span class="line">canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。</span><br><span class="line">```body&#123;</span><br><span class="line">    margin:0</span><br><span class="line">&#125;```  </span><br><span class="line"></span><br><span class="line">生成一条路径：  </span><br><span class="line">开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 使画板全屏</span><br><span class="line">对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。</span><br></pre></td></tr></table></figure>
+<p>var drawWidth = document.documentElement.clientWintd//获取页面宽度<br>var drawHeight = document.documentElement.clientHeight//获取页面高度<br>canvas.width = drawWidth<br>canvas.height = drawHeight<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### onresize 事件</span><br><span class="line">onresize 事件会在窗口或框架被调整大小时发生。</span><br></pre></td></tr></table></figure></p>
+<p>window.onresize=function(){<br>    var drawWidth = document.documentElement.clientWintd//获取页面宽度<br>    var drawHeight = document.documentElement.clientHeight//获取页面高度<br>    canvas.width = drawWidth<br>    canvas.height = drawHeight<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</span><br><span class="line"></span><br><span class="line">### HTML DOM classList属性</span><br><span class="line">classList 属性返回元素的类名，作为 DOMTokenList 对象。  </span><br><span class="line">该属性用于在元素中添加，移除及切换 CSS 类。  </span><br><span class="line">classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。  </span><br><span class="line">```document.getElementById(&quot;myDIV&quot;).classList.add(&quot;class&quot;);```//在id为myDIV的元素中添加一个名为class的类名，可添加多个</span><br><span class="line">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  </span><br><span class="line">- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 </span><br><span class="line"></span><br><span class="line">### 防止移动端滑动时抖动</span><br><span class="line">```body&#123;</span><br><span class="line">    overflow:hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不要出现滚动条。</p>
+<h3 id="清空整个画板。"><a href="#清空整个画板。" class="headerlink" title="清空整个画板。"></a>清空整个画板。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用```clerrRect()```方法清除一个和画板一样大的矩形就行了</span><br><span class="line"></span><br><span class="line">### 把canvas保存为图片</span><br></pre></td></tr></table></figure>
+<p>download.onclick = function(){<br>    var url = canvas.toDataURL(‘image/png)<br>    var a = document.createElement(‘aa’)<br>    document.body.appendChild(a)<br>    a.href = url<br>    a.download = ‘图片’<br>    a.click()<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 完全固定住，在手机上不会滑动(绝对定位住)</span><br><span class="line">```#canvas&#123;</span><br><span class="line">	position: fixed;</span><br><span class="line">	top: 0;</span><br><span class="line">	left: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="className和classList"><a href="#className和classList" class="headerlink" title="className和classList"></a>className和classList</h3><p>className用于 <strong>更改</strong> 某个标签的类名，来达到更改类属性的效果。<br><code>element.className = &#39;xxx&#39;</code><br>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
 
           
         
@@ -831,8 +1003,16 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
       
         
           
-            <h2 id="1-什么是Canvas"><a href="#1-什么是Canvas" class="headerlink" title="1.什么是Canvas?"></a>1.什么是Canvas?</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 2.基本用法</span><br><span class="line">1. 创建一个画布。  </span><br><span class="line">```&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&apos;border:1px solid red&apos;&gt;&lt;/canvas&gt;```不加边框看不见画布的范围。 </span><br><span class="line">---</span><br><span class="line">2. 绘制图像</span><br></pre></td></tr></table></figure>
-<p>var c=document.getElementById(“myCanvas”);//把<canvas>元素赋值给c<br>var ctx=c.getContext(“2d”);//创建context对象，getContext（’2d’）对象是内建的html5对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法<br>ctx.fillStyle=”#FF0000”;//填充样式，可以设定颜色、渐变或方案<br>ctx.fillRect(0,0,150,75);//填充方式，四个值x,y,width,heigth。<br>ctx.strokeStyle = ‘red’;//描边样式，边框颜色等<br>ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分开的，这里为两个矩形。<br><code>`</code><br><strong>描边属性：</strong></canvas></p>
+            <h2 id="1-什么是Canvas"><a href="#1-什么是Canvas" class="headerlink" title="1.什么是Canvas?"></a>1.什么是Canvas?</h2><p><code>&lt;canvas&gt;</code>是html5新增的元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScripe动态地在这个区域中绘制图形。<canvas>标签只是图形容器。  </canvas></p>
+<h2 id="2-基本用法"><a href="#2-基本用法" class="headerlink" title="2.基本用法"></a>2.基本用法</h2><ol>
+<li>创建一个画布。<br><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&#39;border:1px solid red&#39;&gt;&lt;/canvas&gt;</code>不加边框看不见画布的范围。 </li>
+</ol>
+<hr>
+<ol start="2">
+<li>绘制图像 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var c=document.getElementById(&quot;myCanvas&quot;);//把&lt;canvas&gt;元素赋值给c</span><br><span class="line">var ctx=c.getContext(&quot;2d&quot;);//创建context对象，getContext（&apos;2d&apos;）对象是内建的html5对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法</span><br><span class="line">ctx.fillStyle=&quot;#FF0000&quot;;//填充样式，可以设定颜色、渐变或方案</span><br><span class="line">ctx.fillRect(0,0,150,75);//填充方式，四个值x,y,width,heigth。</span><br><span class="line">ctx.strokeStyle = &apos;red&apos;;//描边样式，边框颜色等</span><br><span class="line">ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分开的，这里为两个矩形。</span><br></pre></td></tr></table></figure>
+<p><strong>描边属性：</strong></p>
 <ul>
 <li>线条宽度：lineWidth</li>
 <li>线末形状：lineCap</li>
@@ -1616,205 +1796,6 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/算法入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/05/算法入门/" itemprop="url">算法入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-05T20:52:42+08:00">
-                2018-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/05/算法入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/05/算法入门/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="结构化编程"><a href="#结构化编程" class="headerlink" title="结构化编程"></a>结构化编程</h3><p>结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。<br>满足下面3个语句，就是结构化编程。</p>
-<ol>
-<li>一行一行执行</li>
-<li>有条件控制语句if…else…</li>
-<li>有循环控制语句while(exp)do…</li>
-</ol>
-<h3 id="什么是算法"><a href="#什么是算法" class="headerlink" title="什么是算法"></a>什么是算法</h3><p>在高德纳的著作《计算机程序设计艺术》里对算法的特征归纳：</p>
-<ul>
-<li>输入：一个算法必须有零个或以上输入量。</li>
-<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
-<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地匹配要求或期望，通常要求实际运行结果的确定的。</li>
-<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态，有限个输入符号和有限个穿衣函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
-<li>有效性：又称可行性。能够实现，算法中描述的操作都可以通过已经实现的基本运算执行有限次来实现。</li>
-</ul>
-<h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><p>就是数据的结构。<br>一般来说这样的：</p>
-<ol>
-<li>我们要解决一个跟数据相关的问题。  </li>
-<li>分析这个问题，相处对应的数据结构</li>
-<li><strong>分析数据结构，想出算法</strong><blockquote>
-<p>数据结构和算法是相互依存，不可分开的。<br>学习完排序算法，就能了解常见的数据结构。</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="算法大分类"><a href="#算法大分类" class="headerlink" title="算法大分类"></a>算法大分类</h3><ul>
-<li>分治法：把一个问题分区成互相独立的多个部分分别求解的思路。这种求解思路带来的好处之一是便于进行并行计算。（例如把国家分为省，然后把省分为市这样一路分，每个地方不一样的管理方式）</li>
-<li>动态规则法：当问题的整体最优解就是有局部最优解组成的时候，经常采用的一种方式。（就目前的情况来看，如果当前是最好的，那么就用这个。）</li>
-<li>贪婪算法： 常见的近似求解思路。当问题的整体最优解不是（或无法证明是）由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。（短视算法，选择当前较好的方法）</li>
-<li>线性规划法：</li>
-<li>简并法：把一个问题通过逻辑或数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。</li>
-</ul>
-<p><strong>前端主要使用分治法————分而治之</strong></p>
-<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p><strong>冒泡排序</strong>（体育委员两两对比法）：例如要把3、5、9、1、7、6这六个数字从左往右为以小到大。</p>
-<ol>
-<li>对比第一个和第二个，把小的放左边，大的放右边。</li>
-<li>然后对比第二个和第三个，也是小的放左边，大的放右边。</li>
-<li>就这样依次对比，比完第五个和第六个。此时的排序为3、5、1、7、6、9。此时最大的值已固定。</li>
-<li>依照前面的方法，但最后一位数不用再比，此时的排序为3、1、5、6、7、9。此时后两位二位已固定。</li>
-<li>再按照前面的方法，最后两位不用比，此时的排序为1、3、5、6、7、9。此时后三位已固定。</li>
-<li>再按照前面的方法，后3位不用比，此时排序为1、3、5、6、7、9.此时后四位已固定。</li>
-<li>再按照前面的方法，后四位不用比，此时排序为1、3、5、6、7、9.此时后五位已固定，</li>
-<li>那么这几个数字从左往右从小到大为1、3、5、6、7、9.</li>
-</ol>
-<p><strong>选择排序</strong>（体育老师一指禅法）：例如要把6、3、2、4、5、1这6个数字从左往右以小到大。</p>
-<ol>
-<li>找出个最小的，把这6个数字相互比较，找出最小的数字也就是1，把跟最前面的数字换位置，得到的排序为1、3、2、4、5、6，此时最小值已固定。比较方法，例：6和3比，3小；3和2比，2小；2和4比。4小，这样。</li>
-<li>从后五位中选出最小的，也就是2，和排在第二位的3换位置，得到的为1、2、3、4、5、6，此时前二位已固定。</li>
-<li>从后四位中选出最小的，也就是3,3本身排在第三位，就不用换位置了，此时排序为1、2、3、4、5、6，前三位已固定。</li>
-<li>从后三位中选出最小的，也就是4,4本身排在第四位，就不用换位置了，此时排序为1、2、3、4、5、6，前四位已固定。</li>
-<li>从后二位中选出最小的，也就是5,5本身排在第五位，就不用换位置了，此时排序为1、2、3、4、5、6，前五位已固定。</li>
-<li>此时得到的排序就是想要的排序了。</li>
-</ol>
-<p><strong>插入排序</strong>（起扑克牌法）例如要把5、6、4、3、2、1这6个数字从左往右以小到大。</p>
-<ol>
-<li>把第一个数字，也就是5（第一张扑克牌），拿到手里。此时排序为5.</li>
-<li>拿到第二个，也就是6，对比手中的5，发现比5大，把6放5右边。此时排序5、6.</li>
-<li>拿到第三个，也就是4，对比手中的，发现比6小，然后有比5小，把4放5左边。此时排序4、5、6.</li>
-<li>拿到第四个，也就是3，对比手中的，发现比4、5、6都小，把3放最左边。此时排序3、4、5、6.</li>
-<li>拿到第五个，也就是2，对比手中的，发现比3、4、5、6都小，把2放最左边。此时排序2、3、4、5、6.</li>
-<li>拿到最后一个，也就是1，对比手中的，发现比2、3、4、5、6都小，把1放最左边，此时排序1、2、3、4、5、6.</li>
-<li>此时得到想要的排序1、2、3、4、5、6.</li>
-</ol>
-<p><strong>桶排序</strong>（强迫症受扑克牌法） 例如地上有4个A，4个2,4个K，4个3，要把它们收集起来。<br>随便捡一个，例如捡到A，把A放一边放好，再捡到2，又放一边放好，再捡到A，放到A放的地方叠起来，就一直这样，相同的放一起，不同的分开放。<strong>优点：速度最快，因为不用对比。缺点：需要较大的存放空间</strong></p>
-<p><strong>快速排序</strong> 例如要把13、2、60、0、1、32、40、9、6这9个数字从左往右以小到大排。</p>
-<ol>
-<li>以13为中心，比它小的放左边，大的放右边。此时的排序为2、0、1、9、6、13、60、32、40。此时13已结确定位置。</li>
-<li>以2为中心，和13前面的另外几个数字对比，比它小的左边，大的右边。以60为中心，和13后面的另外几个数字对比，比它小的放左边，大的放右边。<strong>因为对比的数少很多，所以节省很多时间</strong>,此时的排序为，0、1、2、9、6、13、32、40、60。此时2,13,60位置已固定。</li>
-<li>以0为中心，和2前面的数字对比，比它小的放左边，大的放右边。以9为中心，和2后面13前面的数字作对比，比它小的放左边，比它大的放右边。以32为中心，和13后面60前面的数字对比，比它小的放左边，大的放右边。此时的排序为0、1、2、6、9、13、32、40、60。此时所有数字都以固定</li>
-<li>此时得到想要的排序0、1、2、6、9、13、32、40、60。</li>
-</ol>
-<p><strong>快速排序之所以快，是因为每次对比过后，都缺少一半对比的东西，减少很多对比时间。</strong><br><strong>快排有时也不快，例如每次选的中心要么是最大的要么是最小的，所有数字都跑到一边去了的时候</strong>例：654321，选了6，然后选了5，以此类推。解决此类的方法是随机选个数字，所以尽量使用<strong>随机快排</strong>。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1865,7 +1846,7 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

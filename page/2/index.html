@@ -249,6 +249,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/算法入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/05/算法入门/" itemprop="url">算法入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-05T20:52:42+08:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/05/算法入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/05/算法入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="结构化编程"><a href="#结构化编程" class="headerlink" title="结构化编程"></a>结构化编程</h3><p>结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。<br>满足下面3个语句，就是结构化编程。</p>
+<ol>
+<li>一行一行执行</li>
+<li>有条件控制语句if…else…</li>
+<li>有循环控制语句while(exp)do…</li>
+</ol>
+<h3 id="什么是算法"><a href="#什么是算法" class="headerlink" title="什么是算法"></a>什么是算法</h3><p>在高德纳的著作《计算机程序设计艺术》里对算法的特征归纳：</p>
+<ul>
+<li>输入：一个算法必须有零个或以上输入量。</li>
+<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
+<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地匹配要求或期望，通常要求实际运行结果的确定的。</li>
+<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态，有限个输入符号和有限个穿衣函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
+<li>有效性：又称可行性。能够实现，算法中描述的操作都可以通过已经实现的基本运算执行有限次来实现。</li>
+</ul>
+<h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><p>就是数据的结构。<br>一般来说这样的：</p>
+<ol>
+<li>我们要解决一个跟数据相关的问题。  </li>
+<li>分析这个问题，相处对应的数据结构</li>
+<li><strong>分析数据结构，想出算法</strong><blockquote>
+<p>数据结构和算法是相互依存，不可分开的。<br>学习完排序算法，就能了解常见的数据结构。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="算法大分类"><a href="#算法大分类" class="headerlink" title="算法大分类"></a>算法大分类</h3><ul>
+<li>分治法：把一个问题分区成互相独立的多个部分分别求解的思路。这种求解思路带来的好处之一是便于进行并行计算。（例如把国家分为省，然后把省分为市这样一路分，每个地方不一样的管理方式）</li>
+<li>动态规则法：当问题的整体最优解就是有局部最优解组成的时候，经常采用的一种方式。（就目前的情况来看，如果当前是最好的，那么就用这个。）</li>
+<li>贪婪算法： 常见的近似求解思路。当问题的整体最优解不是（或无法证明是）由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。（短视算法，选择当前较好的方法）</li>
+<li>线性规划法：</li>
+<li>简并法：把一个问题通过逻辑或数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。</li>
+</ul>
+<p><strong>前端主要使用分治法————分而治之</strong></p>
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p><strong>冒泡排序</strong>（体育委员两两对比法）：例如要把3、5、9、1、7、6这六个数字从左往右为以小到大。</p>
+<ol>
+<li>对比第一个和第二个，把小的放左边，大的放右边。</li>
+<li>然后对比第二个和第三个，也是小的放左边，大的放右边。</li>
+<li>就这样依次对比，比完第五个和第六个。此时的排序为3、5、1、7、6、9。此时最大的值已固定。</li>
+<li>依照前面的方法，但最后一位数不用再比，此时的排序为3、1、5、6、7、9。此时后两位二位已固定。</li>
+<li>再按照前面的方法，最后两位不用比，此时的排序为1、3、5、6、7、9。此时后三位已固定。</li>
+<li>再按照前面的方法，后3位不用比，此时排序为1、3、5、6、7、9.此时后四位已固定。</li>
+<li>再按照前面的方法，后四位不用比，此时排序为1、3、5、6、7、9.此时后五位已固定，</li>
+<li>那么这几个数字从左往右从小到大为1、3、5、6、7、9.</li>
+</ol>
+<p><strong>选择排序</strong>（体育老师一指禅法）：例如要把6、3、2、4、5、1这6个数字从左往右以小到大。</p>
+<ol>
+<li>找出个最小的，把这6个数字相互比较，找出最小的数字也就是1，把跟最前面的数字换位置，得到的排序为1、3、2、4、5、6，此时最小值已固定。比较方法，例：6和3比，3小；3和2比，2小；2和4比。4小，这样。</li>
+<li>从后五位中选出最小的，也就是2，和排在第二位的3换位置，得到的为1、2、3、4、5、6，此时前二位已固定。</li>
+<li>从后四位中选出最小的，也就是3,3本身排在第三位，就不用换位置了，此时排序为1、2、3、4、5、6，前三位已固定。</li>
+<li>从后三位中选出最小的，也就是4,4本身排在第四位，就不用换位置了，此时排序为1、2、3、4、5、6，前四位已固定。</li>
+<li>从后二位中选出最小的，也就是5,5本身排在第五位，就不用换位置了，此时排序为1、2、3、4、5、6，前五位已固定。</li>
+<li>此时得到的排序就是想要的排序了。</li>
+</ol>
+<p><strong>插入排序</strong>（起扑克牌法）例如要把5、6、4、3、2、1这6个数字从左往右以小到大。</p>
+<ol>
+<li>把第一个数字，也就是5（第一张扑克牌），拿到手里。此时排序为5.</li>
+<li>拿到第二个，也就是6，对比手中的5，发现比5大，把6放5右边。此时排序5、6.</li>
+<li>拿到第三个，也就是4，对比手中的，发现比6小，然后有比5小，把4放5左边。此时排序4、5、6.</li>
+<li>拿到第四个，也就是3，对比手中的，发现比4、5、6都小，把3放最左边。此时排序3、4、5、6.</li>
+<li>拿到第五个，也就是2，对比手中的，发现比3、4、5、6都小，把2放最左边。此时排序2、3、4、5、6.</li>
+<li>拿到最后一个，也就是1，对比手中的，发现比2、3、4、5、6都小，把1放最左边，此时排序1、2、3、4、5、6.</li>
+<li>此时得到想要的排序1、2、3、4、5、6.</li>
+</ol>
+<p><strong>桶排序</strong>（强迫症受扑克牌法） 例如地上有4个A，4个2,4个K，4个3，要把它们收集起来。<br>随便捡一个，例如捡到A，把A放一边放好，再捡到2，又放一边放好，再捡到A，放到A放的地方叠起来，就一直这样，相同的放一起，不同的分开放。<strong>优点：速度最快，因为不用对比。缺点：需要较大的存放空间</strong></p>
+<p><strong>快速排序</strong> 例如要把13、2、60、0、1、32、40、9、6这9个数字从左往右以小到大排。</p>
+<ol>
+<li>以13为中心，比它小的放左边，大的放右边。此时的排序为2、0、1、9、6、13、60、32、40。此时13已结确定位置。</li>
+<li>以2为中心，和13前面的另外几个数字对比，比它小的左边，大的右边。以60为中心，和13后面的另外几个数字对比，比它小的放左边，大的放右边。<strong>因为对比的数少很多，所以节省很多时间</strong>,此时的排序为，0、1、2、9、6、13、32、40、60。此时2,13,60位置已固定。</li>
+<li>以0为中心，和2前面的数字对比，比它小的放左边，大的放右边。以9为中心，和2后面13前面的数字作对比，比它小的放左边，比它大的放右边。以32为中心，和13后面60前面的数字对比，比它小的放左边，大的放右边。此时的排序为0、1、2、6、9、13、32、40、60。此时所有数字都以固定</li>
+<li>此时得到想要的排序0、1、2、6、9、13、32、40、60。</li>
+</ol>
+<p><strong>快速排序之所以快，是因为每次对比过后，都缺少一半对比的东西，减少很多对比时间。</strong><br><strong>快排有时也不快，例如每次选的中心要么是最大的要么是最小的，所有数字都跑到一边去了的时候</strong>例：654321，选了6，然后选了5，以此类推。解决此类的方法是随机选个数字，所以尽量使用<strong>随机快排</strong>。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/css布局与定位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1787,193 +1986,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/HTML常用标签/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/HTML常用标签/" itemprop="url">HTML常用标签</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T20:28:31+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/21/HTML常用标签/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/HTML常用标签/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="HTML5的内容类型"><a href="#HTML5的内容类型" class="headerlink" title="HTML5的内容类型"></a>HTML5的内容类型</h2><blockquote>
-<p>内嵌：在文档中添加其他类型的内容，如audio、video、canvas和iframe等。<br>流：在文档中和应用的body中使用的元素，如form、h1和small等<br>标题：段落标题，如h1、h2和group等<br>交互：与用户交互的内容，如音频和视频的控件、button和textarea等<br>元数据：通常出现在页面的head中，设置页面其他部分的表现和行为，如script、style和title等。<br>短语：文本和文本标记元素，如mark、kbd、sub和sup等。  </p>
-</blockquote>
-<h2 id="HTML5的基础元素"><a href="#HTML5的基础元素" class="headerlink" title="HTML5的基础元素"></a>HTML5的基础元素</h2><blockquote>
-<p>&lt;!DOCTYPE&gt;:定义文档类型。这个标签可告知浏览器文档使用哪种html或xhtml规范。<br>作用 ：声明文档的解析类型（document.compatmode），避免浏览器的怪异模式。<br>document.compatMode:<br>   BackCompat:怪异模式，浏览器使用自己的怪异模式解析渲染页面。<br>   CSS1Compat：标准模式，浏览器使用W3C的标准解析渲染页面。  </p>
-</blockquote>
-<h2 id="声明的重要性："><a href="#声明的重要性：" class="headerlink" title="声明的重要性："></a>声明的重要性：</h2><p>这个属性会被浏览器识别并使用，但是如果页面中没用DOCTYPE的声明，那么compatMode默认就是BackCompat(怪异模式)。浏览器就会按照自己的方式解析渲染页面，那么，在不同的浏览器就会显示不同的样式<br>如果页面添加了&lt;!DOCTYPE html&gt;，那么，浏览器就会按照W3C的标准解析显然页面，这样，页面所在的浏览器里显示的就都是一个样了。  </p>
-<blockquote>
-<p>&lt;html>:定义html文档</p>
-<p>&lt;head>:定义文档的头部，包括了当前文档的<strong>元数据</strong>,元数据就是描述数据的数据，比如，文档的标题、使用的字符集、关键字等信息，这些信息并不会真正被浏览器所渲染。</p>
-<p>&lt;body>:定义文档的主体，heml文档的内容都在这里边，一个文档只允许有一个&lt;body>标签。</p>
-<p><title>:定义文档的标题，即浏览器窗口显示出的标题。</title></p>
-<p>&lt;h1>to&lt;h6>：定义html文本标题，依次从大到小。</p>
-<p>&lt;p>:定义段落。<br>&lt;br>: 换行。</p>
-<p>&lt;hr>: 定义水平线。<br>&lt;!–…-->:定义注释。</p>
-</blockquote>
-<h3 id="iframe标签"><a href="#iframe标签" class="headerlink" title="iframe标签"></a>iframe标签</h3><p>嵌套页面，即在当前页面再打开一个页面。<br><code>&lt;iframe src=&quot;https://www.baidu.com&quot; name=&quot;xxx&quot;&gt;&lt;/iframe&gt;</code></p>
-<h3 id="a标签与target属性"><a href="#a标签与target属性" class="headerlink" title="a标签与target属性"></a>a标签与target属性</h3><ol>
-<li><p>a标签是用来跳转页面的（GET 请求）<br>a标签的target可选属性有4个。<code>_blank、_self（默认）、_parent、_top</code>。  </p>
-<blockquote>
-<p><a href="http://qq.com" target="_blank">QQ</a>（点击后会在一个新的标签页面里打开）<br><a href="http://qq.com" target="_self">QQ</a> (点击后会在当前页面打开)<br><a href="http://qq.com" target="_parent">QQ</a>（点击后会在父级页面打开）<br><a href="http://qq.com" target="_top">QQ</a> （点击后会在最顶级页面打开）  </p>
-</blockquote>
-</li>
-<li><p>a标签的href<br><code>&lt;a href=&quot;//qq.com&quot;&gt;QQ&lt;/a&gt;</code>href里写的是无协议地址，意思是当前用的是http协议就自动继承http协议，用的是file就会用file协议。<br><code>&lt;a href=&quot;?name=pyz&quot;&gt;qq&lt;/a&gt;``点击之后会在当前页面发起?name=pyz的请求,相当于补充了个**路径**。</code><a href="#sss">qq</a><code>点击之后不会发起请求，因为**锚点**仅仅是在当前页面内的跳转。</code><a href="/..">link</a><code>`</code>标签被点击后浏览器会发起GET / HTTP/1.1的请求，路径还是/，因为/已经是根目录，无法再往前退。</p>
-</li>
-<li><p>伪协议<br>用javascript来代替协议，叫伪协议。<br><code>&lt;a href=&quot;javascript:;&quot;&gt;qq&lt;/a&gt;</code>一般用于点击a链接后不发生任何事，如果<code>href=&quot;#&quot;</code>，那么点击后会刷新页面。  </p>
-</li>
-</ol>
-<p><code>&lt;a href=&quot;javascript:alert(1)&quot;;&gt;qq&lt;/a&gt;</code>点击之后会弹出1。  </p>
-<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a><form>标签</form></h3><p>跳转页面（POST请求）</p>
-<form>里必须要有一个sumbmit按钮才能提交。<br><form>用input按钮的话，想提交一定要有name值。例：<br>&gt; <form action="users?name=pyz" method="post"><br><label>用户名&lt;input type=”text” <strong>name=”username”</strong>&gt;</label>    //input要被提及的话一定要有那么值<br><label>密码&lt;input type=”password” <strong>name=”password”</strong>&gt;</label><br><input type="submit" value="提交"><br></form>  
-
-<p><label>直接包在input外面用</label></p>
-<p><form>例的target和<a>里的用法是一样的  </a></form></p>
-<p><form>里如果没有 <code>&lt;input type=&quot;submit&quot;&gt;</code>,而有<button>，则</button><button>会默认为submit，若写成这样 <code>&lt;button type=&quot;button&quot;&gt;button&lt;/button&gt;</code> 则不会成为submit，一个form里必须要有一个submit按钮才能提交。</button></form></p>
-<h3 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h3><ol>
-<li><p>checkbox</p>
-<blockquote>
-<label><input type="checkbox" name="apple" value="yes">苹果</label>
-</blockquote>
-<p><label><input type="checkbox" name="banana" value="yes">香蕉</label><br>多选，一定要有个name值才能提交上去。</p>
-</li>
-<li><p>radio</p>
-<blockquote>
-<p>1<br>2</p>
-</blockquote>
-<p><label><input type="radio" name="sexual">男</label><br><label><input type="radio" name="sexual">女</label><br>单选  </p>
-</li>
-</ol>
-<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><blockquote>
-<select name="group" multiple><br>    <option value="">-</option><br>    <option value="1">第一组</option><br>    <option value="2">第二组</option><br>    <option value="3" disabled>第三组</option><br>    <option value="4" selected>第四组</option><br></select>  
-</blockquote>
-<p>disabled属性意味着不能被选中，selected意思是默认选中的，multiple意思是可以同时选中几项 。</p>
-<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p>大文本框</p>
-<blockquote>
-<p><textarea style="resize: none; width: 200px; height: 100px;" name="hobbies"></textarea><br>resize若不设置为none，则用户可以肆意更改输入框的大小。  </p>
-</blockquote>
-<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><p>表格，下面有4个字标签为colgroup（表格中供格式化的列组），thead（表头内容），tbody（主题内容），tfoot（表底部内容）。<br>再下面为th(表头单元格)，tr（表行），td（表单元格）</p>
-</form></form>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2024,7 +2036,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
