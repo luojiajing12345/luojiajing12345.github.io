@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="类型转换强制转换 其他类型转化为数值类型可使用：全局函数Number()，全局函数parseInt()(重要),全局函数parseFoat(),减0，取正(就是前面加个+)字符串Number(‘123’)//123  //如果可以被解析为数值，则转换为相应的数值。Number(‘123a’)//NaN //如果有一个字符无法转成数值，那么整个字符串就会被转为NaNNumber(‘’) //0 //">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-24T08:57:59.616Z">
+<meta property="og:updated_time" content="2018-05-24T13:43:55.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS里的类型">
 <meta name="twitter:description" content="类型转换强制转换 其他类型转化为数值类型可使用：全局函数Number()，全局函数parseInt()(重要),全局函数parseFoat(),减0，取正(就是前面加个+)字符串Number(‘123’)//123  //如果可以被解析为数值，则转换为相应的数值。Number(‘123a’)//NaN //如果有一个字符无法转成数值，那么整个字符串就会被转为NaNNumber(‘’) //0 //">
@@ -380,7 +380,8 @@
 <li>堆(heap)是没有结构的，数据可以任意存放。heap用于复杂数据类型（引用类型）分配空间，例如数组对象、object对象。它的存储方式跟堆类似。<br>例<code>var a = 1</code>,首先变量a提升，此时a等于undefined，然后a放在代码区，1放在数据区的栈里。在js内部，所有数字都是以64位浮点数形式储存，所以这个1在内存里占了64位。ECMAScript规定。<br>复制基本类型：<code>var b = 2</code>,也和上面一样，当<code>b=a</code>，那么就把a对应的在栈里的64位浮点数形式的1覆盖在b对应的栈的位置。<br>js在存字符的时候，每个字符占16位。ECMAScript规定<br>存对象：<code>var a = {name:&#39;luo&#39;,age:18}</code>,那么会把a放在代码区，然后a对应的栈内存里有个ADDR（地址），那个地址是堆内存中的一块空间的地址，这块空间大小可以变化，就可以不受影响的增加或减少对象里的东西了。<br>复制对象：相当于把变量对应的栈里面的ADDR复制给另一个变量。  </li>
 </ul>
 <hr>
-<p>引用：当复制保存着对象的某个变量时，操作的是对象的引用（就是那个地址）。但在为对象添加属性时，操作的是实际的对象。  </p>
+<p>引用：当复制保存着对象的某个变量时，操作的是对象的引用（就是那个地址）。但在为对象添加属性时，操作的是实际的对象。<br><strong>关于循环引用</strong><code>var a</code>,<code>a={self:a}</code>,a.self等于undefined。也就是得到的对象是{self:undefined},因为第二步把对象赋值给a的时候，对象里的a等于undefined，运算是从右到左的。<br>循环引用应该是<code>var a = {}</code>,<code>a.self=a</code>,会得到一个{self:{…}},点开发现里面也是一个{self:{…}}，一直循环。因为我们把a的值赋值给self的value，然后我们打开对象a，发现里面的栈有个地址，说明是个对象，按着这个地址找到堆里的空间，发现里面的self对应的又是个地址，再按着这个地址，一直循环，一直都在那个空间里找。    </p>
+<p>引用类型面试题：<br>输入：<code>var a={n:1};var b=a;a.x=a={n:2}</code>。<br>输出<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。。<br>首先前两步是没有问题的，生成一个对象，赋值给a，然后把a的地址赋值给b，此时<strong>a和b在stack中的值（地址）是一样的，假设为ADDR100,对应的heap中的对象也是一样的</strong>。<br>然后<code>a.x=a={n:2}</code>,假设{n:2}的地址为ADDR200，浏览器读数据是从左到右的，运算是从右到左的。所以此时a的值为ADDR100，右边运算赋值后中间a为</p>
 
       
     </div>
