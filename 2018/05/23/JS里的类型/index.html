@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="类型转换强制转换 其他类型转化为数值类型可使用：全局函数Number()，全局函数parseInt()(重要),全局函数parseFoat(),减0，取正(就是前面加个+)字符串Number(‘123’)//123  //如果可以被解析为数值，则转换为相应的数值。Number(‘123a’)//NaN //如果有一个字符无法转成数值，那么整个字符串就会被转为NaNNumber(‘’) //0 //">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T01:06:00.090Z">
+<meta property="og:updated_time" content="2018-05-25T06:03:08.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS里的类型">
 <meta name="twitter:description" content="类型转换强制转换 其他类型转化为数值类型可使用：全局函数Number()，全局函数parseInt()(重要),全局函数parseFoat(),减0，取正(就是前面加个+)字符串Number(‘123’)//123  //如果可以被解析为数值，则转换为相应的数值。Number(‘123a’)//NaN //如果有一个字符无法转成数值，那么整个字符串就会被转为NaNNumber(‘’) //0 //">
@@ -374,16 +374,17 @@
 <li>内存的释放依赖GC机制（高级语言解释器嵌入的“垃圾回收器”）。   </li>
 </ol>
 <hr>
-<p>js程序在运行的时候，需要内存空间存放代码和数据，所以分为代码区和数据区。而数据区又分为栈(stack)和堆(heap)两种内存空间。  </p>
+<h3 id="数据和代码在内存中的存放"><a href="#数据和代码在内存中的存放" class="headerlink" title="数据和代码在内存中的存放"></a>数据和代码在内存中的存放</h3><p>js程序在运行的时候，需要内存空间存放代码和数据，所以分为代码区和数据区。而数据区又分为栈(stack)和堆(heap)两种内存空间。  </p>
 <ul>
-<li>栈(stak)是有结构的，每个块区按照一定次序存放（先进后出），sack中主要存放一些基本的变量和对象的引用，存在栈中的数据大小与生存期必须是确定的。可以明确知道每个区块的大小，因此，stack的寻址速度要快于heap。它的存储方式是一行一行的和栈类似。简单数据类型都存在这（6种）。  </li>
+<li>栈(stack)是有结构的，每个块区按照一定次序存放（先进后出），sack中主要存放一些基本的变量和对象的引用，存在栈中的数据大小与生存期必须是确定的。可以明确知道每个区块的大小，因此，stack的寻址速度要快于heap。它的存储方式是一行一行的和栈类似。简单数据类型都存在这（6种）。  </li>
 <li>堆(heap)是没有结构的，数据可以任意存放。heap用于复杂数据类型（引用类型）分配空间，例如数组对象、object对象。它的存储方式跟堆类似。<br>例<code>var a = 1</code>,首先变量a提升，此时a等于undefined，然后a放在代码区，1放在数据区的栈里。在js内部，所有数字都是以64位浮点数形式储存，所以这个1在内存里占了64位。ECMAScript规定。<br>复制基本类型：<code>var b = 2</code>,也和上面一样，当<code>b=a</code>，那么就把a对应的在栈里的64位浮点数形式的1覆盖在b对应的栈的位置。<br>js在存字符的时候，每个字符占16位。ECMAScript规定<br>存对象：<code>var a = {name:&#39;luo&#39;,age:18}</code>,那么会把a放在代码区，然后a对应的栈内存里有个ADDR（地址），那个地址是堆内存中的一块空间的地址，这块空间大小可以变化，就可以不受影响的增加或减少对象里的东西了。<br>复制对象：相当于把变量对应的栈里面的ADDR复制给另一个变量。  </li>
 </ul>
 <hr>
 <p>引用：当复制保存着对象的某个变量时，操作的是对象的引用（就是那个地址）。但在为对象添加属性时，操作的是实际的对象。<br><strong>关于循环引用</strong><code>var a</code>,<code>a={self:a}</code>,a.self等于undefined。也就是得到的对象是{self:undefined},因为第二步把对象赋值给a的时候，对象里的a等于undefined，运算是从右到左的。<br>循环引用应该是<code>var a = {}</code>,<code>a.self=a</code>,会得到一个{self:{…}},点开发现里面也是一个{self:{…}}，一直循环。因为我们把a的值赋值给self的value，然后我们打开对象a，发现里面的栈有个地址，说明是个对象，按着这个地址找到堆里的空间，发现里面的self对应的又是个地址，再按着这个地址，一直循环，一直都在那个空间里找。    </p>
-<p>引用类型面试题：<br>输入：<code>var a={n:1};var b=a;a.x=a={n:2}</code>。<br>输出<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。。<br>首先前两步是没有问题的，生成一个对象，赋值给a，然后把a的地址赋值给b，此时<strong>a和b在stack中的值（地址）是一样的，假设为ADDR100,对应的heap中的对象也是一样的</strong>。<br>然后<code>a.x=a={n:2}</code>,假设{n:2}的地址为ADDR200，浏览器读数据是从左到右的，运算是从右到左的。所以此时a的值为ADDR100，右边运算赋值后给中间a后，中间的a后此时对应的srack中的值为ADDR200,左边的a还是ADDR100，然后把中间那个a，也就是ADDR200,赋值给ADDR100中的对象中的key为x的value。<br>那么此时a是ADDR200那里的的对象，里面的对象为<code>{n:2}</code>,b为ADDR100那里的对象，里面的对象为<code>{n:1,x:{n:2}}</code>,第三步的赋值只是赋给了ADDR100对应的对象里面的key为x的value。<br>当使用<code>alert(a.x)</code>，会调用toString方法。所以<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。   </p>
+<p>引用类型面试题：<br>输入：<code>var a={n:1};var b=a;a.x=a={n:2}</code>。<br>输出<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。。<br>首先前两步是没有问题的，生成一个对象，赋值给a，然后把a的地址赋值给b，此时<strong>a和b在stack中的值（地址）是一样的，假设为ADDR100,对应的heap中的对象也是一样的</strong>。<br>然后<code>a.x=a={n:2}</code>,假设{n:2}的地址为ADDR200，浏览器读数据是从左到右的，运算是从右到左的。所以此时a的值为ADDR100，右边运算赋值后给中间a后，中间的a后此时对应的stack中的值为ADDR200,左边的a还是ADDR100，然后把中间那个a，也就是ADDR200,赋值给ADDR100中的对象中的key为x的value。<br>那么此时a是ADDR200那里的的对象，里面的对象为<code>{n:2}</code>,b为ADDR100那里的对象，里面的对象为<code>{n:1,x:{n:2}}</code>,第三步的赋值只是赋给了ADDR100对应的对象里面的key为x的value。<br>当使用<code>alert(a.x)</code>，会调用toString方法。所以<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。   </p>
 <hr>
-<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>Javascript具有自动垃圾回收机制。</p>
+<h3 id="垃圾回收机制（GC）"><a href="#垃圾回收机制（GC）" class="headerlink" title="垃圾回收机制（GC）"></a>垃圾回收机制（GC）</h3><p>Javascript具有自动垃圾回收机制。<br><strong>如果一个对象没有被引用，他就是垃圾，将被回收。</strong><br><code>var a={name:&#39;a&#39;};var b={name:&#39;b&#39;};a=b</code>，a就变成垃圾，将被回收，至于什么时候回收是不确定的。<br><code>var fn = function(){};document.body.onclick=fn;fn=null;</code>请问这个函数是不是垃圾？<br>答：不是，当函数赋值给fn的时候，fn的stack指向那个对象，fn赋值给document.body.onclick时，document指向body,body指向onclick，onclick指向那个对象。当fn等于null，document那条连接并没有改变，对象还是被引用。<br>如果onclick等于null的话，那么它就是垃圾了。<br>如果把页面关闭的话，它也变成垃圾了。因为页面关了，相当于document不见了，然后它们内部只有body–&gt;onclick–&gt;function(){}了。<br>在IE6里面这三个不算垃圾，它会把这三个对象一直留着，只要不关闭整个浏览器就会一直留着，这样垃圾会越来越多。我们要把这个垃圾丢掉的话，只能运行<code>window.onunload = function(){document.body.onclick = null}</code>这种代码，把所有的事件监听赋值为空，<strong>所有的</strong>，这就是<strong>内存泄漏</strong>。<br><strong>内存泄漏</strong>就是由一些浏览器引起的bug，使一些该被标记为垃圾的东西没有被标记为垃圾，然后内存就会被永久的占用着，浏览器会占用越来越多内存，会变慢，甚至崩溃。</p>
+<h3 id="深拷贝和浅拷贝概念"><a href="#深拷贝和浅拷贝概念" class="headerlink" title="深拷贝和浅拷贝概念"></a>深拷贝和浅拷贝概念</h3><p>深拷贝：<code>var a=1;var b=a;</code>b变，不影响a。所以一般说深拷贝和浅拷贝的时候不考虑基本类型，因为赋值都是深拷贝。我们只说对象。<br>浅拷贝：<code>var a={name:&#39;a&#39;};var b=a;b.name=&#39;b&#39;；</code>此时a={name:’b’},把a复制给b后，b改变，a也改变，这就是浅拷贝。<br>深拷贝：a和b在stack里有不同的地址，在heap里的空间也不一样，假设在heap里的对象中还有地址，也必须是不同的，这是两条分开，独立，互不影响的两条线。b变，a不变。这就是深拷贝。</p>
 
       
     </div>
@@ -546,7 +547,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">1.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强制转换"><span class="nav-number">1.1.</span> <span class="nav-text">强制转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动转换"><span class="nav-number">1.2.</span> <span class="nav-text">自动转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript基本类型和引用类型在内存中的值"><span class="nav-number">2.</span> <span class="nav-text">javascript基本类型和引用类型在内存中的值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">内存基本概念</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收"><span class="nav-number"></span> <span class="nav-text">垃圾回收</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">1.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强制转换"><span class="nav-number">1.1.</span> <span class="nav-text">强制转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动转换"><span class="nav-number">1.2.</span> <span class="nav-text">自动转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javascript基本类型和引用类型在内存中的值"><span class="nav-number">2.</span> <span class="nav-text">javascript基本类型和引用类型在内存中的值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">内存基本概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据和代码在内存中的存放"><span class="nav-number">3.</span> <span class="nav-text">数据和代码在内存中的存放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收机制（GC）"><span class="nav-number">4.</span> <span class="nav-text">垃圾回收机制（GC）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深拷贝和浅拷贝概念"><span class="nav-number">5.</span> <span class="nav-text">深拷贝和浅拷贝概念</span></a></li></ol></div>
             
 
           </div>
