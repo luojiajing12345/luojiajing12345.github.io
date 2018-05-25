@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="1.什么是Canvas?&amp;lt;canvas&amp;gt;是html5新增的元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScripe动态地在这个区域中绘制图形。标签只是图形容器。   2.基本用法 创建一个画布。&amp;lt;canvas id=&amp;quot;myCanvas&amp;quot; width=&amp;quot;200&amp;quot; height=&amp;quot;100&amp;quot; style=&amp;#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-24T11:04:20.140Z">
+<meta property="og:updated_time" content="2018-05-25T06:24:15.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Canvas绘图">
 <meta name="twitter:description" content="1.什么是Canvas?&amp;lt;canvas&amp;gt;是html5新增的元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScripe动态地在这个区域中绘制图形。标签只是图形容器。   2.基本用法 创建一个画布。&amp;lt;canvas id=&amp;quot;myCanvas&amp;quot; width=&amp;quot;200&amp;quot; height=&amp;quot;100&amp;quot; style=&amp;#">
@@ -337,8 +337,13 @@
 <ol start="2">
 <li>绘制图像 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var c=document.getElementById(&quot;myCanvas&quot;);//把&lt;canvas&gt;元素赋值给c</span><br><span class="line">var ctx=c.getContext(&quot;2d&quot;);//创建context对象，getContext（&apos;2d&apos;）对象是内建的html5对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法</span><br><span class="line">ctx.fillStyle=&quot;#FF0000&quot;;//填充样式，可以设定颜色、渐变或方案</span><br><span class="line">ctx.fillRect(0,0,150,75);//填充方式，四个值x,y,width,heigth。</span><br><span class="line">ctx.strokeStyle = &apos;red&apos;;//描边样式，边框颜色等</span><br><span class="line">ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分开的，这里为两个矩形。</span><br></pre></td></tr></table></figure>
-<p><strong>描边属性：</strong></p>
+<p><code>var c=document.getElementById(&quot;myCanvas&quot;);//把&lt;canvas&gt;元素赋值给c
+var ctx=c.getContext(&quot;2d&quot;);//创建context对象，getContext（&#39;2d&#39;）对象是内建的html5  
+对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法
+ctx.fillStyle=&quot;#FF0000&quot;;//填充样式，可以设定颜色、渐变或方案
+ctx.fillRect(0,0,150,75);//填充方式，四个值x,y,width,heigth。
+ctx.strokeStyle = &#39;red&#39;;//描边样式，边框颜色等
+ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分开的，这里为两个矩形。</code><br><strong>描边属性：</strong></p>
 <ul>
 <li>线条宽度：lineWidth</li>
 <li>线末形状：lineCap</li>

@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="心剑无痕">
 <meta property="og:description" content="mouse事件 onmousedown:在用户按下了任意鼠标按键时触发。不能通过键盘触发这个事件。document.onmousedown = function(x){   console.log(x) }    onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。document.onmousemove = function(x){   console.log(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-24T12:34:33.796Z">
+<meta property="og:updated_time" content="2018-05-25T06:22:28.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Canvas画板">
 <meta name="twitter:description" content="mouse事件 onmousedown:在用户按下了任意鼠标按键时触发。不能通过键盘触发这个事件。document.onmousedown = function(x){   console.log(x) }    onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。document.onmousemove = function(x){   console.log(">
@@ -352,23 +352,54 @@
 <li>当鼠标释放时，即触发mouseup事件时，非变量赋值false，即停止鼠标指针滑动时的执行的代码。</li>
 </ol>
 <hr>
-<h3 id="canvas里，图像生成位置"><a href="#canvas里，图像生成位置" class="headerlink" title="canvas里，图像生成位置"></a>canvas里，图像生成位置</h3><p>canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">    margin:0</span><br><span class="line">&#125;```  </span><br><span class="line"></span><br><span class="line">生成一条路径：  </span><br><span class="line">开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### 使画板全屏</span><br><span class="line">对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。</span><br><span class="line">`</span><br><span class="line">var drawWidth = document.documentElement.clientWintd//获取页面宽度</span><br><span class="line">var drawHeight = document.documentElement.clientHeight//获取页面高度</span><br><span class="line">canvas.width = drawWidth</span><br><span class="line">canvas.height = drawHeight</span><br><span class="line">`</span><br><span class="line"></span><br><span class="line">### onresize 事件</span><br><span class="line">onresize 事件会在窗口或框架被调整大小时发生。</span><br><span class="line">`window.onresize=function()&#123;</span><br><span class="line">    var drawWidth = document.documentElement.clientWintd//获取页面宽度</span><br><span class="line">    var drawHeight = document.documentElement.clientHeight//获取页面高度</span><br><span class="line">    canvas.width = drawWidth</span><br><span class="line">    canvas.height = drawHeight</span><br><span class="line">&#125;</span><br><span class="line">`</span><br><span class="line">在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</span><br><span class="line"></span><br><span class="line">### HTML DOM classList属性</span><br><span class="line">classList 属性返回元素的类名，作为 DOMTokenList 对象。  </span><br><span class="line">该属性用于在元素中添加，移除及切换 CSS 类。  </span><br><span class="line">classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。  </span><br><span class="line">```document.getElementById(&quot;myDIV&quot;).classList.add(&quot;class&quot;);```//在id为myDIV的元素中添加一个名为class的类名，可添加多个</span><br><span class="line">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  </span><br><span class="line">- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 </span><br><span class="line"></span><br><span class="line">### 防止移动端滑动时抖动</span><br><span class="line">```body&#123;</span><br><span class="line">    overflow:hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>不要出现滚动条。</p>
-<h3 id="清空整个画板。"><a href="#清空整个画板。" class="headerlink" title="清空整个画板。"></a>清空整个画板。</h3><p><code>context.clearRect(0,0,canvas.width,canvas.height)</code><br>使用<code>clerrRect()</code>方法清除一个和画板一样大的矩形就行了</p>
-<h3 id="把canvas保存为图片"><a href="#把canvas保存为图片" class="headerlink" title="把canvas保存为图片"></a>把canvas保存为图片</h3><p><code>download.onclick = function(){
-    var url = canvas.toDataURL(&#39;image/png)
-    var a = document.createElement(&#39;aa&#39;)
+<h3 id="canvas里，图像生成位置"><a href="#canvas里，图像生成位置" class="headerlink" title="canvas里，图像生成位置"></a>canvas里，图像生成位置</h3><p>canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。<br><code>body{margin:0}</code>  </p>
+<p>生成一条路径：<br>开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</p>
+<hr>
+<h3 id="使画板全屏"><a href="#使画板全屏" class="headerlink" title="使画板全屏"></a>使画板全屏</h3><p>对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。<br><code>var drawWidth = document.documentElement.clientWintd//获取页面宽度
+var drawHeight = document.documentElement.clientHeight//获取页面高度
+canvas.width = drawWidth
+canvas.height = drawHeight</code></p>
+<h3 id="onresize-事件"><a href="#onresize-事件" class="headerlink" title="onresize 事件"></a>onresize 事件</h3><p>onresize 事件会在窗口或框架被调整大小时发生。<br><code>window.onresize=function(){
+    var drawWidth = document.documentElement.clientWintd//获取页面宽度
+    var drawHeight = document.documentElement.clientHeight//获取页面高度
+    canvas.width = drawWidth
+    canvas.height = drawHeight
+}</code><br>在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</p>
+<h3 id="HTML-DOM-classList属性"><a href="#HTML-DOM-classList属性" class="headerlink" title="HTML DOM classList属性"></a>HTML DOM classList属性</h3><p>classList 属性返回元素的类名，作为 DOMTokenList 对象。<br>该属性用于在元素中添加，移除及切换 CSS 类。<br>classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。  </p>
+<pre><code class="document.getElementById(&quot;myDIV&quot;).classList.add(&quot;class&quot;);```//在id为myDIV的元素中添加一个名为class的类名，可添加多个">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  
+- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 
+
+### 防止移动端滑动时抖动
+`body{overflow:hidden;}`
+不要出现滚动条。
+
+### 清空整个画板。
+`context.clearRect(0,0,canvas.width,canvas.height)`   
+使用```clerrRect()```方法清除一个和画板一样大的矩形就行了
+
+### 把canvas保存为图片
+`download.onclick = function(){
+    var url = canvas.toDataURL(&apos;image/png)
+    var a = document.createElement(&apos;aa&apos;)
     document.body.appendChild(a)
     a.href = url
-    a.download = &#39;图片&#39;
+    a.download = &apos;图片&apos;
     a.click()
-}</code></p>
-<h3 id="完全固定住，在手机上不会滑动-绝对定位住"><a href="#完全固定住，在手机上不会滑动-绝对定位住" class="headerlink" title="完全固定住，在手机上不会滑动(绝对定位住)"></a>完全固定住，在手机上不会滑动(绝对定位住)</h3><p><code>#canvas{
+}`
+
+### 完全固定住，在手机上不会滑动(绝对定位住)
+`#canvas{
     position: fixed;
     top: 0;
     left: 0;
-}</code></p>
-<h3 id="className和classList"><a href="#className和classList" class="headerlink" title="className和classList"></a>className和classList</h3><p>className用于 <strong>更改</strong> 某个标签的类名，来达到更改类属性的效果。<br><code>element.className = &#39;xxx&#39;</code><br>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
+}`
+
+
+### className和classList
+className用于 **更改** 某个标签的类名，来达到更改类属性的效果。  
+```element.className = &apos;xxx&apos;
+</code></pre>
+<p>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
 
       
     </div>
@@ -535,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mouse事件"><span class="nav-number">1.</span> <span class="nav-text">mouse事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画线"><span class="nav-number">2.</span> <span class="nav-text">画线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas里，图像生成位置"><span class="nav-number">3.</span> <span class="nav-text">canvas里，图像生成位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清空整个画板。"><span class="nav-number">4.</span> <span class="nav-text">清空整个画板。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把canvas保存为图片"><span class="nav-number">5.</span> <span class="nav-text">把canvas保存为图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全固定住，在手机上不会滑动-绝对定位住"><span class="nav-number">6.</span> <span class="nav-text">完全固定住，在手机上不会滑动(绝对定位住)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#className和classList"><span class="nav-number">7.</span> <span class="nav-text">className和classList</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mouse事件"><span class="nav-number">1.</span> <span class="nav-text">mouse事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画线"><span class="nav-number">2.</span> <span class="nav-text">画线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#canvas里，图像生成位置"><span class="nav-number">3.</span> <span class="nav-text">canvas里，图像生成位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使画板全屏"><span class="nav-number">4.</span> <span class="nav-text">使画板全屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onresize-事件"><span class="nav-number">5.</span> <span class="nav-text">onresize 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-DOM-classList属性"><span class="nav-number">6.</span> <span class="nav-text">HTML DOM classList属性</span></a></li></ol></div>
             
 
           </div>
