@@ -1084,13 +1084,8 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
 <ol start="2">
 <li>绘制图像 </li>
 </ol>
-<p><code>var c=document.getElementById(&quot;myCanvas&quot;);//把&lt;canvas&gt;元素赋值给c
-var ctx=c.getContext(&quot;2d&quot;);//创建context对象，getContext（&#39;2d&#39;）对象是内建的html5  
-对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法
-ctx.fillStyle=&quot;#FF0000&quot;;//填充样式，可以设定颜色、渐变或方案
-ctx.fillRect(0,0,150,75);//填充方式，四个值x,y,width,heigth。
-ctx.strokeStyle = &#39;red&#39;;//描边样式，边框颜色等
-ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分开的，这里为两个矩形。</code><br><strong>描边属性：</strong></p>
+<p><code>var c=document.getElementById(&quot;myCanvas&quot;);</code>//把<canvas>元素赋值给c<br><code>var ctx=c.getContext(&quot;2d&quot;);</code>//创建context对象，getContext（’2d’）对象是内建的html5对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法<br><code>ctx.fillStyle=&quot;#FF0000&quot;;</code>//填充样式，可以设定颜色、渐变或方案<br><code>ctx.fillRect(0,0,150,75);</code>//填充方式，四个值x,y,width,heigth。<br><code>ctx.strokeStyle = &#39;red&#39;;</code>//描边样式，边框颜色等<br><code>ctx.strokeRect =(30,30,50,50);</code>//描边方式，和填充一样，但两个是分开的，这里为两个矩形。</canvas></p>
+<p><strong>描边属性：</strong></p>
 <ul>
 <li>线条宽度：lineWidth</li>
 <li>线末形状：lineCap</li>
@@ -1246,8 +1241,25 @@ ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分
         
           
             <h3 id="水平居中方案"><a href="#水平居中方案" class="headerlink" title="水平居中方案"></a>水平居中方案</h3><ul>
-<li><strong>行内元素</strong>：设置其块父元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- **固定宽度的块级元素**：</span><br><span class="line">    1. 设置当前块元素的左右margin值为auto，```margin:o auto```，**当前块元素一定要有固定宽度**</span><br><span class="line">    2. 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子元素宽度除于二）的margin-left.</span><br><span class="line">    3. 给父元素position:absolute，子元素给剩余宽度一半的margin-left。 </span><br><span class="line">    4. 给父元素position:absolute，子元素左浮动，然后子元素给剩余宽度一半的margin-left。</span><br><span class="line">- **不定宽度块状元素**</span><br><span class="line">    1. 在元素外加入table标签（完整的，包括table、tbody、tr、td），该元素写在td内，然后设置margin的值为auto。</span><br><span class="line">    2. 把块元素变为行元素，给该元素设置```display：inline```或者```display:inline-block```,然后给父级块元素加```text-align:center```（行内居中），```margin:0 auto```（块级居中）</span><br><span class="line">    3. 绝对定位的方法：</span><br><span class="line">    4. flexbox，给父元素添加```display:flex;flex-direction:column;```,居中元素```align-self:center```。</span><br><span class="line"></span><br><span class="line">### 垂直居中方案</span><br><span class="line">1. 单行文本居中，假设元素的高度为100px，那么设置```line-height:</span><br></pre></td></tr></table></figure></li>
+<li><strong>行内元素</strong>：设置其块父元素<code>text-align:center</code>,<code>text-align</code>定义行内内容如何相对它的块父级元素。</li>
+<li><strong>固定宽度的块级元素</strong>：<ol>
+<li>设置当前块元素的左右margin值为auto，<code>margin:o auto</code>，<strong>当前块元素一定要有固定宽度</strong></li>
+<li>通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子元素宽度除于二）的margin-left.</li>
+<li>给父元素position:absolute，子元素给剩余宽度一半的margin-left。 </li>
+<li>给父元素position:absolute，子元素左浮动，然后子元素给剩余宽度一半的margin-left。</li>
+</ol>
+</li>
+<li><strong>不定宽度块状元素</strong><ol>
+<li>在元素外加入table标签（完整的，包括table、tbody、tr、td），该元素写在td内，然后设置margin的值为auto。</li>
+<li>把块元素变为行元素，给该元素设置<code>display：inline</code>或者<code>display:inline-block</code>,然后给父级块元素加<code>text-align:center</code>（行内居中），<code>margin:0 auto</code>（块级居中）</li>
+<li>绝对定位的方法：</li>
+<li>flexbox，给父元素添<code>display:flex;flex-direction:column;</code>,居中元素<code>align-self:center</code>。</li>
+</ol>
+</li>
 </ul>
+<h3 id="垂直居中方案"><a href="#垂直居中方案" class="headerlink" title="垂直居中方案"></a>垂直居中方案</h3><ol>
+<li>单行文本居中，假设元素的高度为100px，那么设置<code>line-height:</code></li>
+</ol>
 
           
         
@@ -1508,25 +1520,31 @@ ctx.strokeRect =(30,30,50,50);//描边方式，和填充一样，但两个是分
           
             <h3 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h3><ol>
 <li>加一个边框，然后边框外再加一个阴影。</li>
-<li><figure class="highlight plain"><figcaption><span>1px 1px 2px 10px red;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; 第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。</span><br><span class="line">&gt; 第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。</span><br><span class="line">&gt; 第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。</span><br><span class="line">&gt; 第五个为阴影颜色。</span><br><span class="line"></span><br><span class="line">####改变元素的class名：</span><br><span class="line">```divxxx = document.createElement(&apos;div&apos;)</span><br><span class="line">divxxx.className = &apos;name&apos;</span><br></pre></td></tr></table></figure>
+<li><code>box-shadow: 1px 1px 2px 10px red;</code><blockquote>
+<p>第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。<br>第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。<br>第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。<br>第五个为阴影颜色。</p>
+</blockquote>
 </li>
 </ol>
-<p>上面创建的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### flex布局</span><br><span class="line">布局的传统解决方案，基于**盒状模型**，依赖```display```属性 + ```position```属性 + ```float```属性。它对于那些特殊布局非常不方便，比如，**垂直居中**就不容易实现。  </span><br><span class="line">2009年，W3C提出了一种新的方案----Flex布局，可以渐变、完整、响应式地实现各种页面布局，目前已经得到所有浏览器的支持。Flex布局将成为未来布局的首选方案。</span><br><span class="line">#### Flex布局是什么？</span><br><span class="line">--- </span><br><span class="line">Flex 是 Flexible Box的缩写，意味“弹性布局”，用来为盒状模型提供最大的灵活性。  </span><br><span class="line">任何一个容器都可以指定Flex布局</span><br></pre></td></tr></table></figure></p>
-<p>.box{<br>    display: flex;<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">行内元素也可以使用Flex布局。</span><br></pre></td></tr></table></figure>
-<p>.box{<br>    display: inline-flex;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Webkit内核的浏览器，必须加上```-webkit```前缀。</span><br></pre></td></tr></table></figure></p>
-<p>.box{<br>    display:-webkit-flex;<br>    display:flex;<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**注意：设为Flex布局以后，子元素的```float```、```clear```和```vartical-align```属性将失效**  </span><br><span class="line"></span><br><span class="line">#### 用flex设置元素绝对居中(给它的父元素加下面三行代码)</span><br></pre></td></tr></table></figure>
-<p>.box{<br>    display:flex;/如果是内联元素使用inline-flex<br>    align-items: center;/水平居中<br>    justify-content: center;/垂直居中<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### vh、vw单位</span><br><span class="line">viewport height（可视高度），相对于视窗的高度：视窗高度为100vh</span><br><span class="line">viewport width（可视宽度），想对于视窗的宽度：视窗宽度为100vw</span><br><span class="line"></span><br><span class="line">#### background属性</span><br><span class="line">```background-color```背景颜色。  </span><br><span class="line">```background-position```背景图像的位置。例：```background-position:left top</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><figcaption><span>100px```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-repeat```指定如何重复背景图像。例：```background-repeat：repeat</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-clip```背景图像的绘画区域。例：```background-clip：border-box</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```background-image```要使用一个还是多个图像。例：```background-image:url(./img/img.jpg)</span><br></pre></td></tr></table></figure>
-<p>**这几个值在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 模拟3g网速</span><br><span class="line">在浏览器开发者界面——Network——Online——选择3G。然后把Disable cache勾选栏去掉（清除缓存），刷新。</span><br><span class="line"></span><br><span class="line">#### 使背景图自适应</span><br><span class="line">background-size:cover，使这个背景把当前元素覆盖住，例如给body元素这个背景属性，这个背景会覆盖整个body，无论浏览器大小或者显示大小多大，都会自适应覆盖住。</span><br><span class="line"></span><br><span class="line">### web窗口栏上的图标---Favicon</span><br><span class="line">Favicon是favorites icon的缩写，亦被称为website icon（网页图标）、page icon（页面图标）或urlicon（URL图标）。Favicon是与某个网站或网页相关联的图标。</span><br><span class="line">**标准：**  </span><br><span class="line">1. 最初，定义一个favicon的方法是将一个名为“favicon.ico”的文件置于web服务器的根目录下，**想要访问图标就去网站根目录下的Favicon.ico即可。**例：浏览器url输入栏输入www.baidu.com/favicon.ico，即可访问百度的网页图标。</span><br><span class="line">2. 后来出现了一种更为灵活的方法，即使用HTML来为任何一个网页指示其图标所存储的位置，通过在页面的&lt;head&gt;部分添加两个link组件来实现的。</span><br><span class="line"></span><br><span class="line">### onerror请求失败</span><br><span class="line">捕抓错误信息：</span><br></pre></td></tr></table></figure></p>
-<p>img.onerror = function(xxx){<br>    console.log(xxx)<br>    xxx.target.src = ‘url’<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">把请求失败的img的src换成不会失败的，即自己上传的图片。</span><br><span class="line"></span><br><span class="line">#### 重设url以后使图标变化</span><br><span class="line">首先，获取我们点击的button标签，```button2 = xxx.target```  </span><br><span class="line">然后，我们发现img标签，是button标签的兄弟标签。```img2 = button2.previousSibling</span><br></pre></td></tr></table></figure></p>
-<p>然后，使变更后的url的图标覆盖已代替原来的图标。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 封装成函数</span><br><span class="line">例：</span><br></pre></td></tr></table></figure></p>
-<p>function tag(tagName){<br>    return document.createElement(tagName)<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">var div = tag(&apos;div&apos;)//就可以创建div标签了</span><br></pre></td></tr></table></figure></p>
-<p><strong>创建一个生成标签，并给元素类名（row）的函数</strong><br>function tag(tagName,attributes){<br>    var element = document.createElement(tagName)<br>    for(var key in attributes){<br>        element[key] = attributes[key]<br>    }<br>    return element</p>
-<p>}<br><code>divxxx = tag(&#39;div&#39;,{className:&#39;row&#39;})</code>//创建一个div标签，它的classname是row,把attributes的key，也就是className赋值给element的key。</p>
+<p>####改变元素的class名：<br><code>divxxx = document.createElement(&#39;div&#39;);divxxx.className = &#39;name&#39;</code><br>上面创建的<code>div</code>都会有个name的classname。</p>
+<h3 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h3><p>布局的传统解决方案，基于<strong>盒状模型</strong>，依赖<code>display</code>属性 + <code>position</code>属性 + <code>float</code>属性。它对于那些特殊布局非常不方便，比如，<strong>垂直居中</strong>就不容易实现。<br>2009年，W3C提出了一种新的方案—-Flex布局，可以渐变、完整、响应式地实现各种页面布局，目前已经得到所有浏览器的支持。Flex布局将成为未来布局的首选方案。</p>
+<h4 id="Flex布局是什么？"><a href="#Flex布局是什么？" class="headerlink" title="Flex布局是什么？"></a>Flex布局是什么？</h4><hr>
+<p>Flex 是 Flexible Box的缩写，意味“弹性布局”，用来为盒状模型提供最大的灵活性。<br>任何一个容器都可以指定Flex布局<br><code>.box{display: flex;}</code>  </p>
+<p>行内元素也可以使用Flex布局。<br><code>.box{display: inline-flex;}</code>  </p>
+<p>Webkit内核的浏览器，必须加上<code>-webkit</code>前缀。<br><code>.box{display:-webkit-flex;display:flex;}</code><br><strong>注意：设为Flex布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vartical-align</code>属性将失效</strong>  </p>
+<h4 id="用flex设置元素绝对居中-给它的父元素加下面三行代码"><a href="#用flex设置元素绝对居中-给它的父元素加下面三行代码" class="headerlink" title="用flex设置元素绝对居中(给它的父元素加下面三行代码)"></a>用flex设置元素绝对居中(给它的父元素加下面三行代码)</h4><p><code>.box{</code><br>    <code>display:flex;</code>/如果是内联元素使用inline-flex<br>    <code>align-items: center;</code>/水平居中<br>    <code>justify-content: center;</code>/垂直居中<br><code>}</code></p>
+<h4 id="vh、vw单位"><a href="#vh、vw单位" class="headerlink" title="vh、vw单位"></a>vh、vw单位</h4><p>viewport height（可视高度），相对于视窗的高度：视窗高度为100vh<br>viewport width（可视宽度），想对于视窗的宽度：视窗宽度为100vw</p>
+<h4 id="background属性"><a href="#background属性" class="headerlink" title="background属性"></a>background属性</h4><p><code>background-color</code>背景颜色。<br><code>background-position</code>背景图像的位置。例：<code>background-position:left top</code><br><code>background-size</code>背景图片大小。例：<code>background-size:100px 100px</code><br><code>background-repeat</code>指定如何重复背景图像。例：<code>background-repeat：repeat</code><br><code>background-origin</code>指定背景图像的定位区域。例：<code>background-origin:padding-box</code><br><code>background-clip</code>背景图像的绘画区域。例：<code>background-clip：border-box</code><br><code>background-attachment</code>背景图像是否固定或者随页面的其余部分滚动。<code>background-attachment：scroll</code><br><code>background-image</code>要使用一个还是多个图像。例：<code>background-image:url(./img/img.jpg)</code><br><strong>这几个值在<code>background:</code>里不分先后</strong>  </p>
+<h4 id="模拟3g网速"><a href="#模拟3g网速" class="headerlink" title="模拟3g网速"></a>模拟3g网速</h4><p>在浏览器开发者界面——Network——Online——选择3G。然后把Disable cache勾选栏去掉（清除缓存），刷新。</p>
+<h4 id="使背景图自适应"><a href="#使背景图自适应" class="headerlink" title="使背景图自适应"></a>使背景图自适应</h4><p><code>background-size:cover</code>，使这个背景把当前元素覆盖住，例如给body元素这个背景属性，这个背景会覆盖整个body，无论浏览器大小或者显示大小多大，都会自适应覆盖住。</p>
+<h3 id="web窗口栏上的图标—Favicon"><a href="#web窗口栏上的图标—Favicon" class="headerlink" title="web窗口栏上的图标—Favicon"></a>web窗口栏上的图标—Favicon</h3><p>Favicon是favorites icon的缩写，亦被称为website icon（网页图标）、page icon（页面图标）或urlicon（URL图标）。Favicon是与某个网站或网页相关联的图标。<br><strong>标准：</strong>  </p>
+<ol>
+<li>最初，定义一个favicon的方法是将一个名为“favicon.ico”的文件置于web服务器的根目录下，<strong>想要访问图标就去网站根目录下的Favicon.ico即可。</strong>例：浏览器url输入栏输入<a href="http://www.baidu.com/favicon.ico，即可访问百度的网页图标。" target="_blank" rel="noopener">www.baidu.com/favicon.ico，即可访问百度的网页图标。</a></li>
+<li>后来出现了一种更为灵活的方法，即使用HTML来为任何一个网页指示其图标所存储的位置，通过在页面的<head>部分添加两个link组件来实现的。</head></li>
+</ol>
+<h3 id="onerror请求失败"><a href="#onerror请求失败" class="headerlink" title="onerror请求失败"></a>onerror请求失败</h3><p>捕抓错误信息：<br><code>img.onerror = function(xxx){console.log(xxx);xxx.target.src = &#39;url&#39;}</code><br>把请求失败的img的src换成不会失败的，即自己上传的图片。</p>
+<h4 id="重设url以后使图标变化"><a href="#重设url以后使图标变化" class="headerlink" title="重设url以后使图标变化"></a>重设url以后使图标变化</h4><p>首先，获取我们点击的button标签，<code>button2 = xxx.target</code><br>然后，我们发现img标签，是button标签的兄弟标签。<code>img2 = button2.previousSibling</code><br>然后，使变更后的url的图标覆盖已代替原来的图标。<code>img2.src = &#39;http://&#39;+ x + &#39;/favicon.ico&#39;</code>  </p>
+<h3 id="封装成函数"><a href="#封装成函数" class="headerlink" title="封装成函数"></a>封装成函数</h3><p>例：<br><code>function tag(tagName){return document.createElement(tagName)}</code><br><code>var div = tag(&#39;div&#39;)//就可以创建div标签了</code><br><strong>创建一个生成标签，并给元素类名（row）的函数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function tag(tagName,attributes)&#123;</span><br><span class="line">    var element = document.createElement(tagName)</span><br><span class="line">    for(var key in attributes)&#123;</span><br><span class="line">        element[key] = attributes[key]</span><br><span class="line">    &#125;</span><br><span class="line">    return element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>divxxx = tag(&#39;div&#39;,{className:&#39;row&#39;})</code>//创建一个div标签，它的classname是row,把attributes的key，也就是className赋值给element的key。</p>
 <p>//attributes是一个属性，我们要遍历这个属性。for…in..循环可以遍历一个哈希。<br>element也是一个哈希，<code>div.className=&#39;xxx&#39;</code>,div也是个哈希，className是个key，xxx是key对应的value。<br>className、id、textContent都是key。<br><strong>使用函数封装后，代码变成树形的，然后这样更容易理解，更容易区分，更容易排错</strong></p>
 
           

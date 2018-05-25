@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="水平居中方案 行内元素：设置其块父元素12345678910111213- **固定宽度的块级元素**：    1. 设置当前块元素的左右margin值为auto，```margin:o auto```，**当前块元素一定要有固定宽度**    2. 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子">
+<meta name="description" content="水平居中方案 行内元素：设置其块父元素text-align:center,text-align定义行内内容如何相对它的块父级元素。 固定宽度的块级元素： 设置当前块元素的左右margin值为auto，margin:o auto，当前块元素一定要有固定宽度 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="居中方案">
 <meta property="og:url" content="http://yoursite.com/2018/05/15/居中方案/index.html">
 <meta property="og:site_name" content="心剑无痕">
-<meta property="og:description" content="水平居中方案 行内元素：设置其块父元素12345678910111213- **固定宽度的块级元素**：    1. 设置当前块元素的左右margin值为auto，```margin:o auto```，**当前块元素一定要有固定宽度**    2. 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子">
+<meta property="og:description" content="水平居中方案 行内元素：设置其块父元素text-align:center,text-align定义行内内容如何相对它的块父级元素。 固定宽度的块级元素： 设置当前块元素的左右margin值为auto，margin:o auto，当前块元素一定要有固定宽度 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-15T08:37:54.045Z">
+<meta property="og:updated_time" content="2018-05-25T06:26:30.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="居中方案">
-<meta name="twitter:description" content="水平居中方案 行内元素：设置其块父元素12345678910111213- **固定宽度的块级元素**：    1. 设置当前块元素的左右margin值为auto，```margin:o auto```，**当前块元素一定要有固定宽度**    2. 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子">
+<meta name="twitter:description" content="水平居中方案 行内元素：设置其块父元素text-align:center,text-align定义行内内容如何相对它的块父级元素。 固定宽度的块级元素： 设置当前块元素的左右margin值为auto，margin:o auto，当前块元素一定要有固定宽度 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度">
 
 
 
@@ -330,8 +330,25 @@
 
       
         <h3 id="水平居中方案"><a href="#水平居中方案" class="headerlink" title="水平居中方案"></a>水平居中方案</h3><ul>
-<li><strong>行内元素</strong>：设置其块父元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- **固定宽度的块级元素**：</span><br><span class="line">    1. 设置当前块元素的左右margin值为auto，```margin:o auto```，**当前块元素一定要有固定宽度**</span><br><span class="line">    2. 通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子元素宽度除于二）的margin-left.</span><br><span class="line">    3. 给父元素position:absolute，子元素给剩余宽度一半的margin-left。 </span><br><span class="line">    4. 给父元素position:absolute，子元素左浮动，然后子元素给剩余宽度一半的margin-left。</span><br><span class="line">- **不定宽度块状元素**</span><br><span class="line">    1. 在元素外加入table标签（完整的，包括table、tbody、tr、td），该元素写在td内，然后设置margin的值为auto。</span><br><span class="line">    2. 把块元素变为行元素，给该元素设置```display：inline```或者```display:inline-block```,然后给父级块元素加```text-align:center```（行内居中），```margin:0 auto```（块级居中）</span><br><span class="line">    3. 绝对定位的方法：</span><br><span class="line">    4. flexbox，给父元素添加```display:flex;flex-direction:column;```,居中元素```align-self:center```。</span><br><span class="line"></span><br><span class="line">### 垂直居中方案</span><br><span class="line">1. 单行文本居中，假设元素的高度为100px，那么设置```line-height:</span><br></pre></td></tr></table></figure></li>
+<li><strong>行内元素</strong>：设置其块父元素<code>text-align:center</code>,<code>text-align</code>定义行内内容如何相对它的块父级元素。</li>
+<li><strong>固定宽度的块级元素</strong>：<ol>
+<li>设置当前块元素的左右margin值为auto，<code>margin:o auto</code>，<strong>当前块元素一定要有固定宽度</strong></li>
+<li>通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子元素宽度除于二）的margin-left.</li>
+<li>给父元素position:absolute，子元素给剩余宽度一半的margin-left。 </li>
+<li>给父元素position:absolute，子元素左浮动，然后子元素给剩余宽度一半的margin-left。</li>
+</ol>
+</li>
+<li><strong>不定宽度块状元素</strong><ol>
+<li>在元素外加入table标签（完整的，包括table、tbody、tr、td），该元素写在td内，然后设置margin的值为auto。</li>
+<li>把块元素变为行元素，给该元素设置<code>display：inline</code>或者<code>display:inline-block</code>,然后给父级块元素加<code>text-align:center</code>（行内居中），<code>margin:0 auto</code>（块级居中）</li>
+<li>绝对定位的方法：</li>
+<li>flexbox，给父元素添<code>display:flex;flex-direction:column;</code>,居中元素<code>align-self:center</code>。</li>
+</ol>
+</li>
 </ul>
+<h3 id="垂直居中方案"><a href="#垂直居中方案" class="headerlink" title="垂直居中方案"></a>垂直居中方案</h3><ol>
+<li>单行文本居中，假设元素的高度为100px，那么设置<code>line-height:</code></li>
+</ol>
 
       
     </div>
@@ -498,7 +515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平居中方案"><span class="nav-number">1.</span> <span class="nav-text">水平居中方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平居中方案"><span class="nav-number">1.</span> <span class="nav-text">水平居中方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直居中方案"><span class="nav-number">2.</span> <span class="nav-text">垂直居中方案</span></a></li></ol></div>
             
 
           </div>
