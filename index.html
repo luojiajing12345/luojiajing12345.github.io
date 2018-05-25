@@ -382,7 +382,9 @@
 </ul>
 <hr>
 <p>引用：当复制保存着对象的某个变量时，操作的是对象的引用（就是那个地址）。但在为对象添加属性时，操作的是实际的对象。<br><strong>关于循环引用</strong><code>var a</code>,<code>a={self:a}</code>,a.self等于undefined。也就是得到的对象是{self:undefined},因为第二步把对象赋值给a的时候，对象里的a等于undefined，运算是从右到左的。<br>循环引用应该是<code>var a = {}</code>,<code>a.self=a</code>,会得到一个{self:{…}},点开发现里面也是一个{self:{…}}，一直循环。因为我们把a的值赋值给self的value，然后我们打开对象a，发现里面的栈有个地址，说明是个对象，按着这个地址找到堆里的空间，发现里面的self对应的又是个地址，再按着这个地址，一直循环，一直都在那个空间里找。    </p>
-<p>引用类型面试题：<br>输入：<code>var a={n:1};var b=a;a.x=a={n:2}</code>。<br>输出<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。。<br>首先前两步是没有问题的，生成一个对象，赋值给a，然后把a的地址赋值给b，此时<strong>a和b在stack中的值（地址）是一样的，假设为ADDR100,对应的heap中的对象也是一样的</strong>。<br>然后<code>a.x=a={n:2}</code>,假设{n:2}的地址为ADDR200，浏览器读数据是从左到右的，运算是从右到左的。所以此时a的值为ADDR100，右边运算赋值后中间a为</p>
+<p>引用类型面试题：<br>输入：<code>var a={n:1};var b=a;a.x=a={n:2}</code>。<br>输出<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。。<br>首先前两步是没有问题的，生成一个对象，赋值给a，然后把a的地址赋值给b，此时<strong>a和b在stack中的值（地址）是一样的，假设为ADDR100,对应的heap中的对象也是一样的</strong>。<br>然后<code>a.x=a={n:2}</code>,假设{n:2}的地址为ADDR200，浏览器读数据是从左到右的，运算是从右到左的。所以此时a的值为ADDR100，右边运算赋值后给中间a后，中间的a后此时对应的srack中的值为ADDR200,左边的a还是ADDR100，然后把中间那个a，也就是ADDR200,赋值给ADDR100中的对象中的key为x的value。<br>那么此时a是ADDR200那里的的对象，里面的对象为<code>{n:2}</code>,b为ADDR100那里的对象，里面的对象为<code>{n:1,x:{n:2}}</code>,第三步的赋值只是赋给了ADDR100对应的对象里面的key为x的value。<br>当使用<code>alert(a.x)</code>，会调用toString方法。所以<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。   </p>
+<hr>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>Javascript具有自动垃圾回收机制。</p>
 
           
         
