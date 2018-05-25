@@ -359,11 +359,8 @@
 </li>
 </ol>
 <p>例如：<code>&lt;a href=&quot;javascript:alert(1)&quot;;&gt;qq&lt;/a&gt;</code>点击之后会弹出1。  </p>
-<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a><form>标签</form></h3><p>跳转页面（POST请求）<br>\&lt;form>里必须要有一个sumbmit按钮才能提交。<br>\&lt;form>用input按钮的话，想提交一定要有name值。例：</p>
-<blockquote>
-<p>\<form action="users?name=pyz" method="post"><br>\<label>用户名&lt;input type=”text” <strong>name=”username”</strong>&gt;</label>    //input要被提及的话一定要有那么值<br>\<label>密码&lt;input type=”password” <strong>name=”password”</strong>&gt;</label><br>\<input type="submit" value="提交"><br>\</form>  </p>
-</blockquote>
-<p>\&lt;label>直接包在input外面用<br>\&lt;form>例的target和<a>里的用法是一样的<br>\&lt;form>里如果没有 <code>\&lt;input type=&quot;submit&quot;&gt;</code>,而有\<button>，则\</button><button>会默认为submit，若写成这样 <code>\&lt;button type=&quot;button&quot;\&gt;button\&lt;/button\&gt;</code> 则不会成为submit，一个form里必须要有一个submit按钮才能提交。</button></a></p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a><form>标签</form></h3><p>跳转页面（POST请求）<br>\&lt;form>里必须要有一个sumbmit按钮才能提交。<br>\&lt;form>用input按钮的话，想提交一定要有name值。例：<br><code>\&lt;form action=&quot;users?name=pyz&quot; method=&quot;post&quot;&gt;</code><br><code>\&lt;label&gt;用户名\&lt;input type=&quot;text&quot; **name=&quot;username&quot;**&gt;\&lt;/label&gt;</code>    //input要被提及的话一定要有那么值<br><code>\&lt;label&gt;密码\&lt;input type=&quot;password&quot; **name=&quot;password&quot;**&gt;\&lt;/label&gt;</code><br><code>\&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</code><br><code>\&lt;/form&gt;</code> </p>
+<p>\&lt;label>直接包在input外面用<br>\&lt;form>例的target和<a>里的用法是一样的<br>\&lt;form>里如果没有 <code>\&lt;input type=&quot;submit&quot;&gt;</code>,而有<code>\&lt;button&gt;</code>，则<code>\&lt;button&gt;</code>会默认为submit，若写成这样 <code>\&lt;button type=&quot;button&quot;\&gt;button\&lt;/button\&gt;</code> 则不会成为submit，一个form里必须要有一个submit按钮才能提交。</a></p>
 <h3 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h3><ol>
 <li><p>checkbox</p>
 <blockquote>
