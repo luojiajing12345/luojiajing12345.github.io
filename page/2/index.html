@@ -249,6 +249,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/数据结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/07/数据结构/" itemprop="url">数据结构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T14:49:39+08:00">
+                2018-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/07/数据结构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/07/数据结构/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="哈希（Hash）"><a href="#哈希（Hash）" class="headerlink" title="哈希（Hash）"></a>哈希（Hash）</h2><p>只要能满足Key:value(键值对)的都是哈希。计数是哈希，队列也是哈希。</p>
+<h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><ol>
+<li>计数排序：例如有一个数组，里面一堆键值对的数字。例：a{‘0’:0,’1’:2,’2’:5,’5’:5}这样。<br>再新建一个Hash,遍历数组，把数组里的数取出来放进Hash里。hash里会显示这些数字的个数。Hash{‘0’:1,’2’:1,’5’:2}。当遍历Hash的时候，会从0开始到最大值，为newArr = [0,1,1,2].  速度很快，很浪费内存空间。<br><strong>数组里面的length为最大的key+1，例a{‘0’:0,’1’:1,’20’:2,’length’:21}</strong></li>
+</ol>
+<h3 id="桶排序-amp-基数排序"><a href="#桶排序-amp-基数排序" class="headerlink" title="桶排序&amp;基数排序"></a>桶排序&amp;基数排序</h3><ul>
+<li>计数排序中的桶（复杂度O（n+max））,比快排还快。</li>
+<li>桶排序是计数排序的升级版，计数排序是每个桶放一个数，桶排序可以设置每个桶放一个范围的数。例如1:[1~100]，相比于计数排序，桶排序结省了空间，浪费了时间。<strong>时间和空间，只能选一个</strong></li>
+<li>基数排序：一共有10个桶，分别对应0、1、2、3、4、5、6、7、8、9。<blockquote>
+<ol>
+<li>先对比个位数后入桶，然后按从小到大出桶。</li>
+<li>再对比十位数后入桶，此时因为前面的个位数已比完排好，所以十位数相同的按个位数从小到大依次入桶，然后按照<strong>先进先出</strong>，小的先出桶排前面。以此类推。</li>
+<li>优点在于即使数字很大都不怕，使用的空间也不多。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
+<li><strong>先进先出</strong>，例如，买票系统，先买票先出票。基数排序用的也是队列，先进先出</li>
+<li>可以用数组实现</li>
+<li>举例：排队</li>
+</ul>
+<h2 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a>栈（Stack）</h2><ul>
+<li><strong>先进后出</strong></li>
+<li>可用数组实现</li>
+<li>举例：把盘子一张张放桌子上，拿的时候要从上面开始拿出来</li>
+</ul>
+<h2 id="链表和树"><a href="#链表和树" class="headerlink" title="链表和树"></a>链表和树</h2><ul>
+<li><p><strong>链表</strong>：一个哈希指向另一个哈希，像有一条链连起来，不用排在一起。数组无法直接删除中间一项，链表可以，但查询很慢，所以用得比较少，只要找到表头（head）就能找到其他的结点(node)。</p>
+</li>
+<li><p><strong>树</strong>：链表的升级版，链表指向另一结点，树可以指向好几个结点，比较高的层数比较低，例如：html为第1层，body和head为第2层，最后的结点（后面没有连接任何结点的结点）叫做叶子结点（没有儿子的）。 </p>
+</li>
+<li><strong>二叉树</strong>：每个结点最多两条链路。通常分支被称作“左子树”和“右子树”。二叉树的分支具有左右次序，不能颠倒。二叉树的第i层有2^i个结点，i从0开始。<br>-<strong>满二叉树</strong>：每一层都是满的（两条）链路或者叶子。</li>
+<li><strong>完全二叉树</strong>：在一颗二叉树中，除最后一层外，若其余层都是满的，并且最后一层或者是满的，或者是右边缺少连续若干结点，则此二叉树为完全二叉树。如果一个结点有右子结点，那么他一定也有左子结点，如果有左结点，没有右子结点，那么就是完全二叉树。</li>
+<li>完全二叉树和满二叉树可以用数组实现，其他可用哈希（对象）实现，把哈希连起来就是链表。</li>
+<li>树的第一层存1个数字，第二层2个，第三层4个，第四层8个，以此类推。要取的时候，例如取第三层第一个数字a[2<em>2-1]，第四层第一个数字a[2</em>2<em>2-1]，取第三层的第3个数字a[2</em>2*2-1+2],满二叉树和完全二叉树可以用数组表示。</li>
+</ul>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><ul>
+<li>堆（二叉堆）可以视为一颗完全的二叉树，但和树不同的是，堆下面的数字小上面的大，而树的下面大，上面小。</li>
+<li>最大堆：最大堆中的最大元素值出现在根结点（堆顶）；堆中每个父结点的元素值都大于等于其孩子结点（如果存在）。</li>
+<li>最小堆：最小堆中的最小元素值出现在根结点（堆顶）；堆中每个父结点的元素值都小于其孩子结点（如果存在）。</li>
+<li>最大堆调整：其作用是保持最大堆的性质，是创建最大堆的核心子程序。</li>
+<li>最小堆调整：其作用是保持最小堆的性质，是创建最小堆的核心子程序。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/算法入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1831,178 +2003,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/github注册与使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/github注册与使用/" itemprop="url">github注册与使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T22:43:48+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/21/github注册与使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/github注册与使用/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="注册与登陆"><a href="#注册与登陆" class="headerlink" title="注册与登陆"></a>注册与登陆</h2><ol>
-<li>打开网址“<a href="http://www.github.com”" target="_blank" rel="noopener">www.github.com”</a> </li>
-<li>注册账号，登陆账号  </li>
-</ol>
-<h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><ol>
-<li>前往<a href="https://github.com/settings/keys上添加新key。" target="_blank" rel="noopener">https://github.com/settings/keys上添加新key。</a></li>
-<li>title随便写，由于我们没有key，所以要新建个key。</li>
-<li>打开终端（Git Bash）输入<code>ssh-keygen -t rsa -b 4096 -C &quot;你的邮箱&quot;</code>(生成一堆文件在/.ssh目录下，id_rsa相当于钥匙，id_rsa.pub相当于锁)</li>
-<li>运行 <code>cat ~/.ssh/id_rsa.pub</code>，得到一串东西，复制粘贴到key里，点击 Add SSH key</li>
-<li>运行 <code>ssh -T git@github.com</code>  </li>
-</ol>
-<h2 id="配置git"><a href="#配置git" class="headerlink" title="配置git"></a>配置git</h2><p>依次运行<br>    git config --global user.name “英文名”<br>    git config --global user.email “邮箱”<br>    git config --global push.default matching或(simple)（matching匹配所有分支）（simple匹配单个分支）<br>    git config --global core.quotepath false<br>    git config --global core.editor “vim”<br>global前面两个-</p>
-<h2 id="使用git的三种方法"><a href="#使用git的三种方法" class="headerlink" title="使用git的三种方法"></a>使用git的三种方法</h2><ol>
-<li>只在本地使用<br>初始化本地仓库<code>git init</code>，初始化后里面有个.git的文件夹  </li>
-</ol>
-<p>将变动文件添加到暂存区<code>git add 文件路径</code>  </p>
-<p>正式提交变动文件，提交到.git仓库<code>git commit -m &quot;注释信息&quot;</code>  </p>
-<p>如果有新的变动我们只需依次执行<code>git add xxx</code>和<code>git commit -m &quot;xxx&quot;</code>两个命令即可。  </p>
-<p>记住：<strong>先add再commit即可</strong>  </p>
-<p>查看变更历史<code>git log</code>  </p>
-<ol start="2">
-<li>将本地仓库上床单GitHub<br>在GitHub上新建一个<strong>空仓库</strong>（除了仓库名，其他都别改），然后会进入一个很多命令的页面<br>点击<strong>ssh按钮</strong>获取ssh地址。<br>然后复制代码再运行：<code>git remote add origin git@github.com:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/xxx.git</code>  </li>
-</ol>
-<p>复制第二行代码再运行：<code>git push -u origin master</code><br>刷新当前页面，仓库就上传到GitHub了。</p>
-<ol start="3">
-<li>下载GitHub上的仓库<br>在GitHub上新建一个仓库（不是空仓库，要勾选Initialize那个按钮），仓库自带了README。<br>仓库有了几个文件了。<br>点击绿色按钮[clone or download],会看到一个弹出层。<br>确保弹出层里的地址是<strong>SSH地址</strong>，点击Use SSH按钮，然后复制这个地址。<br>打开Git Bash，进入一个目录后，运行<code>git clone 你刚才得到的以git@github.com开头的地址</code>,运行完会发现当前目录下多了个目录。<br>进入这个目录，运行<code>ls -la</code>，就会看到远程目录下的所有文件了，另外还会看到.git本地仓库。<br>这时可以添加文件，<code>git add</code>,然后<code>git aommit</code>了  </li>
-</ol>
-<h1 id="如何上传更新"><a href="#如何上传更新" class="headerlink" title="如何上传更新"></a>如何上传更新</h1><p>如果在本地目录有任何变动，只需按照以下顺序就能上传：</p>
-<blockquote>
-<ol>
-<li>git add 文件路径</li>
-<li>git commit -m “信息”</li>
-<li>git pull (增量下载，如果远程仓库有变化要使用这个把仓库的下载下来以后才能上传上去)</li>
-<li>git push（上传）</li>
-</ol>
-</blockquote>
-<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">常用Git命令清单</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html" target="_blank" rel="noopener">读懂diff-阮一峰</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="noopener">搭建一个免费的，无线流量的Blog——github Pages和Jekyll入门</a></li>
-<li><a href="http://www.runoob.com/git/git-install-setup.html" target="_blank" rel="noopener">Git菜鸟教程</a></li>
-<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013743256916071d599b3aed534aaab22a0db6c4e07fd0000" target="_blank" rel="noopener">廖雪峰的Git教程</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2053,7 +2053,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -249,6 +249,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/JS里的对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/25/JS里的对象/" itemprop="url">JS里的对象</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-25T21:22:08+08:00">
+                2018-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/25/JS里的对象/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/25/JS里的对象/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="全局对象window"><a href="#全局对象window" class="headerlink" title="全局对象window"></a>全局对象window</h3><p>当我们没有写任何代码的时候，里面就有个window对象，对象里有一堆函数(对象)。<br>浏览器默认全局对象window，无论在哪个网页都可以访问一个对象那就是window。<br>在浏览器中，window对象有双重角色，即是通过Javascript访问浏览器窗口的一个借口，有时ECMAScript规定的Globla对象。</p>
+<p>由于window对象同时扮演着ECMAScript中的Global对象的角色，因此所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法。<br>window对象下面一堆函数，对应一堆对象，对象下面又有对象，所有window下面很多对象。window里的函数前面可以不加window，例如window.alert(),直接alert()。<br><strong>window下面的属性分为两类。</strong>  </p>
+<ol>
+<li>ECMAScript规定的函数。<br>parseInt、parseFloat、Number()（默认0）、String()（默认’’）、boolean()（默认false）、Objict(){默认{}}，window.setTineout(function(){} , time)(在指定时间后执行这个函数)</li>
+<li>私有的函数（Chrome/ie/Fireox，像这些浏览器独有的，或者只有哪两个有的）。<br>alert(弹框提示)、prompt(用户填写)、comfirm(确认)、console(开发者)。像这些浏览器私有的，每个浏览器的实现效果都可能不一样，因为没有标准，例如alert(),每个浏览器弹出的位置，大小，形状等都不一样。<br>document(文档)有自己的规范（W3C规定），规定了能对文档执行的一切操作。DOM.<br>history(浏览器),获取浏览器的历史，访问记录什么的。BOM.</li>
+</ol>
+<h3 id="EMNAScript规定的"><a href="#EMNAScript规定的" class="headerlink" title="EMNAScript规定的"></a>EMNAScript规定的</h3><h3 id="简单类型和对象的区别"><a href="#简单类型和对象的区别" class="headerlink" title="简单类型和对象的区别"></a>简单类型和对象的区别</h3><h4 id="Number"><a href="#Number" class="headerlink" title="Number()"></a>Number()</h4><blockquote>
+<p>Number(‘1’)<br>var n = new Number(1);1相当于{valueof():1}<br>var n1 = 1;var n2=new Number(1)这两个的区别在于内存不同，n1就是在stack里有个数值1，n2是在stack里有个ADDR，然后指向heap里的对象{[[PrimitiveValue]]：1}，原始值为1，里面是个哈希。我们调用n2.valueOf(),能获取原始的这个1，用n2.toString()能获取它的字符串。<strong>没有人用第二种方法</strong>。<br>但第一种实际上是不能用toString()的，<strong>但js之父设计了一个临时转换的技巧，当n1.toString()的时候，会出现一个临时对象，调用temp=new Number(n1);temp.toString();然后这个temp就像不存在一样，就获取到它转换成字符串的了</strong><br>所以就算我们使用第一种那种简单的赋值，也能使用第二种里的所有属性。<br>var n=1;n.xxx=2;n.xxx等于几？undefined。首先在stack里有个1，然后第二句的时候，stack里有个temp的ADDR，然后会在heap里建个对应的临时对象，n的值是1，它的属性xxx对应2，{xxx:2},运行这句以后temp会被回收，临时对象也会一起被回收，第三句的时候，没有这个xxx，会新建一个，新建的对象的没有xxx属性所以等于undefined。简单点说<strong>就是运行第二句会有个临时新对象，并把2赋值给它的xxx属性，运行完后销毁，第三局又新建个对象。</strong></p>
+</blockquote>
+<h4 id="String"><a href="#String" class="headerlink" title="String()"></a>String()</h4><p>简单类型：<code>var a=&#39;xxx&#39;</code><br>对象：<code>var a2=new String(xxx)</code>里面一样有很多属性。<br><code>abc.charAt(0)</code>，abc的第一个字符。<br><code>(100).toString(16)</code>，100转化为16进制。<br><code>abc,charCodeAt(0)</code>，第一个字符对应的unicode的编码。<br><code>&#39;a&#39;.charCodeAt(0).toString(16)</code>,a的16进制。  </p>
+<h4 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean()"></a>Boolean()</h4><p>简单类型：<code>var a = true</code><br>对象：<code>var a2 = new Boolean(true)</code><br><strong>注意：</strong><code>if(a2){console.log(&#39;aaa&#39;)}</code>，aaa是会被打印出来的，因为a2是对象，在Boolean里，除了那五个(‘’,NaN,0,null,undefined)以外，其他都是true。所以里面判断为true。  </p>
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object()"></a>Object()</h4><p>简单类型：<code>var a={}</code><br>对象：<code>var a2=new Object()</code><br>这两个是没有区别的，但是，不是相等的。a===a2为false。因为它们在stack里的地址是不相等的，在heap里的位置也不相等。<strong>由此推论：所有新声明的对象都不相等，除非把stack里的地址赋值给拎一个变量。</strong></p>
+<h3 id="共有属性（原型）"><a href="#共有属性（原型）" class="headerlink" title="共有属性（原型）"></a>共有属性（原型）</h3><ul>
+<li>上面几个对象的共有属性，像那些对象，有一些属性是每个都有的，例如：toString(),valueOf()等，主要作用是不要浪费内存。像这些共有属性都在隐藏的<strong>proto</strong>属性里面。当对象调用toString()方法时，会先在自己的属性里找有没有这个属性，如果没有找到，就会去<strong>proto</strong>里面找，找到后就会调用。  </li>
+<li>以上所说的是对于常规对象，对于其他对象，例如Number对象，String对象，Boolean对象。它们会有一些自己才有的公有属性，例如Number对象的特有的toFixed(),toExponential()，String对象的length()等，它们首先是在自己的属性里找，然后在第一个<strong>proto</strong>里（类型对象的共有属性），然后再到所有对象的共有属性（第二个<strong>proto</strong>）里找，如果都找不到就会输出undefined。    </li>
+<li>如果这些共有属性没有被人引用的话，是会被垃圾回收掉的，所以有东西在一直引用它。Object.prototype就是共有属性（原型），Number.prototype就是Number对象的共有属性。<code>obj.__proto__===Object,prototype</code>,<code>Num.__proto__===Number.prototype</code>,<code>Num.__proto__.__proto__====Object.prototype</code>。     </li>
+<li>Number对象，String对象，Boolean对象都有两个<strong>proto</strong>,object只有一个（为所有对象的共有属性）。这种几个结点连接一个结点也叫<strong>原型链</strong>。  </li>
+<li>当我们没有写任何代码的时候，里面就有个window对象（浏览器在内存里初始化好了），对象里有一堆函数(对象)。例如：Number函数（对象），String函数（对象），Boolean函数（对象），这些对象里有个prototype属性，这个属性引用这它们自己类型的共用属性（例Number函数的prototype引用着Number对象的共用属性）,然后这些属性里有个<strong>proto</strong>引用着总对象的共用属性。</li>
+<li>当我们写了一句代码<code>var a=new String(&#39;hi&#39;)</code>，a对应的stack里存了一个heap里的地址，然后在heap里面有块空间，写着<br>{0:’h’,1:’i’,length:2,<strong>proto</strong>:String},这个<strong>proto</strong>引用String的共用函数。window里的String里的prototype和s里的<strong>proto</strong>都指向String的共用属性，它们没有什么很大的区别。<strong>唯一的区别就是，前者是浏览器写好的，一开始就有的，String.prototype是String的共用属性的引用（如果没有这个，String会被垃圾回收掉）。后者是自己写了代码后才有的，a.<strong>proto</strong>是String的共用属性的引用（因为我们要用到它的共用属性）</strong>  </li>
+</ul>
+<h4 id="proto与prototype"><a href="#proto与prototype" class="headerlink" title="proto与prototype"></a><strong>proto</strong>与prototype</h4><p><strong>var 对象 = new 函数()</strong>。例：var s = new String(),s为对象，String为函数。<br><strong>对象.<strong>proto</strong> === 函数.prototype</strong>,<strong>proto</strong>是对象的属性，prototype是函数的属性，它们指向同一个对象，因为地址是一样的。<br>当声明一个对象，这个对象一定要有对应的一个共用属性，这样才能调用各种API。<br>式子变形：<br><strong>函数.prototype.<strong>proto</strong>===Object.prototype</strong>，推导：<code>var obj=函数.prototype</code>,<code>obj.__proto__===Object.prototype</code> so<code>函数.prototype.__proto__===Object.prototype**</code><br><strong>函数.<strong>proto</strong>===function.prototype</strong><br><strong>function.<strong>proto</strong>===function.prototype</strong></p>
+<p>题目：</p>
+<ul>
+<li><code>var obj={name:&#39;luo&#39;};</code>,obj.toString===Object.toString是错的，obj.toString===Object.prototype.toString才是对的。</li>
+<li>1.toString()会报错，因为1.被认为是1.0所以1.toString()，等价于<strong>1.0toString()</strong>，所以会报错。</li>
+<li>1..toString()等于”1”，相当于<strong>1.0.toString()</strong>,所以不会报错。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1720,178 +1876,6 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/数据结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/07/数据结构/" itemprop="url">数据结构</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T14:49:39+08:00">
-                2018-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/07/数据结构/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/07/数据结构/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="哈希（Hash）"><a href="#哈希（Hash）" class="headerlink" title="哈希（Hash）"></a>哈希（Hash）</h2><p>只要能满足Key:value(键值对)的都是哈希。计数是哈希，队列也是哈希。</p>
-<h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><ol>
-<li>计数排序：例如有一个数组，里面一堆键值对的数字。例：a{‘0’:0,’1’:2,’2’:5,’5’:5}这样。<br>再新建一个Hash,遍历数组，把数组里的数取出来放进Hash里。hash里会显示这些数字的个数。Hash{‘0’:1,’2’:1,’5’:2}。当遍历Hash的时候，会从0开始到最大值，为newArr = [0,1,1,2].  速度很快，很浪费内存空间。<br><strong>数组里面的length为最大的key+1，例a{‘0’:0,’1’:1,’20’:2,’length’:21}</strong></li>
-</ol>
-<h3 id="桶排序-amp-基数排序"><a href="#桶排序-amp-基数排序" class="headerlink" title="桶排序&amp;基数排序"></a>桶排序&amp;基数排序</h3><ul>
-<li>计数排序中的桶（复杂度O（n+max））,比快排还快。</li>
-<li>桶排序是计数排序的升级版，计数排序是每个桶放一个数，桶排序可以设置每个桶放一个范围的数。例如1:[1~100]，相比于计数排序，桶排序结省了空间，浪费了时间。<strong>时间和空间，只能选一个</strong></li>
-<li>基数排序：一共有10个桶，分别对应0、1、2、3、4、5、6、7、8、9。<blockquote>
-<ol>
-<li>先对比个位数后入桶，然后按从小到大出桶。</li>
-<li>再对比十位数后入桶，此时因为前面的个位数已比完排好，所以十位数相同的按个位数从小到大依次入桶，然后按照<strong>先进先出</strong>，小的先出桶排前面。以此类推。</li>
-<li>优点在于即使数字很大都不怕，使用的空间也不多。</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><ul>
-<li><strong>先进先出</strong>，例如，买票系统，先买票先出票。基数排序用的也是队列，先进先出</li>
-<li>可以用数组实现</li>
-<li>举例：排队</li>
-</ul>
-<h2 id="栈（Stack）"><a href="#栈（Stack）" class="headerlink" title="栈（Stack）"></a>栈（Stack）</h2><ul>
-<li><strong>先进后出</strong></li>
-<li>可用数组实现</li>
-<li>举例：把盘子一张张放桌子上，拿的时候要从上面开始拿出来</li>
-</ul>
-<h2 id="链表和树"><a href="#链表和树" class="headerlink" title="链表和树"></a>链表和树</h2><ul>
-<li><p><strong>链表</strong>：一个哈希指向另一个哈希，像有一条链连起来，不用排在一起。数组无法直接删除中间一项，链表可以，但查询很慢，所以用得比较少，只要找到表头（head）就能找到其他的结点(node)。</p>
-</li>
-<li><p><strong>树</strong>：链表的升级版，链表指向另一结点，树可以指向好几个结点，比较高的层数比较低，例如：html为第1层，body和head为第2层，最后的结点（后面没有连接任何结点的结点）叫做叶子结点（没有儿子的）。 </p>
-</li>
-<li><strong>二叉树</strong>：每个结点最多两条链路。通常分支被称作“左子树”和“右子树”。二叉树的分支具有左右次序，不能颠倒。二叉树的第i层有2^i个结点，i从0开始。<br>-<strong>满二叉树</strong>：每一层都是满的（两条）链路或者叶子。</li>
-<li><strong>完全二叉树</strong>：在一颗二叉树中，除最后一层外，若其余层都是满的，并且最后一层或者是满的，或者是右边缺少连续若干结点，则此二叉树为完全二叉树。如果一个结点有右子结点，那么他一定也有左子结点，如果有左结点，没有右子结点，那么就是完全二叉树。</li>
-<li>完全二叉树和满二叉树可以用数组实现，其他可用哈希（对象）实现，把哈希连起来就是链表。</li>
-<li>树的第一层存1个数字，第二层2个，第三层4个，第四层8个，以此类推。要取的时候，例如取第三层第一个数字a[2<em>2-1]，第四层第一个数字a[2</em>2<em>2-1]，取第三层的第3个数字a[2</em>2*2-1+2],满二叉树和完全二叉树可以用数组表示。</li>
-</ul>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><ul>
-<li>堆（二叉堆）可以视为一颗完全的二叉树，但和树不同的是，堆下面的数字小上面的大，而树的下面大，上面小。</li>
-<li>最大堆：最大堆中的最大元素值出现在根结点（堆顶）；堆中每个父结点的元素值都大于等于其孩子结点（如果存在）。</li>
-<li>最小堆：最小堆中的最小元素值出现在根结点（堆顶）；堆中每个父结点的元素值都小于其孩子结点（如果存在）。</li>
-<li>最大堆调整：其作用是保持最大堆的性质，是创建最大堆的核心子程序。</li>
-<li>最小堆调整：其作用是保持最小堆的性质，是创建最小堆的核心子程序。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1942,7 +1926,7 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

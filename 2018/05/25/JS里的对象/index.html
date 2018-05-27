@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="全局对象window当我们没有写任何代码的时候，里面就有个window对象，对象里有一堆函数(对象)。浏览器默认全局对象window，无论在哪个网页都可以访问一个对象那就是window。在浏览器中，window对象有双重角色，即是通过Javascript访问浏览器窗口的一个借口，有时ECMAScript规定的Globla对象。 由于window对象同时扮演着ECMAScript中的Global对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS里的对象">
+<meta property="og:url" content="http://yoursite.com/2018/05/25/JS里的对象/index.html">
+<meta property="og:site_name" content="心剑无痕">
+<meta property="og:description" content="全局对象window当我们没有写任何代码的时候，里面就有个window对象，对象里有一堆函数(对象)。浏览器默认全局对象window，无论在哪个网页都可以访问一个对象那就是window。在浏览器中，window对象有双重角色，即是通过Javascript访问浏览器窗口的一个借口，有时ECMAScript规定的Globla对象。 由于window对象同时扮演着ECMAScript中的Global对象">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-27T08:24:15.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS里的对象">
+<meta name="twitter:description" content="全局对象window当我们没有写任何代码的时候，里面就有个window对象，对象里有一堆函数(对象)。浏览器默认全局对象window，无论在哪个网页都可以访问一个对象那就是window。在浏览器中，window对象有双重角色，即是通过Javascript访问浏览器窗口的一个借口，有时ECMAScript规定的Globla对象。 由于window对象同时扮演着ECMAScript中的Global对象">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/25/JS里的对象/"/>
+
+
+
+
+
+  <title>JS里的对象 | 心剑无痕</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">心剑无痕</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archive">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            archive
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/JS里的对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS里的对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-25T21:22:08+08:00">
+                2018-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/25/JS里的对象/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/25/JS里的对象/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="全局对象window"><a href="#全局对象window" class="headerlink" title="全局对象window"></a>全局对象window</h3><p>当我们没有写任何代码的时候，里面就有个window对象，对象里有一堆函数(对象)。<br>浏览器默认全局对象window，无论在哪个网页都可以访问一个对象那就是window。<br>在浏览器中，window对象有双重角色，即是通过Javascript访问浏览器窗口的一个借口，有时ECMAScript规定的Globla对象。</p>
+<p>由于window对象同时扮演着ECMAScript中的Global对象的角色，因此所有在全局作用域中声明的变量、函数都会变成window对象的属性和方法。<br>window对象下面一堆函数，对应一堆对象，对象下面又有对象，所有window下面很多对象。window里的函数前面可以不加window，例如window.alert(),直接alert()。<br><strong>window下面的属性分为两类。</strong>  </p>
+<ol>
+<li>ECMAScript规定的函数。<br>parseInt、parseFloat、Number()（默认0）、String()（默认’’）、boolean()（默认false）、Objict(){默认{}}，window.setTineout(function(){} , time)(在指定时间后执行这个函数)</li>
+<li>私有的函数（Chrome/ie/Fireox，像这些浏览器独有的，或者只有哪两个有的）。<br>alert(弹框提示)、prompt(用户填写)、comfirm(确认)、console(开发者)。像这些浏览器私有的，每个浏览器的实现效果都可能不一样，因为没有标准，例如alert(),每个浏览器弹出的位置，大小，形状等都不一样。<br>document(文档)有自己的规范（W3C规定），规定了能对文档执行的一切操作。DOM.<br>history(浏览器),获取浏览器的历史，访问记录什么的。BOM.</li>
+</ol>
+<h3 id="EMNAScript规定的"><a href="#EMNAScript规定的" class="headerlink" title="EMNAScript规定的"></a>EMNAScript规定的</h3><h3 id="简单类型和对象的区别"><a href="#简单类型和对象的区别" class="headerlink" title="简单类型和对象的区别"></a>简单类型和对象的区别</h3><h4 id="Number"><a href="#Number" class="headerlink" title="Number()"></a>Number()</h4><blockquote>
+<p>Number(‘1’)<br>var n = new Number(1);1相当于{valueof():1}<br>var n1 = 1;var n2=new Number(1)这两个的区别在于内存不同，n1就是在stack里有个数值1，n2是在stack里有个ADDR，然后指向heap里的对象{[[PrimitiveValue]]：1}，原始值为1，里面是个哈希。我们调用n2.valueOf(),能获取原始的这个1，用n2.toString()能获取它的字符串。<strong>没有人用第二种方法</strong>。<br>但第一种实际上是不能用toString()的，<strong>但js之父设计了一个临时转换的技巧，当n1.toString()的时候，会出现一个临时对象，调用temp=new Number(n1);temp.toString();然后这个temp就像不存在一样，就获取到它转换成字符串的了</strong><br>所以就算我们使用第一种那种简单的赋值，也能使用第二种里的所有属性。<br>var n=1;n.xxx=2;n.xxx等于几？undefined。首先在stack里有个1，然后第二句的时候，stack里有个temp的ADDR，然后会在heap里建个对应的临时对象，n的值是1，它的属性xxx对应2，{xxx:2},运行这句以后temp会被回收，临时对象也会一起被回收，第三句的时候，没有这个xxx，会新建一个，新建的对象的没有xxx属性所以等于undefined。简单点说<strong>就是运行第二句会有个临时新对象，并把2赋值给它的xxx属性，运行完后销毁，第三局又新建个对象。</strong></p>
+</blockquote>
+<h4 id="String"><a href="#String" class="headerlink" title="String()"></a>String()</h4><p>简单类型：<code>var a=&#39;xxx&#39;</code><br>对象：<code>var a2=new String(xxx)</code>里面一样有很多属性。<br><code>abc.charAt(0)</code>，abc的第一个字符。<br><code>(100).toString(16)</code>，100转化为16进制。<br><code>abc,charCodeAt(0)</code>，第一个字符对应的unicode的编码。<br><code>&#39;a&#39;.charCodeAt(0).toString(16)</code>,a的16进制。  </p>
+<h4 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean()"></a>Boolean()</h4><p>简单类型：<code>var a = true</code><br>对象：<code>var a2 = new Boolean(true)</code><br><strong>注意：</strong><code>if(a2){console.log(&#39;aaa&#39;)}</code>，aaa是会被打印出来的，因为a2是对象，在Boolean里，除了那五个(‘’,NaN,0,null,undefined)以外，其他都是true。所以里面判断为true。  </p>
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object()"></a>Object()</h4><p>简单类型：<code>var a={}</code><br>对象：<code>var a2=new Object()</code><br>这两个是没有区别的，但是，不是相等的。a===a2为false。因为它们在stack里的地址是不相等的，在heap里的位置也不相等。<strong>由此推论：所有新声明的对象都不相等，除非把stack里的地址赋值给拎一个变量。</strong></p>
+<h3 id="共有属性（原型）"><a href="#共有属性（原型）" class="headerlink" title="共有属性（原型）"></a>共有属性（原型）</h3><ul>
+<li>上面几个对象的共有属性，像那些对象，有一些属性是每个都有的，例如：toString(),valueOf()等，主要作用是不要浪费内存。像这些共有属性都在隐藏的<strong>proto</strong>属性里面。当对象调用toString()方法时，会先在自己的属性里找有没有这个属性，如果没有找到，就会去<strong>proto</strong>里面找，找到后就会调用。  </li>
+<li>以上所说的是对于常规对象，对于其他对象，例如Number对象，String对象，Boolean对象。它们会有一些自己才有的公有属性，例如Number对象的特有的toFixed(),toExponential()，String对象的length()等，它们首先是在自己的属性里找，然后在第一个<strong>proto</strong>里（类型对象的共有属性），然后再到所有对象的共有属性（第二个<strong>proto</strong>）里找，如果都找不到就会输出undefined。    </li>
+<li>如果这些共有属性没有被人引用的话，是会被垃圾回收掉的，所以有东西在一直引用它。Object.prototype就是共有属性（原型），Number.prototype就是Number对象的共有属性。<code>obj.__proto__===Object,prototype</code>,<code>Num.__proto__===Number.prototype</code>,<code>Num.__proto__.__proto__====Object.prototype</code>。     </li>
+<li>Number对象，String对象，Boolean对象都有两个<strong>proto</strong>,object只有一个（为所有对象的共有属性）。这种几个结点连接一个结点也叫<strong>原型链</strong>。  </li>
+<li>当我们没有写任何代码的时候，里面就有个window对象（浏览器在内存里初始化好了），对象里有一堆函数(对象)。例如：Number函数（对象），String函数（对象），Boolean函数（对象），这些对象里有个prototype属性，这个属性引用这它们自己类型的共用属性（例Number函数的prototype引用着Number对象的共用属性）,然后这些属性里有个<strong>proto</strong>引用着总对象的共用属性。</li>
+<li>当我们写了一句代码<code>var a=new String(&#39;hi&#39;)</code>，a对应的stack里存了一个heap里的地址，然后在heap里面有块空间，写着<br>{0:’h’,1:’i’,length:2,<strong>proto</strong>:String},这个<strong>proto</strong>引用String的共用函数。window里的String里的prototype和s里的<strong>proto</strong>都指向String的共用属性，它们没有什么很大的区别。<strong>唯一的区别就是，前者是浏览器写好的，一开始就有的，String.prototype是String的共用属性的引用（如果没有这个，String会被垃圾回收掉）。后者是自己写了代码后才有的，a.<strong>proto</strong>是String的共用属性的引用（因为我们要用到它的共用属性）</strong>  </li>
+</ul>
+<h4 id="proto与prototype"><a href="#proto与prototype" class="headerlink" title="proto与prototype"></a><strong>proto</strong>与prototype</h4><p><strong>var 对象 = new 函数()</strong>。例：var s = new String(),s为对象，String为函数。<br><strong>对象.<strong>proto</strong> === 函数.prototype</strong>,<strong>proto</strong>是对象的属性，prototype是函数的属性，它们指向同一个对象，因为地址是一样的。<br>当声明一个对象，这个对象一定要有对应的一个共用属性，这样才能调用各种API。<br>式子变形：<br><strong>函数.prototype.<strong>proto</strong>===Object.prototype</strong>，推导：<code>var obj=函数.prototype</code>,<code>obj.__proto__===Object.prototype</code> so<code>函数.prototype.__proto__===Object.prototype**</code><br><strong>函数.<strong>proto</strong>===function.prototype</strong><br><strong>function.<strong>proto</strong>===function.prototype</strong></p>
+<p>题目：</p>
+<ul>
+<li><code>var obj={name:&#39;luo&#39;};</code>,obj.toString===Object.toString是错的，obj.toString===Object.prototype.toString才是对的。</li>
+<li>1.toString()会报错，因为1.被认为是1.0所以1.toString()，等价于<strong>1.0toString()</strong>，所以会报错。</li>
+<li>1..toString()等于”1”，相当于<strong>1.0.toString()</strong>,所以不会报错。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/JS里的类型/" rel="next" title="JS里的类型">
+                <i class="fa fa-chevron-left"></i> JS里的类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/05/25/JS里的对象/"
+           data-title="JS里的对象" data-url="http://yoursite.com/2018/05/25/JS里的对象/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">罗嘉嘉</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局对象window"><span class="nav-number">1.</span> <span class="nav-text">全局对象window</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EMNAScript规定的"><span class="nav-number">2.</span> <span class="nav-text">EMNAScript规定的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单类型和对象的区别"><span class="nav-number">3.</span> <span class="nav-text">简单类型和对象的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Number"><span class="nav-number">3.1.</span> <span class="nav-text">Number()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String"><span class="nav-number">3.2.</span> <span class="nav-text">String()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boolean"><span class="nav-number">3.3.</span> <span class="nav-text">Boolean()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Object"><span class="nav-number">3.4.</span> <span class="nav-text">Object()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共有属性（原型）"><span class="nav-number">4.</span> <span class="nav-text">共有属性（原型）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#proto与prototype"><span class="nav-number">4.1.</span> <span class="nav-text">proto与prototype</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">罗嘉嘉</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
