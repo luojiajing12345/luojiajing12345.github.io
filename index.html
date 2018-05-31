@@ -249,6 +249,293 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/29/给简历加JS2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/29/给简历加JS2/" itemprop="url">给简历加JS2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-29T18:41:36+08:00">
+                2018-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/29/给简历加JS2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/29/给简历加JS2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="间歇调用和超时调用"><a href="#间歇调用和超时调用" class="headerlink" title="间歇调用和超时调用"></a>间歇调用和超时调用</h3><p>JavaScripts是单线程语言，但它允许通过设置超时值和间歇时间值来调度代码在特定的时刻执行，前者是在指定的时间过后执行代码，而后者则是每隔指定的时间就执行一次代码。  </p>
+<ul>
+<li><strong>超时调用</strong>需要使用window对象的setTimeout()方法，它接收两个参数：要执行的代码和以毫秒表示的时间（即在执行代码前需要等待多少毫秒）。<code>setTimeout(function(){alert(&#39;Hello World&#39;)},1000)</code>,1000毫秒（1秒）后执行<code>alert(&#39;Hello World&#39;)</code>。因为JavaScript是一个单线程的解释器，因此一定时间内只能执行一段代码。为了控制要执行的代码，就有一个任务队列。这些任务会按照将他们添加到队列的顺序执行。setTimeout()的第二个参数告诉JavaScript再过多长时间把当前任务添加到队列中。如果队列是空的，那么添加的代码会执行；如果队列不是空的，那么它就要等前面的代码执行完了以后再执行。调用setTimeout()后，该方法会返回个数值ID，表示超时调用，把这个id赋值给一个变量，然后把这个变量当做取消方法的参数就可以了。取消超时调用可用<code>cleraTimeout()</code>方法。</li>
+<li><strong>间歇调用</strong>会按照指定的时间间隔重复执行代码，直至间歇调用被取消或者页面被卸载。，设置间歇调用的方法时<code>setInterval()</code>,可接受但参数与setTimeout()相同，取消用<code>clearInterval()</code>。  </li>
+</ul>
+<h3 id="点击滑动"><a href="#点击滑动" class="headerlink" title="点击滑动"></a>点击滑动</h3><p>所需条件：<br>动的次数<code>let n=25</code><br>每次动的时间<code>let duration = 500/n</code><br>当前所在高度（基于页面顶部）<code>let currentTop = window.scrollY</code><br>要去的高度<code>let targeTop=top-60</code><br>每段滚动的高度<code>let distance=(targeTop-currentTop)/n</code><br>调用方法<code>let id=setInterval(function(){if(i===n){clearInterval(id);return}i=i+1;window.scrollTo(0,currentTop+distance*i)},duration)</code>,每次运行代码i会加1，window.scrollTo()里的第二个参数是要滚动去的位置，每一次随着i的加1，都会滚动一个distance的高度。<br>存在的问题：动画的时间固定，速度不固定，无论滑动高度多高，滑动时间都相同，导致滑动大的很快，滑动小的很慢，体验不好。匀速运动，滑动较生硬，没有启动和结束时的那种感觉。  </p>
+<h3 id="Tween-js-缓动"><a href="#Tween-js-缓动" class="headerlink" title="Tween.js(缓动)"></a>Tween.js(缓动)</h3><p>缓动是一个函数，描述速度与时间的关系。<a href="https://easings.net/zh-cn" target="_blank" rel="noopener">缓动函数速查表</a><br>从<code>https://cdnjs.com</code>上引入Tween.js,在<a href="https://github.com/tweenjs/tween.js" target="_blank" rel="noopener">tween.js的github上抄代码</a>  </p>
+<h3 id="在不懂的情况下搞定它"><a href="#在不懂的情况下搞定它" class="headerlink" title="在不懂的情况下搞定它"></a>在不懂的情况下搞定它</h3><p>解决一个问题的关键，先开始着手这个任务，然后发现哪里错了再改。<br>要学会在<strong>不懂</strong>的情况下搞定它（要搞懂之后搞定可能会花费很多时间）。例如手机死机了，重启就好了，不用搞懂为什么死机，不用搞懂为什么重启了就可以了。<br>用框架，用工具就是在做填空题一样，只需要用基础知识推理出要填什么。<br>无论用任何工具都是先找到能用的代码，然后试着改一改。  </p>
+<h3 id="根据属性获取元素"><a href="#根据属性获取元素" class="headerlink" title="根据属性获取元素"></a>根据属性获取元素</h3><p><code>&lt;div data-x&gt;&lt;/div&gt;</code><br><code>let Tag = document.querySelectorAll(&#39;[data-x]&#39;)</code></p>
+<h3 id="高亮当前元素（使其他标签不会亮）"><a href="#高亮当前元素（使其他标签不会亮）" class="headerlink" title="高亮当前元素（使其他标签不会亮）"></a>高亮当前元素（使其他标签不会亮）</h3><figure class="highlight plain"><figcaption><span>(let i</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	brothersAndMe[i].classList.remove(&apos;active&apos;)</span><br><span class="line">&#125;</span><br><span class="line">li.classList.add(&apos;active&apos;)</span><br></pre></td></tr></table></figure>
+<p>干掉其他所有标签，给当前标签添加active类。。  </p>
+<p>获取一个元素的爸爸节点<br>检测一个元素是文字还是标签<br>获取一个元素的所有子带标签（标签不包含文本）<br>获取一个元素的所有子代标签（节点包括标签和文字）<br>如何获取一个div标签的下一个标签<br>如何获取一个div标签的所有同级（兄弟）标签</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/给简历加JS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/27/给简历加JS/" itemprop="url">给简历加JS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-27T16:43:01+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/27/给简历加JS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/27/给简历加JS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="关于进入页面延时"><a href="#关于进入页面延时" class="headerlink" title="关于进入页面延时"></a>关于进入页面延时</h3><p>使用一个大的div盖住整个页面，当加载完页面内容时，去除这个div的classname。如果加载速度过快，可使用函数固定延时时间。</p>
+<blockquote>
+<pre><code>setTimeout(function(){
+     firstWelcome.classList.remove(&apos;active&apos;)
+ },3000)//3s后执行。  
+</code></pre></blockquote>
+<h3 id="滚动事件"><a href="#滚动事件" class="headerlink" title="滚动事件"></a>滚动事件</h3><p>onscroll 事件在元素滚动条在滚动时触发。<br>获取页面y方向上的滚动距离。（从顶部到滚动条距离）<br>window.onscroll=function(a){console.log(window.scrollY)}  </p>
+<h3 id="使border从左往右滑动"><a href="#使border从左往右滑动" class="headerlink" title="使border从左往右滑动"></a>使border从左往右滑动</h3><p>首先把border换成一个div（可使用::after伪元素），div绝对定位于a标签，然后个高度，宽度（和a标签的宽度一样可用100%），还有背景色，然后这个div就相当于一个border了,然后使用@keyframes给一个宽度从0到100%的过度动画就行了。</p>
+<h3 id="监听鼠标进入元素范围事件和走出元素范围事件"><a href="#监听鼠标进入元素范围事件和走出元素范围事件" class="headerlink" title="监听鼠标进入元素范围事件和走出元素范围事件"></a>监听鼠标进入元素范围事件和走出元素范围事件</h3><p>mouseenter：当鼠标光标从元素外部首次移动到元素范围之内时触发。<br>mouseleave：在位于元素上方的鼠标光标移动到元素范围之外是触发。<br>获取监听的元素，<code>xxx.onmouseenter = function(x){let a = x.currentTarget;}</code>。此时a为当前鼠标光标进入范围的元素。<br>获取它的兄弟节点：<code>brother = a.nextSibling</code>,<strong>有可能获取到元素与元素之间的回车</strong>,然后可以再往下找 <code>a.nextSibling.nextSibling</code>。此时border为a元素的兄弟元素。<br>获取兄弟元素标签,<code>atag = brother.tagName</code>,此时atag为获取到的兄弟元素的标签，但是<strong>输出是大写</strong><br>判断获取到的节点是否回车,使用递归。<code>let brother = a.nextSibling;while(brother.nodeType === 3){brother = brother.nextSibling};</code>//3代表获取到的是文本内容，可能就是回车。<br>或者可以这样写<code>let brother = a.nextSibling;while(brother.nodeType !== &#39;UL&#39;){brother=brother.nextSibling};</code>,一直找，直到找到ul标签为止，<strong>ul要大写</strong>。  </p>
+<h3 id="解决鼠标滑到二级菜单，菜单消失问题。"><a href="#解决鼠标滑到二级菜单，菜单消失问题。" class="headerlink" title="解决鼠标滑到二级菜单，菜单消失问题。"></a>解决鼠标滑到二级菜单，菜单消失问题。</h3><p>从监听a标签，改为监听a标签和二级菜单标签的父标签。因为那个父标签把他们包起来了，当鼠标滑到二级菜单标签的时候，也还在哪个父标签里。<br>获取子元素里面的第一个ul：<code>let brother = li.getElementsByTagName(&#39;ul&#39;)[0]</code>,<br>匹配选择器的所有项：<code>let liTags = document.querySelectorAll(&#39;nav&gt;ul&gt;li&#39;)</code></p>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ol>
+<li>不要尝试第一次就把样式做出来，解决一个问题的关键是马上开始着手这个问题。一直错下去总会有对的。  </li>
+</ol>
+<h3 id="使页面跳转"><a href="#使页面跳转" class="headerlink" title="使页面跳转"></a>使页面跳转</h3><ol>
+<li>用锚点<br>点击菜单栏中的链接时，跳转到当前页面相对应的位置。<br>给a标签的href添加要跳转到的位置的标签的id。例：<code>&lt;a href=&quot;#siteAbout&quot;&gt;关于&lt;/a&gt;</code>,<code>&lt;div id=&quot;siteAbout&quot;&gt;</code>。这样点击a标签，就会跳转到div标签开头。    </li>
+<li>js<br>阻止默认动作，<code>aTag.onclick = function(x){x.preventDefault()}</code>,例如，点击a标签，要么打开新页面，要么在当前页面刷新，添加了这个后，点击a标签就什么也不发生。<br>获取所需id，<code>let a = x.currentTarget;console.log(a.href)</code>,获取到的是浏览器解析之后的地址，并不是写在a标签上的地址，这是带http协议的。要想获取用户写的用<code>a.getAttribute(&#39;href&#39;)</code>，这里获取的是用户写的是什么就获取的是什么。<br>获取id对应的元素：<code>let href = a.getAttribute(&#39;href&#39;)</code>;<code>let element = document.querySelector(href)</code><br>获取对应元素到视可的距离:<code>let rect = element.getBoundingClientRect()</code>,此时rect为元素的大小及其相对于视可的位置等属性，<br>获取对应元素到页面头部的位置：<code>let top = element.offsetTop</code><br>滚动到指定位置：<code>window.scrollTo(0,top)</code>window.scrollTo方法用于将文档滚动到指定位置。它接受两个参数，表示滚动后的窗口左上角的坐标。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/JS里的对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1580,302 +1867,6 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/第一个JS作品/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/11/第一个JS作品/" itemprop="url">第一个JS作品</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-11T16:25:48+08:00">
-                2018-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/11/第一个JS作品/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/11/第一个JS作品/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h3><ol>
-<li>加一个边框，然后边框外再加一个阴影。</li>
-<li><code>box-shadow: 1px 1px 2px 10px red;</code><blockquote>
-<p>第一和第二个为位置，第一为阴影在本体的右边多少距离，第二位下边，皆可负数。<br>第三个为模糊效果，数值越高越模糊，不需要模糊可不填写或填写0。<br>第四个为阴影大本体多少像素，比如本体是个正方形，阴影大10px的话，四个边都会多出10px阴影。<br>第五个为阴影颜色。</p>
-</blockquote>
-</li>
-</ol>
-<p>####改变元素的class名：<br><code>divxxx = document.createElement(&#39;div&#39;);divxxx.className = &#39;name&#39;</code><br>上面创建的<code>div</code>都会有个name的classname。</p>
-<h3 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h3><p>布局的传统解决方案，基于<strong>盒状模型</strong>，依赖<code>display</code>属性 + <code>position</code>属性 + <code>float</code>属性。它对于那些特殊布局非常不方便，比如，<strong>垂直居中</strong>就不容易实现。<br>2009年，W3C提出了一种新的方案—-Flex布局，可以渐变、完整、响应式地实现各种页面布局，目前已经得到所有浏览器的支持。Flex布局将成为未来布局的首选方案。</p>
-<h4 id="Flex布局是什么？"><a href="#Flex布局是什么？" class="headerlink" title="Flex布局是什么？"></a>Flex布局是什么？</h4><hr>
-<p>Flex 是 Flexible Box的缩写，意味“弹性布局”，用来为盒状模型提供最大的灵活性。<br>任何一个容器都可以指定Flex布局<br><code>.box{display: flex;}</code>  </p>
-<p>行内元素也可以使用Flex布局。<br><code>.box{display: inline-flex;}</code>  </p>
-<p>Webkit内核的浏览器，必须加上<code>-webkit</code>前缀。<br><code>.box{display:-webkit-flex;display:flex;}</code><br><strong>注意：设为Flex布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vartical-align</code>属性将失效</strong>  </p>
-<h4 id="用flex设置元素绝对居中-给它的父元素加下面三行代码"><a href="#用flex设置元素绝对居中-给它的父元素加下面三行代码" class="headerlink" title="用flex设置元素绝对居中(给它的父元素加下面三行代码)"></a>用flex设置元素绝对居中(给它的父元素加下面三行代码)</h4><p><code>.box{</code><br>    <code>display:flex;</code>/如果是内联元素使用inline-flex<br>    <code>align-items: center;</code>/水平居中<br>    <code>justify-content: center;</code>/垂直居中<br><code>}</code></p>
-<h4 id="vh、vw单位"><a href="#vh、vw单位" class="headerlink" title="vh、vw单位"></a>vh、vw单位</h4><p>viewport height（可视高度），相对于视窗的高度：视窗高度为100vh<br>viewport width（可视宽度），想对于视窗的宽度：视窗宽度为100vw</p>
-<h4 id="background属性"><a href="#background属性" class="headerlink" title="background属性"></a>background属性</h4><p><code>background-color</code>背景颜色。<br><code>background-position</code>背景图像的位置。例：<code>background-position:left top</code><br><code>background-size</code>背景图片大小。例：<code>background-size:100px 100px</code><br><code>background-repeat</code>指定如何重复背景图像。例：<code>background-repeat：repeat</code><br><code>background-origin</code>指定背景图像的定位区域。例：<code>background-origin:padding-box</code><br><code>background-clip</code>背景图像的绘画区域。例：<code>background-clip：border-box</code><br><code>background-attachment</code>背景图像是否固定或者随页面的其余部分滚动。<code>background-attachment：scroll</code><br><code>background-image</code>要使用一个还是多个图像。例：<code>background-image:url(./img/img.jpg)</code><br><strong>这几个值在<code>background:</code>里不分先后</strong>  </p>
-<h4 id="模拟3g网速"><a href="#模拟3g网速" class="headerlink" title="模拟3g网速"></a>模拟3g网速</h4><p>在浏览器开发者界面——Network——Online——选择3G。然后把Disable cache勾选栏去掉（清除缓存），刷新。</p>
-<h4 id="使背景图自适应"><a href="#使背景图自适应" class="headerlink" title="使背景图自适应"></a>使背景图自适应</h4><p><code>background-size:cover</code>，使这个背景把当前元素覆盖住，例如给body元素这个背景属性，这个背景会覆盖整个body，无论浏览器大小或者显示大小多大，都会自适应覆盖住。</p>
-<h3 id="web窗口栏上的图标—Favicon"><a href="#web窗口栏上的图标—Favicon" class="headerlink" title="web窗口栏上的图标—Favicon"></a>web窗口栏上的图标—Favicon</h3><p>Favicon是favorites icon的缩写，亦被称为website icon（网页图标）、page icon（页面图标）或urlicon（URL图标）。Favicon是与某个网站或网页相关联的图标。<br><strong>标准：</strong>  </p>
-<ol>
-<li>最初，定义一个favicon的方法是将一个名为“favicon.ico”的文件置于web服务器的根目录下，<strong>想要访问图标就去网站根目录下的Favicon.ico即可。</strong>例：浏览器url输入栏输入<a href="http://www.baidu.com/favicon.ico，即可访问百度的网页图标。" target="_blank" rel="noopener">www.baidu.com/favicon.ico，即可访问百度的网页图标。</a></li>
-<li>后来出现了一种更为灵活的方法，即使用HTML来为任何一个网页指示其图标所存储的位置，通过在页面的<head>部分添加两个link组件来实现的。</head></li>
-</ol>
-<h3 id="onerror请求失败"><a href="#onerror请求失败" class="headerlink" title="onerror请求失败"></a>onerror请求失败</h3><p>捕抓错误信息：<br><code>img.onerror = function(xxx){console.log(xxx);xxx.target.src = &#39;url&#39;}</code><br>把请求失败的img的src换成不会失败的，即自己上传的图片。</p>
-<h4 id="重设url以后使图标变化"><a href="#重设url以后使图标变化" class="headerlink" title="重设url以后使图标变化"></a>重设url以后使图标变化</h4><p>首先，获取我们点击的button标签，<code>button2 = xxx.target</code><br>然后，我们发现img标签，是button标签的兄弟标签。<code>img2 = button2.previousSibling</code><br>然后，使变更后的url的图标覆盖已代替原来的图标。<code>img2.src = &#39;http://&#39;+ x + &#39;/favicon.ico&#39;</code>  </p>
-<h3 id="封装成函数"><a href="#封装成函数" class="headerlink" title="封装成函数"></a>封装成函数</h3><p>例：<br><code>function tag(tagName){return document.createElement(tagName)}</code><br><code>var div = tag(&#39;div&#39;)//就可以创建div标签了</code><br><strong>创建一个生成标签，并给元素类名（row）的函数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function tag(tagName,attributes)&#123;</span><br><span class="line">    var element = document.createElement(tagName)</span><br><span class="line">    for(var key in attributes)&#123;</span><br><span class="line">        element[key] = attributes[key]</span><br><span class="line">    &#125;</span><br><span class="line">    return element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>divxxx = tag(&#39;div&#39;,{className:&#39;row&#39;})</code>//创建一个div标签，它的classname是row,把attributes的key，也就是className赋值给element的key。</p>
-<p>//attributes是一个属性，我们要遍历这个属性。for…in..循环可以遍历一个哈希。<br>element也是一个哈希，<code>div.className=&#39;xxx&#39;</code>,div也是个哈希，className是个key，xxx是key对应的value。<br>className、id、textContent都是key。<br><strong>使用函数封装后，代码变成树形的，然后这样更容易理解，更容易区分，更容易排错</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/初涉及js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/08/初涉及js/" itemprop="url">初涉及js</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-08T08:03:36+08:00">
-                2018-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/08/初涉及js/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/08/初涉及js/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="数组嵌套"><a href="#数组嵌套" class="headerlink" title="数组嵌套"></a>数组嵌套</h3><p>在数组里面嵌套数组使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&gt;       var a = &#123;</span><br><span class="line">            0:&#123;0:&apos;a&apos;,1:&apos;b&apos;,2:&apos;c&apos;,lenght:3&#125;,</span><br><span class="line">            1:&#123;0:&apos;d&apos;,1:&apos;e&apos;,2:&apos;f&apos;,3:&apos;g&apos;lenght:3&#125;</span><br><span class="line">            lenght:2</span><br><span class="line">&#125;</span><br><span class="line">数组就是一种哈希，也是一种对象。但哈希不是数组，不用有length。</span><br><span class="line"></span><br><span class="line">### js生成标签</span><br><span class="line">1. 利用js在标签中插入一个div。  </span><br><span class="line">&gt;        &lt;main id=&quot;div1&quot;&gt;</span><br><span class="line">&gt;       &lt;/main&gt;</span><br><span class="line">&gt;       &lt;script&gt;</span><br><span class="line">&gt;       x = document.createElement(&apos;div&apos;)&lt;创建一个div标签&gt;</span><br><span class="line">&gt;       div1.appendChild(x)&lt;!--在id为‘div1’的标签下插入一个&apos;div&apos;儿子元素-&gt;</span><br><span class="line">&gt;       &lt;/script&gt;</span><br><span class="line">此时在main标签里有个div标签。</span><br><span class="line"></span><br><span class="line">2. 插入批量的div。</span><br><span class="line">&gt;       &lt;main id = &quot;div1&quot;&gt;</span><br><span class="line">&gt;       &lt;/main&gt;</span><br><span class="line">&gt;       &lt;script&gt;</span><br><span class="line">&gt;       index = 0</span><br><span class="line">&gt;       while(index&lt;n)&#123;</span><br><span class="line">&gt;       x =document.creatElement(&apos;div&apos;)</span><br><span class="line">&gt;       div1.appendChild(x)</span><br><span class="line">&gt;        index = index+1</span><br><span class="line">&gt;       &#125;</span><br><span class="line">&gt;        &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">3. 在插入元素的孙子标签。</span><br><span class="line"></span><br><span class="line">&gt;       &lt;main id = &quot;div1&quot;&gt;</span><br><span class="line">&gt;       &lt;/main&gt;</span><br><span class="line">&gt;       &lt;script&gt;</span><br><span class="line">&gt;       x =document.creatElement(&apos;div&apos;)</span><br><span class="line">&gt;       div1.appendChild(x)&lt;!--把x放进div1里面--&gt;</span><br><span class="line">&gt;       y =document.creatElement(&apos;kdb&apos;) </span><br><span class="line">&gt;       x.appendChild(y)&lt;!--把y放进x里面--&gt;</span><br><span class="line">&gt;        &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">4. 插入变量里的内容。</span><br><span class="line">&gt;       x.textContent = &apos;hello&apos;&lt;!--x代表的标签里的内容为&apos;hello&apos;--&gt;</span><br><span class="line"></span><br><span class="line">5. 获取哈希或数组里的value（值）</span><br><span class="line">数组：index = keys[&apos;key&apos;],获取全部的话，使用一个whill循环，把key换成length。  </span><br><span class="line">哈希：index = keys[&apos;key&apos;]，哈希的key和数组不一样，不是0,1,2,3...这样的有顺序的数字，所以正常情况去下不能遍历出来。先把哈希的key放到一个数组里当成value，然后遍历出来，再当做key来循环，两个循环相互嵌套。</span><br><span class="line"></span><br><span class="line">### 监听键盘按键</span><br><span class="line">&gt;       document.nokeypress = function(xxxooo)&#123;</span><br><span class="line">&gt;       console.log(&apos;我发现你输入了一个键&apos;);//每按一个键就会出一次这个字符串</span><br><span class="line">&gt;       consloe.log(xxxooo);//会获取按的那个键的所有信息。</span><br><span class="line">&gt;       key= (xxxooo[&apos;key&apos;]);//获取所有信息中的key,就是用户按的是啥键。</span><br><span class="line">&gt;       website = hash[key];//把按的键当做哈希的key，来获取value（url）。</span><br><span class="line">&gt;       console.log(website);//输出哈希中对应的value。</span><br><span class="line">&gt;       location.href = &apos;http://&apos;+website;//实现获取到url后，使用http协议跳转到获取到的url的页面。(模拟用户在地址栏输入，会在当前页面打开)</span><br><span class="line">&gt;       window.open(&apos;http://&apos;+website,&apos;_blank&apos;);//_blank窗口打开，即新窗口打开页面。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">### 编辑hash</span><br><span class="line">给元素添加id</span><br><span class="line">```buttonxxx.id = row[index2]</span><br></pre></td></tr></table></figure></p>
-<p>获取鼠标点击</p>
-<blockquote>
-<pre><code>buttonxxx.onclick = function(xxx){
-    console.log(xxx.target)//获取点击的元素
-    console.log(xxx[&apos;target&apos;][&apos;id&apos;])//获取点击元素的id
-    console.log(xxx.target.id)//获取点击元素的id
-}
-</code></pre><p>显示一个有输入栏的对话框<br>      key = xxx.target.id<br>      <strong>hashurl = prompt(‘给我一个网址’)</strong><br>      hash[key] = hashurl //替换hash里的值<br>防止刷新后替换的值消失。<br><strong>两种情况哈希会变。一种是编辑了以后，会有新的哈希。第二种是刷新页面，新的哈希会丢失，变回原来的哈希</strong><br>我们需要一编辑后，有新的哈希值就存起来，一刷新就把原来的哈希值覆盖。<br>      localStorage.setItem(‘aaa’,JSON.stringify(hash))//后面那个是把哈希值转化为字符串,只要哈希变了，就存到aaa里面，这个localStorage里面有很多桶，这个aaa就是桶的名字。就是把哈希丢到aaa这个桶里。<br>在开发者工具-Application-Local Storage里面。<br>就是我们把变量也就是哈希存到浏览器里面，然后使用浏览器里面的覆盖掉原始的js里面的就可以了。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1926,7 +1917,7 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
