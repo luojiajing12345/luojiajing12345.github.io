@@ -493,25 +493,31 @@
       0:{0:&apos;a&apos;,1:&apos;b&apos;,2:&apos;c&apos;,lenght:3},
       1:{0:&apos;d&apos;,1:&apos;e&apos;,2:&apos;f&apos;,3:&apos;g&apos;lenght:3}
       lenght:2
-</code></pre><p>}<br>数组就是一种哈希，也是一种对象。但哈希不是数组，不用有length。</p>
+      }
+</code></pre><p>数组就是一种哈希，也是一种对象。但哈希不是数组，不用有length。</p>
 </blockquote>
 <h3 id="js生成标签"><a href="#js生成标签" class="headerlink" title="js生成标签"></a>js生成标签</h3><ol>
-<li><p>利用js在标签中插入一个div。<br> <main id="div1"><br> </main><br> <script></p>
-<pre><code>x = document.createElement(&apos;div&apos;)&lt;创建一个div标签&gt;
-div1.appendChild(x)&lt;!--在id为‘div1’的标签下插入一个&apos;div&apos;儿子元素-&gt;
-</code></pre><p> </script><br>此时在main标签里有个div标签。</p>
+<li><p>利用js在标签中插入一个div。  </p>
+<pre><code>&lt;main id=&quot;div1&quot;&gt; 
+&lt;/main&gt;
+&lt;script&gt;
+    x = document.createElement(&apos;div&apos;)&lt;创建一个div标签&gt;
+    div1.appendChild(x)&lt;!--在id为‘div1’的标签下插入一个&apos;div&apos;儿子元素-&gt;
+&lt;/script&gt;
+</code></pre><p>此时在main标签里有个div标签。</p>
 </li>
 <li><p>插入批量的div。</p>
-<figure class="highlight plain"><figcaption><span>id </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;/main&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    index = 0</span><br><span class="line">    while(index&lt;n)&#123;</span><br><span class="line">        x =document.creatElement(&apos;div&apos;)</span><br><span class="line">        div1.appendChild(x)</span><br><span class="line">        index = index+1</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;main id = &quot;div1&quot;&gt;</span><br><span class="line">&lt;/main&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    index = 0</span><br><span class="line">    while(index&lt;n)&#123;</span><br><span class="line">        x =document.creatElement(&apos;div&apos;)</span><br><span class="line">        div1.appendChild(x)</span><br><span class="line">        index = index+1</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在插入元素的孙子标签。</p>
 </li>
 </ol>
-<figure class="highlight plain"><figcaption><span>id </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;/main&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    x =document.creatElement(&apos;div&apos;)</span><br><span class="line">    div1.appendChild(x)&lt;!--把x放进div1里面--&gt;</span><br><span class="line">    y =document.creatElement(&apos;kdb&apos;) </span><br><span class="line">    x.appendChild(y)&lt;!--把y放进x里面--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;main id = &quot;div1&quot;&gt;</span><br><span class="line">&lt;/main&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    x =document.creatElement(&apos;div&apos;)</span><br><span class="line">    div1.appendChild(x)&lt;!--把x放进div1里面--&gt;</span><br><span class="line">    y =document.creatElement(&apos;kdb&apos;) </span><br><span class="line">    x.appendChild(y)&lt;!--把y放进x里面--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li><p>插入变量里的内容。<br><code>x.textContent = &#39;hello&#39;&lt;!--x代表的标签里的内容为&#39;hello&#39;--&gt;</code></p>
 </li>
-<li><p>获取哈希或数组里的value（值）<br>数组：index = keys[‘key’],获取全部的话，使用一个whill循环，把key换成length。<br>哈希：index = keys[‘key’]，哈希的key和数组不一样，不是0,1,2,3…这样的有顺序的数字，所以正常情况去下不能遍历出来。先把哈希的key放到一个数组里当成value，然后遍历出来，再当做key来循环，两个循环相互嵌套。</p>
+<li><p>获取哈希或数组里的value（值）<br><strong>数组*：index = keys[‘key’],获取全部的话，使用一个whill循环，把key换成length。  
+</strong>哈希**：index = keys[‘key’]，哈希的key和数组不一样，不是0,1,2,3…这样的有顺序的数字，所以正常情况去下不能遍历出来。先把哈希的key放到一个数组里当成value，然后遍历出来，再当做key来循环，两个循环相互嵌套。</p>
 </li>
 </ol>
 <h3 id="监听键盘按键"><a href="#监听键盘按键" class="headerlink" title="监听键盘按键"></a>监听键盘按键</h3><blockquote>
@@ -525,14 +531,12 @@ location.href = &apos;http://&apos;+website;//实现获取到url后，使用http
 window.open(&apos;http://&apos;+website,&apos;_blank&apos;);//_blank窗口打开，即新窗口打开页面。
 </code></pre><p>}</p>
 </blockquote>
-<h3 id="编辑hash"><a href="#编辑hash" class="headerlink" title="编辑hash"></a>编辑hash</h3><p>给元素添加id<br><code>buttonxxx.id = row[index2]</code><br>获取鼠标点击</p>
+<h3 id="编辑hash"><a href="#编辑hash" class="headerlink" title="编辑hash"></a>编辑hash</h3><p>给元素添加id<br><code>buttonxxx.id = row[index2]</code><br>获取鼠标点击<br>        buttonxxx.onclick = function(xxx){<br>            console.log(xxx.target)//获取点击的元素<br>            console.log(xxx[‘target’][‘id’])//获取点击元素的id<br>            console.log(xxx.target.id)//获取点击元素的id<br>        }<br>显示一个有输入栏的对话框</p>
 <blockquote>
-<pre><code>buttonxxx.onclick = function(xxx){
-    console.log(xxx.target)//获取点击的元素
-    console.log(xxx[&apos;target&apos;][&apos;id&apos;])//获取点击元素的id
-    console.log(xxx.target.id)//获取点击元素的id
-}
-</code></pre><p>显示一个有输入栏的对话框<br>      key = xxx.target.id<br>      <strong>hashurl = prompt(‘给我一个网址’)</strong><br>      hash[key] = hashurl //替换hash里的值<br>防止刷新后替换的值消失。<br><strong>两种情况哈希会变。一种是编辑了以后，会有新的哈希。第二种是刷新页面，新的哈希会丢失，变回原来的哈希</strong><br>我们需要一编辑后，有新的哈希值就存起来，一刷新就把原来的哈希值覆盖。<br>      localStorage.setItem(‘aaa’,JSON.stringify(hash))//后面那个是把哈希值转化为字符串,只要哈希变了，就存到aaa里面，这个localStorage里面有很多桶，这个aaa就是桶的名字。就是把哈希丢到aaa这个桶里。<br>在开发者工具-Application-Local Storage里面。<br>就是我们把变量也就是哈希存到浏览器里面，然后使用浏览器里面的覆盖掉原始的js里面的就可以了。</p>
+<pre><code>key = xxx.target.id
+**hashurl = prompt(&apos;给我一个网址&apos;)**
+hash[key] = hashurl //替换hash里的值
+</code></pre><p>防止刷新后替换的值消失。<br><strong>两种情况哈希会变。一种是编辑了以后，会有新的哈希。第二种是刷新页面，新的哈希会丢失，变回原来的哈希</strong><br>我们需要一编辑后，有新的哈希值就存起来，一刷新就把原来的哈希值覆盖。<br>      localStorage.setItem(‘aaa’,JSON.stringify(hash))//后面那个是把哈希值转化为字符串,只要哈希变了，就存到aaa里面，这个localStorage里面有很多桶，这个aaa就是桶的名字。就是把哈希丢到aaa这个桶里。<br>在开发者工具-Application-Local Storage里面。<br>就是我们把变量也就是哈希存到浏览器里面，然后使用浏览器里面的覆盖掉原始的js里面的就可以了。</p>
 </blockquote>
 
           
