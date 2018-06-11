@@ -249,6 +249,648 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/Canvas画板/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/17/Canvas画板/" itemprop="url">Canvas画板</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-17T18:50:33+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/Canvas画板/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/17/Canvas画板/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="mouse事件"><a href="#mouse事件" class="headerlink" title="mouse事件"></a>mouse事件</h3><ul>
+<li><p>onmousedown:在用户按下了任意鼠标按键时触发。不能通过键盘触发这个事件。<br><code>document.onmousedown = function(x){
+  console.log(x)
+}</code>  </p>
+</li>
+<li><p>onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。<br><code>document.onmousemove = function(x){
+  console.log(x)
+}</code></p>
+</li>
+<li><p>onmouseup:当用户释放鼠标按键时触发。不能通过键盘触发这个事件。<br><code>document.onmousemove = function(x){
+  console.log(x)
+}</code>   </p>
+</li>
+</ul>
+<p><strong>这些事件，前面可加on可不加on，即onmousedown和mousedown一样</strong></p>
+<hr>
+<h3 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h3><ol>
+<li>定义一个变量赋值为false.</li>
+<li>按下鼠标任意键，即触发mousedown时，给变量赋值true</li>
+<li>在鼠标指针滑动，即触发mousemove时，判断变量是否为true，即是否已按下鼠标按键，如果是，执行代码，如果不是，就不执行。</li>
+<li>当鼠标释放时，即触发mouseup事件时，非变量赋值false，即停止鼠标指针滑动时的执行的代码。</li>
+</ol>
+<hr>
+<h3 id="canvas里，图像生成位置"><a href="#canvas里，图像生成位置" class="headerlink" title="canvas里，图像生成位置"></a>canvas里，图像生成位置</h3><p>canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。<br><code>body{margin:0}</code>  </p>
+<p>生成一条路径：<br>开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</p>
+<hr>
+<h3 id="使画板全屏"><a href="#使画板全屏" class="headerlink" title="使画板全屏"></a>使画板全屏</h3><p>对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。<br><code>var drawWidth = document.documentElement.clientWintd//获取页面宽度
+var drawHeight = document.documentElement.clientHeight//获取页面高度
+canvas.width = drawWidth
+canvas.height = drawHeight</code></p>
+<h3 id="onresize-事件"><a href="#onresize-事件" class="headerlink" title="onresize 事件"></a>onresize 事件</h3><p>onresize 事件会在窗口或框架被调整大小时发生。<br><code>window.onresize=function(){
+    var drawWidth = document.documentElement.clientWintd//获取页面宽度
+    var drawHeight = document.documentElement.clientHeight//获取页面高度
+    canvas.width = drawWidth
+    canvas.height = drawHeight
+}</code><br>在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</p>
+<h3 id="HTML-DOM-classList属性"><a href="#HTML-DOM-classList属性" class="headerlink" title="HTML DOM classList属性"></a>HTML DOM classList属性</h3><p>classList 属性返回元素的类名，作为 DOMTokenList 对象。<br>该属性用于在元素中添加，移除及切换 CSS 类。<br>classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。  </p>
+<pre><code class="document.getElementById(&quot;myDIV&quot;).classList.add(&quot;class&quot;);```//在id为myDIV的元素中添加一个名为class的类名，可添加多个">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  
+- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 
+
+### 防止移动端滑动时抖动
+`body{overflow:hidden;}`
+不要出现滚动条。
+
+### 清空整个画板。
+`context.clearRect(0,0,canvas.width,canvas.height)`   
+使用```clerrRect()```方法清除一个和画板一样大的矩形就行了
+
+### 把canvas保存为图片
+`download.onclick = function(){
+    var url = canvas.toDataURL(&apos;image/png)
+    var a = document.createElement(&apos;aa&apos;)
+    document.body.appendChild(a)
+    a.href = url
+    a.download = &apos;图片&apos;
+    a.click()
+}`
+
+### 完全固定住，在手机上不会滑动(绝对定位住)
+`#canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+}`
+
+
+### className和classList
+className用于 **更改** 某个标签的类名，来达到更改类属性的效果。  
+```element.className = &apos;xxx&apos;
+</code></pre>
+<p>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/Canvas绘图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/17/Canvas绘图/" itemprop="url">Canvas绘图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-17T11:50:33+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/Canvas绘图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/17/Canvas绘图/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-什么是Canvas"><a href="#1-什么是Canvas" class="headerlink" title="1.什么是Canvas?"></a>1.什么是Canvas?</h2><p><code>&lt;canvas&gt;</code>是html5新增的元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScripe动态地在这个区域中绘制图形。<canvas>标签只是图形容器。  </canvas></p>
+<h2 id="2-基本用法"><a href="#2-基本用法" class="headerlink" title="2.基本用法"></a>2.基本用法</h2><ol>
+<li>创建一个画布。<br><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot; style=&#39;border:1px solid red&#39;&gt;&lt;/canvas&gt;</code>不加边框看不见画布的范围。 </li>
+</ol>
+<hr>
+<ol start="2">
+<li>绘制图像 </li>
+</ol>
+<p><code>var c=document.getElementById(&quot;myCanvas&quot;);</code>//把<canvas>元素赋值给c<br><code>var ctx=c.getContext(&quot;2d&quot;);</code>//创建context对象，getContext（’2d’）对象是内建的html5对象，可以绘制简单的2D图形，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法<br><code>ctx.fillStyle=&quot;#FF0000&quot;;</code>//填充样式，可以设定颜色、渐变或方案<br><code>ctx.fillRect(0,0,150,75);</code>//填充方式，四个值x,y,width,heigth。<br><code>ctx.strokeStyle = &#39;red&#39;;</code>//描边样式，边框颜色等<br><code>ctx.strokeRect =(30,30,50,50);</code>//描边方式，和填充一样，但两个是分开的，这里为两个矩形。</canvas></p>
+<p><strong>描边属性：</strong></p>
+<ul>
+<li>线条宽度：lineWidth</li>
+<li>线末形状：lineCap</li>
+<li>线条相交方式：lineJoin<br><strong>要先设置好宽度等属性再画线，即lineWidth要在stroke后面</strong></li>
+</ul>
+<hr>
+<ol start="3">
+<li>坐标<br>坐标默认是从画布左上角开始算，左上角为（0，0），横轴为x，竖轴为y。</li>
+</ol>
+<hr>
+<ol start="4">
+<li>路径<br>在Canvas上绘制路径，首先必须调用beginPath()方法，表示要开始绘制新路径。<br>然后，我们将使用以下几种方法。</li>
+</ol>
+<ul>
+<li>arc(x,y,radius,startAngle,endAngle,counterclockwise)：以（x,y）为圆心绘制一条弧线，弧线半径为radius,起始和结束角度分别为startAngle和endAngle，最后一个参数表示起始和结束角度是否按逆时针方向计算，false为顺时针。</li>
+<li>arcTo(x1,y1,x2,y2,radius):从上一点开始绘制一条曲线，到(x2,y2)位置，并且以给定的半径radius穿过(x1,y2)</li>
+<li>bezierCurveTo(c1x,c1y,c2x,c2y,x,y):从上一点开始绘制一条曲线，到(x,y)为止，并且以(c1x,c1y)和(c2x,c2y)为控制点</li>
+<li>moveTo(x,y)将绘图游标移动到(x,y)，不画线。</li>
+<li>lineTo(x,y)从上一点绘制一条线，到(x,y)为止。</li>
+<li>rect(x,y,width,height):从点(x,y)开始绘制一个矩形，宽度和高度分别为width,height。这个方法绘制的是矩形路径。<br>创建完路径后：</li>
+<li>绘制一条连接到路径起点的线条，可用closePath(),</li>
+<li>填充，fill()</li>
+<li>描边，stroke()</li>
+<li>创建剪切区域，clip()</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/15/居中方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/15/居中方案/" itemprop="url">居中方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-15T10:37:04+08:00">
+                2018-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/15/居中方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/15/居中方案/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="水平居中方案"><a href="#水平居中方案" class="headerlink" title="水平居中方案"></a>水平居中方案</h3><ul>
+<li><strong>行内元素</strong>：设置其块父元素<code>text-align:center</code>,<code>text-align</code>定义行内内容如何相对它的块父级元素。</li>
+<li><strong>固定宽度的块级元素</strong>：<ol>
+<li>设置当前块元素的左右margin值为auto，<code>margin:o auto</code>，<strong>当前块元素一定要有固定宽度</strong></li>
+<li>通过display：table-cell和margin-left。给父元素displa:table-cell，子元素给剩余宽度一半（即父元素宽度减子元素宽度除于二）的margin-left.</li>
+<li>给父元素position:absolute，子元素给剩余宽度一半的margin-left。 </li>
+<li>给父元素position:absolute，子元素左浮动，然后子元素给剩余宽度一半的margin-left。</li>
+</ol>
+</li>
+<li><strong>不定宽度块状元素</strong><ol>
+<li>在元素外加入table标签（完整的，包括table、tbody、tr、td），该元素写在td内，然后设置margin的值为auto。</li>
+<li>把块元素变为行元素，给该元素设置<code>display：inline</code>或者<code>display:inline-block</code>,然后给父级块元素加<code>text-align:center</code>（行内居中），<code>margin:0 auto</code>（块级居中）</li>
+<li>绝对定位的方法：</li>
+<li>flexbox，给父元素添<code>display:flex;flex-direction:column;</code>,居中元素<code>align-self:center</code>。</li>
+</ol>
+</li>
+</ul>
+<h3 id="垂直居中方案"><a href="#垂直居中方案" class="headerlink" title="垂直居中方案"></a>垂直居中方案</h3><ol>
+<li>单行文本居中，假设元素的高度为100px，那么设置<code>line-height:</code></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/12/Flex布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉嘉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心剑无痕">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/12/Flex布局/" itemprop="url">Flex布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-12T17:55:06+08:00">
+                2018-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/12/Flex布局/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/12/Flex布局/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/第一个JS作品/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1389,629 +2031,11 @@ hash[key] = hashurl //替换hash里的值
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTML/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/HTML/" itemprop="url">HTML</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T20:55:39+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/HTML/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTML/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>HTML的版本(W3C组织制定规范)<blockquote>
-<p>HTML 4.01<br>XHTML<br>HTML 5<br>HTML 5.1</p>
-</blockquote>
-</li>
-<li>规范文档（Specifications）<blockquote>
-<p>由W3C写文档<br>W3C根据浏览器的实际情况总结文档，并不是凭空想象。</p>
-</blockquote>
-</li>
-<li>DOCTYPE<blockquote>
-<p>用来选择文档类型</p>
-</blockquote>
-</li>
-<li>html/head/body，文档/头/身体</li>
-<li>常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg<blockquote>
-<p>基本上，知道标签对应的单词的意思，就知道标签怎么用了（语义化）<br>除了div和span，其他标签都有默认样式。div和span是没有语义的。</p>
-</blockquote>
-</li>
-<li>可替换标签，宽和高由里面的内容决定。如：<blockquote>
-<p>\&lt;img>、\&lt;video>、\&lt;input></p>
-</blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/Flag/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/Flag/" itemprop="url">Flag</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T18:49:45+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/Flag/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/Flag/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>昨天已经开始了，但是今天才看到，so我想，坚持65天后，能独立做出很好看的页面。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTTP状态码详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/HTTP状态码详解/" itemprop="url">HTTP状态码详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T16:51:25+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/HTTP状态码详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTTP状态码详解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1xx消息"><a href="#1xx消息" class="headerlink" title="1xx消息"></a>1xx消息</h3><hr>
-<p>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应式临时响应，只包含状态航和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。  </p>
-<h3 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h3><hr>
-<p>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</p>
-<h3 id="3xx重定向"><a href="#3xx重定向" class="headerlink" title="3xx重定向"></a>3xx重定向</h3><hr>
-<p>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这类状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。</p>
-<h3 id="4xx客户端错误"><a href="#4xx客户端错误" class="headerlink" title="4xx客户端错误"></a>4xx客户端错误</h3><hr>
-<p>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。除非响应的是一个HEAD请求，否则服务器就应该返回一个解释当前错误状况的实体，以及这是临时的还是永久性的状况。这些状态码适用于任何请求方法。浏览器应当向用户显示任何包含在此类错误响应中的实体内容。<br>如果错误发生时客户端正在传送数据，那么使用TCP的服务器实现应当仔细确保在关闭客户端与服务器之间的连接之前，客户端已经收到了包含错误信息的数据包。如果客户端在收到错误信息后继续向服务器发送数据，服务器的TCP栈将向客户端发送一个重置数据包，以清除该客户端所有还未识别的输入缓冲，以免这些数据被服务器上的应用程序读取并干扰后者。</p>
-<h1 id="5xx服务器错误"><a href="#5xx服务器错误" class="headerlink" title="5xx服务器错误"></a>5xx服务器错误</h1><hr>
-<p>表示服务器无法完成明显有效的请求。这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。除非这是一个HEAD请求，否则服务器应当包含一个解释当前错误状态以及这个状况是临时的还是永久的解释信息实体。浏览器应当向用户展示任何在当前响应中被包含的实体。这些状态码适用于任何响应方法。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTTP入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉嘉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="心剑无痕">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/25/HTTP入门/" itemprop="url">HTTP入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-25T09:38:44+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/25/HTTP入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/25/HTTP入门/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>1990年，Tim Berners-Lee（李爵士）发明了用网址就能访问网页的办法，他发明了第一个网页、第一个浏览器和第一个服务器。<br>WWW（World Wide Web）万维网，也是李爵士发明的。<br>主要包含三个概念：</p>
-<blockquote>
-<ol>
-<li>URI，俗称网址。</li>
-<li>HTTP，文本传输协议（主要用来传输内容）。</li>
-<li>HTML，超文本标记语言。  </li>
-</ol>
-</blockquote>
-<p>URI的作用是能让你访问一个页面，HTTP的作用是让你能下载这个页面，HTML的作用是让你能看懂这个页面。</p>
-<p>URI分为URL（统一资源定位符）和URN（统一资源名称），我们一般使用URL作为网址，URN的作用是通过提供一种途径，用于在特定的名字空间资源的标识，以补充网址。</p>
-<h3 id="URL的常见组成："><a href="#URL的常见组成：" class="headerlink" title="URL的常见组成："></a>URL的常见组成：</h3><blockquote>
-<p><a href="https://www.baidu.com/s?wd=hello&amp;rsv_spt=1#5" target="_blank" rel="noopener">https://www.baidu.com/s?wd=hello&amp;rsv_spt=1#5</a><br>协议/域名/路径/查询参数/锚点</p>
-</blockquote>
-<h3 id="DNS（域名系统）"><a href="#DNS（域名系统）" class="headerlink" title="DNS（域名系统）"></a>DNS（域名系统）</h3><p>dns作为将域名与ip地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。使用53端口。</p>
-<h2 id="HTTP的请求与响应。"><a href="#HTTP的请求与响应。" class="headerlink" title="HTTP的请求与响应。"></a>HTTP的请求与响应。</h2><ol>
-<li>客户端负责发起请求</li>
-<li>服务端在80端口接收请求</li>
-<li>服务端负责返回内容（响应）</li>
-<li>浏览器负责下载响应内容<br>HTTP的作用就是知道浏览器和服务器如何沟通。</li>
-</ol>
-<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p><strong>curl命令的get请求</strong>（curl -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;）" target="_blank" rel="noopener">https://www.baidu.com&quot;）</a></p>
-<blockquote>
-<p>GET / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Frank: xxx<br>空行  </p>
-</blockquote>
-<p><strong>浏览器上的get请求</strong>（按f12，点击[network]，清空数据，网址输入栏输入url，点击第一个name为[]<a href="http://www.baidu.com的请求，点开Headers，点开[Request" target="_blank" rel="noopener">www.baidu.com的请求，点开Headers，点开[Request</a> Headers],<strong>点击[view source]</strong>,看到的就是请求头了。 ）</p>
-<blockquote>
-<p>GET / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>Connection: keep-alive<br>Cache-Control: max-age=0<br>Upgrade-Insecure-Requests: 1<br>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9<br>Cookie: BIDUPSID=E18C88A494C8C8CAD6AB6F9D867FD8ED; PSTM=1502351396; BAIDUID=0CAD62BFF9AB383ED11F170D25167CFC:FG=1; BDUSS=nRTMXN4TFE4ODYtRjJDdHBQRHlRflNnMkgya01JdFJ3UEtOdlBEbHc2OU5LZU5aTVFBQUFBJCQAAAAAAAAAAAEAAAAeiGAvTFVPSkpiYWJ5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE2cu1lNnLtZd; BD_UPN=12314353; ispeed_lsm=2; MCITY=-%3A; __cfduid=dcb47a9d7f8268165e3c68bd9749ddb0c1524018086; BD_CK_SAM=1; PSINO=6; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BDSFRCVID=9fLsJeCCxG3AyLrAYdtSEeWkY0CH6AQX2liC3J; H_BDCLCKID_SF=tbkD_C-MfIvhDRTvhCcjh-FSMgTBKI62aKDsVRQ1-hcqEpO9QTbN2fAXLJrb-pJ45GvWhCJnWIQNVfP4h-rTDUTh-p52f6_tfnPe3J; H_PS_PSSID=26255_1439_19033_21090_20880_20930; H_PS_645EC=8ee1dMHvA6DySPIBM8VlXCTAwigjEueOKFPbsRMk%2Br4HZrfNsoOfergg73g; BDRCVFR[dG2JNJb_ajR]=mk3SLVN4HKm; userFrom=ala; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm; BD_HOME=1; sugstore=1</p>
-</blockquote>
-<p><strong>curl的post请求</strong>(curl -X POST -d “1234567890” -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a>)</p>
-<blockquote>
-<p>POST / HTTP/1.1<br>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>User-Agent: curl/7.54.0<br>Accept: <em>/</em><br>Frank: xxx<br>Content-Length: 10<br>Content-Type: application/x-www-form-urlencoded<br>空行<br>1234567890  </p>
-</blockquote>
-<p>浏览器上的post请求(找到一个Method为POST的请求，点进去，其他和get步骤相同。)</p>
-<blockquote>
-<p>POST /uc/loginService?uuid=40867cca-65eb-46cb-8c30-6b0f1113c57f&amp;ReturnUrl=https%3A%2F%2F<a href="http://www.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93&amp;r=0.12483624035079433&amp;version=2015" target="_blank" rel="noopener">www.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93&amp;r=0.12483624035079433&amp;version=2015</a> HTTP/1.1<br>Host: passport.jd.com<br>Connection: keep-alive<br>Content-Length: 2334<br>Accept: text/plain, <em>/</em>; q=0.01<br>Origin: <a href="https://passport.jd.com" target="_blank" rel="noopener">https://passport.jd.com</a><br>X-Requested-With: XMLHttpRequest<br>User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36<br>Content-Type: application/x-www-form-urlencoded; charset=UTF-8<br>Referer: <a href="https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93" target="_blank" rel="noopener">https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F%3Fcu%3Dtrue%26utm_source%3Dbaidu-pinzhuan%26utm_medium%3Dcpc%26utm_campaign%3Dt_288551095_baidupinzhuan%26utm_term%3D0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93</a><br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9<br>Cookie: 3AB9D23F7A4B3C9B=6CVUBCO2KC3XULPXWVWLHEW4LBVLIZLYSYYM54B3MVIQF5NB6FFSVEYPCWI6QWZQ5NWURZO7G2LSNVKBZUK5HMFK2M; <strong>jdu=2094899509; TrackID=1h-4jh7Nfv-C2-ZAbJT5SRyZS1zfoXLMFrauDuEh_iQpfcOM9ddkELL6IQXDIcwDUYqFBnbRhaZF9ufLySf7uTlC0z2c80Di6QTf64XL6YmU; pinId=iuOl10w04HJvFIfjx0I4mA; DeviceSeq=b16968f5136a4f23be88aa1a7b277851; mt_xid=V2_52007VwATWlhRWlIbSBFsAGBREAEPUQBGG0hNWxliAxIFQVBUCRhVHF8GNAQVAV1dB1NMeRpdBW4fE1dBWFJLH0wSWQFsBxdiX2hSah9AGFsNbgAbVW1YV1wY; PCSYCityID=1601; ipLoc-djd=1-72-2799-0; unpl=V2_ZzNtbUACQBd2DxRSckxVAWIKFFwRVhQddlxCA35NW1BhVBpfclRCFXwUR1FnGlgUZwIZWUZcQBZFCHZXchBYAWcCGllyBBNNIEwHDCRSBUE3XHxcFVUWF3RaTwEoSVoAYwtBDkZUFBYhW0IAKElVVTUFR21yVEMldQl2V3oRWQxvCxZcSmdzEkU4dlJ%2bGl4FbjMTbUNnAUEpD0BTfB1USGQCGlhLX0sRdAB2VUsa; CCC_SE=ADC_HbIzFg4YSrQRLJUp1cL3AlU4jeiCj7JDPcTEgyuaAjydAVJnU8peeNBEgiGRBpg59Tdx57n3e5N5BrL65OZt64RPpDlv8B6cj30S7Vw4qJnF6j0totQcloutz5y5aLOQ4gBoleItMc7MFoBeiO0p11VMORAvjHlGVDs114UCvWTQ0S2J6vzy3Np8O%2fl%2ffuItRdVb9BBEaHxz7VuwZ2oU%2fqz9Vb1Ptcz8H62u3fVc5UYRRr%2bbPVV1o3KxmjrzKlRhJhWuGiHHxRoJH1PXxfEnlJT%2fnjL1yTZomA%2fTw%2f41H1%2bIksAprYR%2ftLgCmyj6vHf1CWDo3jiyWA8SyybZLRD%2fBIn0p1ldydlpFh%2fB%2fl8CnzPZX69CKVPGJzQDhgHe3%2bo1uIkeYTDXBj1sjou02pUsJ4pnUHS6gCo3MAU7xh1n44PbV65d9YLmOUZ%2fZJzJDMt8dnF2zd9NQfsx%2fs4vu4AaeqWHoWLp5U%2bIlbpZV5rBhnC00MP%2fKwIOt7GJAnwxrX%2f9HJ%2fJK%2fBcjQaMvkRxbukVqXeDiR7Vi3Ahq6rRBNpc0uy83TbtNwVVWUqZCVC8HHR7xWAruzE6Tjfpdjrd6Fg1qxS%2b3uOQevfO3sIztcn4jGHhhcHGDOOREXiucq5YYyAinCOX2zXJ%2f8fqC8p0C0kvQMHDy1sRyU8FXmX4ErSB0MIckP4YCWuFApVi5Qoh%2fIAlUYv4HgXVsSPRvsTIKJnBvL5z07Rpt9L%2b%2fWG1AHKe1y4%3d; </strong>jda=122270672.2094899509.1520152794.1524279303.1524624918.35; <strong>jdc=122270672; </strong>jdv=122270672|baidu-pinzhuan|t_288551095_baidupinzhuan|cpc|0f3d30c8dba7459bb52f2eb5eba8ac7d_0_3d2326c78d854870b0f92e5f4e6d7f93|1524624917991; qr_t=c; alc=bPBMso8BuutmJGtuRs8/Kg==; _t=lTQF+Yfs1BTpf7cG64fq2WN+9/94DNEzKQrYTo3yHCU=; __jdb=122270672.3.2094899509|35.1524624918; _jrda=4; _jrdb=1524624923872; wlfstk_smdl=po3ebsmorum2y3lph5b62dh0sevp7azx</p>
-</blockquote>
-<p>##请求的格式<br>看起来那么多，，格式都差不多的。</p>
-<blockquote>
-<p>1 动词 路径 协议/版本<br>2 Key1: value1<br>2 Key2: value2<br>2 Key3: value3<br>2 Content-Type: application/x-www-form-urlencoded<br>2 Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>2 User-Agent: curl/7.54.0<br>3<br>4 要上传的数据  </p>
-</blockquote>
-<ol>
-<li>请求最多包含四部分，最少包含三部分。（也就是说第四部分可以为空）</li>
-<li>第三部分永远是一个回车（\n）</li>
-<li>动词有<code>GET POST PUT PATCH DELETE HEAD OPTIONS</code>等。  </li>
-<li>这里的路径包括[查询参数]，但不包括[锚点]。</li>
-<li>如果你没有写路径，那么路径默认为/。</li>
-<li>第二部分中的Content-Type标注了第四部分的格式。</li>
-<li>如果有请求的第四部分，那么在FormData或Payload里面可以看到。</li>
-</ol>
-<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>请求之后，除非断网或者服务器宕机了，否则都应该能的要一个响应。<br>响应的格式：</p>
-<blockquote>
-<p>1 协议/版本号 状态码 状态解释<br>2 Key1: value1<br>2 Key2: value2<br>2 Content-Length: 17931<br>2 Content-Type: text/html<br>3<br>4 要下载的内容</p>
-</blockquote>
-<h3 id="用Chrome查看响应"><a href="#用Chrome查看响应" class="headerlink" title="用Chrome查看响应"></a>用Chrome查看响应</h3><ol>
-<li>打开 Network</li>
-<li>输入网址</li>
-<li>选中第一个响应</li>
-<li>查看 Response Headers，点击「view source」，点击「view source」，点击「view source」</li>
-<li>你会看到响应的前两部分</li>
-<li>查看 Response 或者 Preview，你会看到响应的第 4 部分</li>
-</ol>
-<h2 id="HTTP状态码，状态码是服务器对浏览器说的话。"><a href="#HTTP状态码，状态码是服务器对浏览器说的话。" class="headerlink" title="HTTP状态码，状态码是服务器对浏览器说的话。"></a>HTTP状态码，状态码是服务器对浏览器说的话。</h2><ul>
-<li>1xx消息——请求已被服务器接收，继续处理。</li>
-<li>2xx成功——请求已成功被服务器接收、理解、并接收。</li>
-<li>3xx重定向——需要后续操作才能完成这一请求。</li>
-<li>4xx请求错误——请求含有词法错误或者无法被执行。</li>
-<li>5xx服务器错误——服务器在出路某个正确请求时发生错误</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2057,7 +2081,7 @@ hash[key] = hashurl //替换hash里的值
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
