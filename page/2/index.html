@@ -253,6 +253,143 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/jQuery入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/09/jQuery入门/" itemprop="url">jQuery入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T15:38:07+08:00">
+                2018-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jQuery概述"><a href="#jQuery概述" class="headerlink" title="jQuery概述"></a>jQuery概述</h2><p>jQuery一个javascript函数库。</p>
+<h2 id="封装两个函数"><a href="#封装两个函数" class="headerlink" title="封装两个函数"></a>封装两个函数</h2><ol>
+<li><p>获取到一个结点的所有兄弟节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function getSiblings(node)&#123;</span><br><span class="line">  var allChildren = node.parentNode.children //获取该节点的爸爸元素的所有儿子元素</span><br><span class="line">  var array =&#123;length:0&#125; //新建个伪数组，给个length属性</span><br><span class="line">  </span><br><span class="line">  for(let i=0;i&lt;allChildren.length;i++)&#123;</span><br><span class="line">    if(allChildren[i] !== node)&#123;</span><br><span class="line">      array[array.length] = allChildren[i]</span><br><span class="line">      array.length += 1 //把爸爸元素的每一个儿子元素遍历出来后，如果不是自己，就丢到伪数组里。</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return array //返回这个伪数组</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加或删除多个class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function addClass(node,classes)&#123;</span><br><span class="line">    for (let ke in classes)&#123;</span><br><span class="line">        var value = classes[key]</span><br><span class="line">        if(value)&#123;</span><br><span class="line">            node.classList.add(key)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            node.classList.remove(key)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addClass(id,&#123;class:true,class,true,class:false&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>代码优化：如果出现类似的代码，就有优化的可能</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function addClass(node,classes)&#123;</span><br><span class="line">    for (let key in classes)&#123;</span><br><span class="line">        var value = classes[key]</span><br><span class="line">        var methodName = value ?&apos;add&apos;:&apos;remove&apos;</span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">addClass(id,&#123;class1:true,class2:true,class3:false&#125;)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>把他们关联起来（命名空间（一种设计模式）,就是给个名字，防止覆盖别人的命名，例如:vue.js）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">window.ffdom = &#123;&#125; //新建个window空对象</span><br><span class="line">ffdom.getSiblings = getSiblings //把封装好的函数赋值给对象的属性</span><br><span class="line">ffdom.addClass = addClass</span><br><span class="line">ffdom.getSiblings(item3) //调用属性</span><br><span class="line">ffdom.addClass(item3,&#123;class1:true,class2:true,class3:false&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="在Node-prototype添加属性-改原型"><a href="#在Node-prototype添加属性-改原型" class="headerlink" title="在Node.prototype添加属性(改原型)"></a>在Node.prototype添加属性(改原型)</h3><p>把<code>ffdom.getSiblings(item3)</code>改为<code>item3.getSiblings()</code>。<br>在Node.prototype里添加getSiblings属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Node.prototype.getSiblings = function ()&#123;</span><br><span class="line">  var allChildren = this.parentNode.children //this就是item3</span><br><span class="line">  var array =&#123;length:0&#125;</span><br><span class="line">  </span><br><span class="line">  for(let i=0;i&lt;allChildren.length;i++)&#123;</span><br><span class="line">    if(allChildren[i] !== this)&#123;</span><br><span class="line">      array[array.length] = allChildren[i]</span><br><span class="line">      array.length += 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return array</span><br><span class="line">&#125;</span><br><span class="line">Node.prototype.addClass = function(classes) &#123;</span><br><span class="line">    for (let key in classes)&#123;</span><br><span class="line">        var value = classes[key]</span><br><span class="line">        var methodName = value ?&apos;add&apos;:&apos;remove&apos;</span><br><span class="line">        this.classList[methodName](key)  //node通过this传进来</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">item3.getSibling() //隐式指定this,悄悄的把前面的参数传进去</span><br><span class="line">item3.getSibling.call(item3) //显式指定this，主要看call()里的第一个值</span><br><span class="line">item3.addClass.call(item3,&#123;class1:true,class2:true,class3:false&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="用一个新的Node-仿jQuery"><a href="#用一个新的Node-仿jQuery" class="headerlink" title="用一个新的Node(仿jQuery)"></a>用一个新的Node(仿jQuery)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = function(nodeOrSelector)&#123;</span><br><span class="line">    let node </span><br><span class="line">    if(typeof nodeOrSelector)&#123;</span><br><span class="line">        node = document.querySelector(nodeOrSelector)  //如果传的参数是字符串，就按照这个找到元素。</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        node = nodeOrSelector  //如果不是，就不变</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        getSiblings:function()&#123;</span><br><span class="line">            var allChildren = node.parentNode.children</span><br><span class="line">            var array =&#123;length:0&#125;</span><br><span class="line">  </span><br><span class="line">            for(let i=0;i&lt;allChildren.length;i++)&#123;</span><br><span class="line">                if(allChildren[i] !== node)&#123;</span><br><span class="line">                    array[array.length] = allChildren[i]</span><br><span class="line">                    array.length += 1</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return array</span><br><span class="line">        &#125;,</span><br><span class="line">        addClass:function(classes)&#123;</span><br><span class="line">            for (let key in classes)&#123;</span><br><span class="line">                var value = classes[key]</span><br><span class="line">                var methodName = value ?&apos;add&apos;:&apos;remove&apos;</span><br><span class="line">                node.classList[methodName](key)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//jQuery存的是哈希，上面return了一个对象</span><br><span class="line">var node2 = jQuery(&apos;#item3&apos;) //把参数传进去，然后赋值给node2</span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass(&#123;class1:true,class2:true,class3:false&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="操作多个节点"><a href="#操作多个节点" class="headerlink" title="操作多个节点"></a>操作多个节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">window.jQuery = function(nodeOrSelector)&#123;</span><br><span class="line">    let nodes = &#123;&#125;  //声明个伪数组（对象）</span><br><span class="line">    if(typeof nodeOrSelector === &apos;string&apos;)&#123;</span><br><span class="line">        let temp = document.querySelectorAll(nodeOrSelector)</span><br><span class="line">        for(let i = 0;i&lt;temp.length;i++)&#123;</span><br><span class="line">            nodes[i]=temp[i]</span><br><span class="line">        &#125; //判断是否是字符串，如果是，放到伪数组里</span><br><span class="line">        nodes.length = temp.length //修改伪数组length值</span><br><span class="line">    &#125;else if(nodeOrSelector instanceof Node)&#123;</span><br><span class="line">        nodes = &#123;</span><br><span class="line">            0:nodeOrSelector,</span><br><span class="line">            length:1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; //如果是个节点，那就放到伪数组里</span><br><span class="line">    nodes.getSiblings = function()&#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    nodes.addClass = function(classes)&#123;</span><br><span class="line">        classes.forEach((value)=&gt;&#123;</span><br><span class="line">        for(let i=0;i&lt;nodes.length;i++)&#123;</span><br><span class="line">            nodes[i].classList.add(value)</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;) </span><br><span class="line">    &#125; //遍历伪数组，然后逐个的给它们添加class</span><br><span class="line">    nodes.text = function(text)&#123;</span><br><span class="line">        if(text === undefined)&#123;</span><br><span class="line">        var texts =[]</span><br><span class="line">        for(let i=0;i&lt;nodes.length;i++)&#123;</span><br><span class="line">            texts.push(nodes[i].textContent)</span><br><span class="line">        &#125; //判断如果没有值，就获取值</span><br><span class="line">        return texts</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            for(let i=0;i&lt;nodes.length;i++)&#123;</span><br><span class="line">                nodes[i].textContent = text</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; //如果有值，那么修改值</span><br><span class="line">    &#125;</span><br><span class="line">    return nodes //返回伪数组</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var node2 = jQuery(&apos;ul&gt;li&apos;) //接收字符串</span><br><span class="line">node2.addClass([&apos;blue&apos;]) //传入blue字符串</span><br><span class="line">var text = node2.text();console.log(text) //获取元素内文本</span><br><span class="line">node2.text(&apos;hi&apos;) //修改元素内文本</span><br></pre></td></tr></table></figure>
+<p><strong>window.$=jQuery,就可以使用$代替jQuery了，然后建议在赋值的变量名字前也加上$ .</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/DOM API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1682,201 +1819,11 @@ for(var key in obj){
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/Canvas画板/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/17/Canvas画板/" itemprop="url">Canvas画板</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T18:50:33+08:00">
-                2018-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="mouse事件"><a href="#mouse事件" class="headerlink" title="mouse事件"></a>mouse事件</h3><ul>
-<li><p>onmousedown:在用户按下了任意鼠标按键时触发。不能通过键盘触发这个事件。<br><code>document.onmousedown = function(x){
-  console.log(x)
-}</code>  </p>
-</li>
-<li><p>onmousemove:当鼠标指针在元素内部移动时重复触发。不能通过键盘触发这个事件。<br><code>document.onmousemove = function(x){
-  console.log(x)
-}</code></p>
-</li>
-<li><p>onmouseup:当用户释放鼠标按键时触发。不能通过键盘触发这个事件。<br><code>document.onmousemove = function(x){
-  console.log(x)
-}</code>   </p>
-</li>
-</ul>
-<p><strong>这些事件，前面可加on可不加on，即onmousedown和mousedown一样</strong></p>
-<hr>
-<h3 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h3><ol>
-<li>定义一个变量赋值为false.</li>
-<li>按下鼠标任意键，即触发mousedown时，给变量赋值true</li>
-<li>在鼠标指针滑动，即触发mousemove时，判断变量是否为true，即是否已按下鼠标按键，如果是，执行代码，如果不是，就不执行。</li>
-<li>当鼠标释放时，即触发mouseup事件时，非变量赋值false，即停止鼠标指针滑动时的执行的代码。</li>
-</ol>
-<hr>
-<h3 id="canvas里，图像生成位置"><a href="#canvas里，图像生成位置" class="headerlink" title="canvas里，图像生成位置"></a>canvas里，图像生成位置</h3><p>canvas里的生成东西本来就是绝对定位的，但是它是基于浏览器窗口的，所以我们要去除body的外边距,不然鼠标点击生成的图像位置会有偏差。<br><code>body{margin:0}</code>  </p>
-<p>生成一条路径：<br>开始》起点》终点》描边》结束。beginPath()&gt;moveTo()&gt;lineTo()&gt;stroke()&gt;closePath()</p>
-<hr>
-<h3 id="使画板全屏"><a href="#使画板全屏" class="headerlink" title="使画板全屏"></a>使画板全屏</h3><p>对canvas用css的宽度和高度是不适用的，并不能使canvas变为全屏画板。<br><code>var drawWidth = document.documentElement.clientWintd//获取页面宽度
-var drawHeight = document.documentElement.clientHeight//获取页面高度
-canvas.width = drawWidth
-canvas.height = drawHeight</code></p>
-<h3 id="onresize-事件"><a href="#onresize-事件" class="headerlink" title="onresize 事件"></a>onresize 事件</h3><p>onresize 事件会在窗口或框架被调整大小时发生。<br><code>window.onresize=function(){
-    var drawWidth = document.documentElement.clientWintd//获取页面宽度
-    var drawHeight = document.documentElement.clientHeight//获取页面高度
-    canvas.width = drawWidth
-    canvas.height = drawHeight
-}</code><br>在窗口被调整大小时，再次运行一遍获取页面宽高度的代码。</p>
-<h3 id="HTML-DOM-classList属性"><a href="#HTML-DOM-classList属性" class="headerlink" title="HTML DOM classList属性"></a>HTML DOM classList属性</h3><p>classList 属性返回元素的类名，作为 DOMTokenList 对象。<br>该属性用于在元素中添加，移除及切换 CSS 类。<br>classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。  </p>
-<pre><code class="document.getElementById(&quot;myDIV&quot;).classList.add(&quot;class&quot;);```//在id为myDIV的元素中添加一个名为class的类名，可添加多个">```document.getElementById(&quot;myDIV&quot;).classList.remove(&quot;class&quot;);```//在id为myDIV的元素中移除一个名为class的类名，可移除多个。**移除不存在的类名不会报错。**  
-- Transform属性应用于元素的2D或3D转换。这个属性允许你将元素旋转，缩放，移动，倾斜等。 
-
-### 防止移动端滑动时抖动
-`body{overflow:hidden;}`
-不要出现滚动条。
-
-### 清空整个画板。
-`context.clearRect(0,0,canvas.width,canvas.height)`   
-使用```clerrRect()```方法清除一个和画板一样大的矩形就行了
-
-### 把canvas保存为图片
-`download.onclick = function(){
-    var url = canvas.toDataURL(&apos;image/png)
-    var a = document.createElement(&apos;aa&apos;)
-    document.body.appendChild(a)
-    a.href = url
-    a.download = &apos;图片&apos;
-    a.click()
-}`
-
-### 完全固定住，在手机上不会滑动(绝对定位住)
-`#canvas{
-    position: fixed;
-    top: 0;
-    left: 0;
-}`
-
-
-### className和classList
-className用于 **更改** 某个标签的类名，来达到更改类属性的效果。  
-```element.className = &apos;xxx&apos;
-</code></pre>
-<p>classList用于添加、删除、查找某个标签的类名。<br><code>element.classList.add(&#39;xxx&#39;)</code>//添加<br><code>element.classList.remove(&#39;xxx&#39;)</code>//删除<br><code>element.classList.contains(&#39;xxx&#39;)</code>//查看<br><code>element.classList.item(Number)</code>//根据索引查找  </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1922,7 +1869,7 @@ className用于 **更改** 某个标签的类名，来达到更改类属性的�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
