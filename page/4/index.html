@@ -253,6 +253,431 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/css布局与定位/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/27/css布局与定位/" itemprop="url">css布局与定位</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T14:59:23+08:00">
+                2018-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##高度是由什么决定的？</p>
+<p><strong>内联元素：主要是由建议行高决定，我们只能决定字体的高度，无法决定包裹字体元素的高度，这些主要由设计这些字体的设计师决定。每种不同的字体，会使包裹它的元素的高度不同</strong><br>字体三部分：基线，上部，下部，还有个建议行高。每种字体的建议行高是不一样的，文字都会基线对齐。<br>把一个文字设置为100px，例如“hug”，从h的最上边到g的最下边为100px。<br>例如把span里的文字设为100px，那么span的高度会比100px高，因为会有个<strong>建议行高</strong>，每种字体的默认行高不一样。<br><code>line-height</code>能使文字自动垂直居中。  </p>
+<p><strong>块级元素:高度有其内部文档流元素的高度总和决定。决定，但不相等。</strong>（假设body里什么都没有，那么他的高度是0（只有个回车不算））</p>
+<p>##文档流是什么？<br>文档内元素的流动方向。<br><strong>内联元素从左往右流，如果流动遇到阻碍，那就换行继续从左往右流动。</strong><br> 如果一个元素例如<span>，中间类截断，假设这个元素有加边框，那么那个元素会被分开，但还是一个元素，边框也还是一个，只是头在第一行，身体在第二行。<br> 如果被截断的是英文单词，那么英文单词并不会换行，会缩到里面去。因为中文每个字是一个东西，而英文单词也是一个东西，所以默认不会被分开。如果要想使其可以被截断：  </span></p>
+<blockquote>
+<p>添加css属性:<code>word-break:break-all</code>。  </p>
+</blockquote>
+<p><strong>块级元素从上往下流，每一块都占一行，新的一块换新一行。</strong><br>把块级元素也变成从左往右流：<code>display：inline-block</code>（不推荐使用，建议用floot浮动）</p>
+<h2 id="position-fixed"><a href="#position-fixed" class="headerlink" title="position fixed"></a>position fixed</h2><p>position属性用于指定一个元素在文档中的定位方式。<br>相对定位：<code>relative</code>。<br>绝对定位：<code>absolute</code>（基于祖先元素定位）和<code>fixed</code>(基于屏幕视口定位，元素位置在屏幕滚动时不会改变，会创建新的层叠上下文，脱离文档流)。<br>以下是基于屏幕左上角视口定位，创建新的层叠上下文</p>
+<blockquote>
+<p>div {<br>    position fixed;<br>    top 0;<br>    left 0;<br>}  </p>
+</blockquote>
+<p><strong>脱离文档流，使用<code>position fixed</code>后，该元素会脱离文档流，脱离文档流后，其父级元素的高度就不受其影响了，因为块元素的高度为其内部文档流高度总和，脱离后就没关系了</strong><br>当使用<code>position fixd</code>后，此元素就不会往外扩展了，它有多大，就占用多大范围。</p>
+<h2 id="css三角形"><a href="#css三角形" class="headerlink" title="css三角形"></a>css三角形</h2><ol>
+<li><p>使一个背景图片变暗，放一个div在图片的div里，高度设置成一样，宽度不设置（它会自适应），然后把这个div的背景色设置成黑色，然后使其半透明。<br>rgba()允许设定一个颜色的透明度，0=透明，1=不透明。</p>
+<blockquote>
+<p>rgba(255,0,0,0.1) /<em>百分之10红色透明</em>/<br>rgba(255,0,0,0.5) /<em>百分之50红色透明</em>/<br>rgba(255,0,0,1) /<em>不透明，显示全红</em>/  </p>
+</blockquote>
+</li>
+<li><p>背景图片居中并按比例缩放<br><code>background-position: center center</code>第一个为水平居中，第二个是垂直居中。<br><code>background-size: cover</code>盖住所有面积，并按比例缩放。</p>
+</li>
+<li><p>宽度与最大宽度。<br>假设设置一个div的宽度为1000px，<code>width:1000px</code>如果屏幕被缩小到小于1000px的时候，不会出现自适应，还是1000px，会出现一个滚动条，如果屏幕大于1000px的时候，它也是1000px。<br>假设设置一个div的最大宽度为1000px，<code>max-width:1000px</code>如果屏幕被缩小到小于1000px的时候，那么它就会自适应，如果大于1000px的时候，它最大就1000px。</p>
+</li>
+<li><p>修改span（内联元素）宽高<br>内联元素是不接受修改宽高的，要把它修改为行内块元素<code>display:inline-block</code>,它就接受宽高了。<br><strong>并不推荐直接设置宽高，因为如果修改里面的内容，长度不一样的话，显示会出问题，建议使用padding，这样盒子没有固定宽度的话，增加了内容宽度也会增加，实现自适应。但为了防止不同浏览器出现不一样的高，我们可以使用<code>line-height</code>固定一下高度</strong>   </p>
+</li>
+<li><p>画三角形</p>
+<blockquote>
+<p>写个div，然后里面没有内容，就是<code>height：0px</code>，<code>width: 0px</code>。<br>然后设置一个大边框<code>border: 10px solid</code>。<br>然后给每个边框不一样的颜色<code>border-top-color:bule</code>，就出现4个等腰三角形了。<br>然后把三个设置为透明就可以了。</p>
+<blockquote>
+<p>还可以设置另一种三角形，就是把一个边框宽度大小设置为0px<code>border-top-width:0px</code>，然后再把两个设置为透明。  </p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<p>我们在span里面最好不要放div,容易出bug。span加个<code>display:block</code>就是div了。  </p>
+<p>更多图形小技巧：搜索<code>css tricks shape</code>。<br><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">画各种形状网站</a>。      </p>
+<ol start="6">
+<li><p>绝对定位 </p>
+<blockquote>
+<p>当一个元素在另一个元素里面，我们需要把子元素拿出来，并依附着父元素定位是，就要用到绝对定位（脱离文档流，然后定位）。  </p>
+<blockquote>
+<p>在子元素上面写<code>position: absolute</code>。<br>在父元素上面写<code>position: relative</code>。<br>这就是子元素相对于父元素定位。</p>
+<blockquote>
+<p>如果要紧贴父元素下方，子元素上写<code>top:100%</code>,紧贴左边<code>right:100%</code>,依此类推。。。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li><p>初始化所有元素。<br>因为一些元素会有浏览器的自带内边距和外边距，这样会导致不好调距离，所以把他们都干掉。</p>
+<blockquote>
+<p>*{<br> margin:0;<br> padding:0;<br>}</p>
+</blockquote>
+</li>
+<li><p>修改分界线hr标签</p>
+<blockquote>
+<p>把hr的<code>border</code>去掉，<code>border:none</code>。<br>重写<code>border</code>，<code>border:1px solid red</code>。  </p>
+</blockquote>
+</li>
+<li><p>使用svn链接图标。<br><a href="http://www.iconfont.cn/" target="_blank" rel="noopener">阿里巴巴矢量图</a></p>
+</li>
+<li><p>伪类与伪元素<br>默认情况下div就有个::before和::after，但是它是隐藏的。</p>
+<blockquote>
+<p>div::before {content: ‘[‘}所有div前面有个“[”。<br>div::after {content: ‘]’}所有div后面有个“]”。</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>一个冒号开头的叫做伪类，例如：：hover。两个冒号开头的叫做伪元素::after。</strong></p>
+<ol start="11">
+<li><p>下载按钮<br>制作下载按钮要用a标签。样式加了download的话就一定是下载，不然可能是预览。<br>a按钮是内联元素，不能设置宽高（左右padding有用，上下pandding没用），所以要设置’’’display:inline-block’’’，然后内联要居中的话，要在父级元素上设置<code>text-align:center</code>,可以额外加一个父级元素，例如p，span等。</p>
+</li>
+<li><p>box-sizing<br>box-sizing 属性用于更改用于计算元素宽度和高度的默认的 CSS 盒子模型。</p>
+<blockquote>
+<p>box-sizing: content-box</p>
+</blockquote>
+</li>
+</ol>
+<p>默认值，标准盒子模型。<code>width</code>与<code>height</code>只包括内容的宽和高，不包括边框（<code>border</code>），内边距（<code>padding</code>），外边距（<code>margin</code>）。</p>
+<blockquote>
+<p>box-sizing: border-box</p>
+</blockquote>
+<p>width和height属性包括内容，内边距和边框，但不包括外边距。</p>
+<ol start="13">
+<li><p>选择奇数与偶数<br>例如要使6个列表3个向左浮动3个向右浮动。</p>
+<blockquote>
+<p>li {float:left}<br>li:nth-child(even){float:right}<br>li:nth-child(odd){float:left}</p>
+</blockquote>
+</li>
+<li><p>display:inline-block<br>加了inline-block，会出现两个bug。<br>1.下面会出现一条缝隙，所以要加<code>vertical-align：top</code>。<br>2.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/css入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/26/css入门/" itemprop="url">css入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T10:50:57+08:00">
+                2018-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="学习顺序"><a href="#学习顺序" class="headerlink" title="学习顺序"></a>学习顺序</h2><ol>
+<li>css</li>
+<li>css3</li>
+<li>LESS CSS</li>
+<li>SASS</li>
+<li>PostCSS</li>
+</ol>
+<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ol>
+<li>Google：关键词+MDN</li>
+<li>CSS Tricks</li>
+<li>Google：阮一峰 css</li>
+<li>张鑫旭的240多篇css博客</li>
+<li>Codrops炫酷css效果</li>
+<li>css揭秘</li>
+<li>css2.1中文spec</li>
+<li>Magic of css免费在线书</li>
+</ol>
+<h2 id="引进CSS的三-四种方式"><a href="#引进CSS的三-四种方式" class="headerlink" title="引进CSS的三/四种方式"></a>引进CSS的三/四种方式</h2><ol>
+<li>内联样式<br><code>\&lt;h1 style=&quot;color:red&quot;\&gt;hello world\&lt;/h1\&gt;</code>，在开始标签处添加样式。  </li>
+<li><p>内部样式表。<br><code>\&lt;head&gt;\&lt;style\&gt;p \{color:red;\}\&lt;/style&gt;\&lt;/head\&gt;</code>,在head标签里加入一个样式表style标签。  </p>
+</li>
+<li><p>外部样式表<br><code>\&lt;head&gt;\&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;\&lt;/head&gt;</code>,在head标签里加一个link标签，新建一个css文件，链接到这个文件。  </p>
+</li>
+</ol>
+<p>4.在css文件里链接到另一个css文件</p>
+<blockquote>
+<p>@import url(./b.css)<br>链接到当前同目录下的b.css文件</p>
+</blockquote>
+<h2 id="关于选择器"><a href="#关于选择器" class="headerlink" title="关于选择器"></a>关于选择器</h2><blockquote>
+<p><code>\&lt;h1 class=&quot;key&quot; id=&quot;principal&quot;&gt;Hello World\&lt;/h1&gt;</code>  </p>
+</blockquote>
+<ol>
+<li><p>标签选择器</p>
+<blockquote>
+<p>h1 {<br> color:red;<br>}</p>
+</blockquote>
+</li>
+<li><p>类选择器<br>给元素设置<strong>class</strong>属性，可以为元素指定类名，<strong>文档中多个元素可以拥有同个类名</strong></p>
+<blockquote>
+<p>.key {<br> color:red;<br>}  </p>
+</blockquote>
+</li>
+<li><p>ID选择器<br>通过设置元素的ID属性为该元素指定ID，每个ID在文档中都是<strong>唯一</strong>的<br>#principal {<br> color:red;<br>}</p>
+</li>
+</ol>
+<h3 id="关于优先级："><a href="#关于优先级：" class="headerlink" title="关于优先级："></a>关于优先级：</h3><p>如果多于一个规则指定了相同的属性都应用到一个元素上，css规定拥有更高确定度的选择器优先级更高。  </p>
+<blockquote>
+<p>ID选择器&gt;类选择器&gt;标签选择器</p>
+</blockquote>
+<h3 id="关于选择子标签"><a href="#关于选择子标签" class="headerlink" title="关于选择子标签"></a>关于选择子标签</h3><p>类选择器：类名与类名之间<strong>隔一个空格</strong>就可以了，只能递级下降，例：</p>
+<blockquote>
+<p>.爷爷  .爸爸 .我  </p>
+</blockquote>
+<p>标签选择器：使用“&gt;”连接，也是递级下降。例：</p>
+<blockquote>
+<p>爷爷&gt;爸爸&gt;我  </p>
+</blockquote>
+<p>他们之间可以混合使用，例：</p>
+<blockquote>
+<p>.爷爷 .爸爸&gt;我</p>
+</blockquote>
+<h2 id="常见制作菜单栏，使列表浮动后"><a href="#常见制作菜单栏，使列表浮动后" class="headerlink" title="常见制作菜单栏，使列表浮动后"></a>常见制作菜单栏，使列表浮动后</h2><ol>
+<li>清除列表小圆点<br><code>list-style:none</code>   </li>
+<li>查看bug，给列表加边框<br><code>border:1px solid red;</code>  </li>
+<li><p>去除浮动后bug的方法（添加伪类），clearfix为浮动列表的<strong>父类元素（ul）</strong>的类名.(就是给浮动元素的爸爸添加以下样式)</p>
+<blockquote>
+<p>.clearfix::after{<br>   content: ‘’;<br>   display:block<br>   clear:both<br>}</p>
+</blockquote>
+</li>
+<li><p>浏览器上查看字体的大小。</p>
+<blockquote>
+<p>打开开发者工具<br>点击要查看大小的字体的元素<br>点击右边栏的Computed（展示计算它的样式，style为展示所有的样式）<br>在Filter一栏中输入font-size，看到的就是了</p>
+</blockquote>
+</li>
+<li><p>去掉链接下划线。</p>
+<blockquote>
+<p>text-decoration:none(用于设置元素中的文本的修饰类型)。</p>
+</blockquote>
+</li>
+<li><p>使菜单栏每个选项在鼠标移到上面的时候有下划线。</p>
+</li>
+</ol>
+<ul>
+<li>先给每个链接加个边框,并设置透明色。（如果不先加边框的话，到下一步的时候鼠标移上去菜单栏<strong>会动</strong>，因为相当于无中生有忽然出现个边框，会把旁边的选项挤开）。  <blockquote>
+<p>border:1px solid transparent，使边框透明。</p>
+</blockquote>
+</li>
+<li>只设置一个下边框透明就可以了。</li>
+<li>添加一个:hover伪类，这个伪类的作用是，当鼠标停在使用这个伪类的元素上时，会出现的效果。</li>
+<li>添加下边框颜色和宽度就可以了。</li>
+</ul>
+<ol start="7">
+<li>修改下划线与链接高度。<br>在网页中只有鼠标放在链接文本上才会出现下划线，那么怎么测试高度呢？<br>打开开发者工具———找到并点击代码中的链接文本————点击右边的:hov————然后勾选:hover。那个链接文本就一直处于鼠标指向它的状态了。<br>然后使用工具测出距离，再把距离拉开，然后发现li标签没有把a标签包裹着，然后使用<code>display：block</code>给a标签，让他变成一个块元素就好了。</li>
+</ol>
+<blockquote>
+<p>color: inherit;是继承的意思，就是祖先什么颜色，他就什么颜色。<br>例如：a标签本身是有浏览器给它的默认属性的，所以他不会继承他祖先的属性，但是我们让他要继承属性，因为我们的权限最大，所以他就继承了祖先的。（有些属性可以继承，有些属性不可以继承）</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/HTML/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1464,333 +1889,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/计算机存储各种数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/计算机存储各种数据/" itemprop="url">计算机存储各种数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T20:18:46+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##为什么要学习编程基础</p>
-<blockquote>
-<p>因为要成为个前端，首先要成为个程序员。<br>一个程序员需要知道</p>
-<ol>
-<li>硬件与软件：计算机的运行原理（《编码》）</li>
-<li>最大的软件：操作系统（《现代操作系统》、维基百科）</li>
-<li>自己写软件：数据结构 &amp; 算法（《数据结构与算法分析》，所有的排序算法）</li>
-<li>多人写软件：软件工程（《代码大全2》）  </li>
-</ol>
-</blockquote>
-<p>##（内存）存储0和1<br>计算机的存储单位：  </p>
-<blockquote>
-<p>计算机系统数据只用0和1这种表现形式，（这里只表示一个数据点，不是数字），一个0或者1占一个“位”，而系统中规定8个位为一个字节。<br>电脑的各种存储器的最小的存储单位是<strong>比特</strong>，也就是位（<strong>bit，简称b</strong>），它表示一个二进制位。比位大的单位是<strong>字节（byte，简称B）</strong>，它等于8个二进制位。<br>因为在存储器中含有大量的存储单元，每个存储单元可以存放8个二进制位，所以存储器的容量是<strong>以字节为基本单位</strong>的。</p>
-</blockquote>
-<p>###存储</p>
-<ul>
-<li>1就充电</li>
-<li>0就不充电<br>###读取</li>
-<li>电量大于50%就是1</li>
-<li>电量小于50%就是0</li>
-</ul>
-<h2 id="存储数字"><a href="#存储数字" class="headerlink" title="存储数字"></a>存储数字</h2><p>把十进制变成二进制，为了方便书写，一般会将二进制数写为十六进制数。  </p>
-<h2 id="如何存储字符"><a href="#如何存储字符" class="headerlink" title="如何存储字符"></a>如何存储字符</h2><p>将每个字符编号，<strong>ASCII美国信息交换标准代码</strong>。<br>在ascii码表上每个字符有相对应的ASCII值。</p>
-<blockquote>
-<p>假如我们要存储a，那么就存储a对应的ASCII值97（十进制）对应的二进制。<br>a -&gt; 0110 0001(2) -&gt; 61(16)（为了书写方便，最终都会写成十六进制）<br>如果我们要存储1，那么就存储1对应的ASCII值49对应的二进制。<br>1 -&gt; 0011 0001(2) -&gt; 31(16)<br>存字符用单字节</p>
-</blockquote>
-<h2 id="如何存储中文"><a href="#如何存储中文" class="headerlink" title="如何存储中文"></a>如何存储中文</h2><p>中国推出了<strong>GB 2312中国国家标准简体中文字符集</strong><br>后来为了存储生僻字、繁体字、日语等，微软推出了<strong>GBK 字符集</strong><br>存中文用双字符</p>
-<h2 id="如何存储所有字符"><a href="#如何存储所有字符" class="headerlink" title="如何存储所有字符"></a>如何存储所有字符</h2><p>将全球字符编号 -&gt; <strong>Unicode字符集</strong></p>
-<blockquote>
-<p>然后发现用Unicode字符存所有的文字都要用到4个字节。（之前存字符只需单字节，存中文只要双字节）<br>utf-8就是Unicode最重要的实现方式之一(高性价比)，UTF-8不是固定字长编码的，而是一种变长的<strong>编码方式</strong>。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。<strong>如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节</strong>：<br>Unicode:a -&gt; 00000000 00000000 00000000 01100001<br>UTF-8:a -&gt; 01100001（第一个字节的第一位是0）<br>Unicode:你 -&gt; 00000000 00000000 01001111 01100000<br>UTF-8:你 -&gt; 1110100 10111101 10100000（第一个字节的第一位是1，连续3个111，则占3个字节）  </p>
-</blockquote>
-<p><strong>转换</strong><br>Unicode:00000000 00000000 00000000 01111111（2）(7位及以内)<br>UTF-8:0XXXXXXX<br>Unicode:00000000 00000000 00000111 11111111（2）(11位及以内)<br>UTF-8:110XXXXX 10XXXXXX<br>Unicode:00000000 00000000 11111111 11111111（2）(16位及以内)<br>UTF-8:1110XXXX 10XXXXXX 10XXXXXX（2）<br>Unicode:00000000 00011111 11111111 11111111（2）（21位及以内）<br>UTF-8:11110XXX 10XXXXXX 10XXXXXX 10XXXXXX</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/MarkDown基础语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/MarkDown基础语法/" itemprop="url">MarkDown基础语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T19:55:37+08:00">
-                2018-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>title: Markdown基本语法</p>
-<h2 id="date-2018-04-21-10-59-19"><a href="#date-2018-04-21-10-59-19" class="headerlink" title="date: 2018-04-21 10:59:19"></a>date: 2018-04-21 10:59:19</h2><h2 id="MarkDown定义："><a href="#MarkDown定义：" class="headerlink" title="MarkDown定义："></a>MarkDown定义：</h2><ul>
-<li>MarkDown是一种轻量级语言。</li>
-<li>它使我们专心于码字，用[标记]语法，来代替常见的排版方法，可以使普通文本内容具有一定的格式。</li>
-</ul>
-<h2 id="为什么要学习MarkDown（优点）？"><a href="#为什么要学习MarkDown（优点）？" class="headerlink" title="为什么要学习MarkDown（优点）？"></a>为什么要学习MarkDown（优点）？</h2><ul>
-<li>纯文本内容，兼容所有的文本编辑器与字处理软件</li>
-<li>可以放在版本管理系统中，追踪历史变更</li>
-<li>轻松的导出HTML、PDF和本身的.md文件</li>
-<li>简洁、高效、可读、直观、学习成本低</li>
-</ul>
-<h2 id="Markdown语法主要分为如下几大部分："><a href="#Markdown语法主要分为如下几大部分：" class="headerlink" title="Markdown语法主要分为如下几大部分："></a>Markdown语法主要分为如下几大部分：</h2><p><strong>1. 标题</strong></p>
-<blockquote>
-<p>#对应h1  </p>
-<p>##对应h2  </p>
-<p>###对应h3  </p>
-<p>####对应h4  </p>
-<p>#####对应h5  </p>
-<p>######对应h6<br>符号与文字之间要加<strong>一个空格</strong>  </p>
-</blockquote>
-<p><strong>2. 段落</strong> </p>
-<blockquote>
-<p>段落前后都要有空行，若想在段内强制换行，使用<strong>两个或以上空格加回车</strong>  </p>
-</blockquote>
-<p><strong>3. 区块引用</strong>  </p>
-<blockquote>
-<p>在文字每行或只在第一行使用符号“&gt;”,还可以使用多个嵌套使用“&gt;&gt;”,“&gt;&gt;&gt;”等；符号与文字之间要用一个空格隔开。  </p>
-</blockquote>
-<p><strong>4. 代码区块</strong></p>
-<blockquote>
-<p>代码区块要每行加上四个空格或一个制表符（tab）。如：<br>        function print(){<br>            console.log(“Hello World”);<br>        }  </p>
-</blockquote>
-<p><strong>5. 强调</strong>  </p>
-<blockquote>
-<p>加粗使用4个<em>或_把文字包起来。<br>斜体使用2个</em>或_</p>
-</blockquote>
-<p><strong>6. 列表分割线</strong></p>
-<blockquote>
-<p>使用三个或以上的*，或-或_。</p>
-</blockquote>
-<p><strong>7. 链接</strong>  </p>
-<p>链接有两种形式：<strong>行内式</strong>和<strong>参考式</strong>。<br><strong>行内式</strong>  </p>
-<blockquote>
-<p>[name](url),例：<br>[这是百度](<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>)</p>
-</blockquote>
-<p><strong>参考式</strong></p>
-<blockquote>
-<p>[name](key)<br>[key]:url<br>例：<br>[这是百度](a)<br>[a]:<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>  </p>
-</blockquote>
-<p><strong>8. 图片</strong></p>
-<blockquote>
-<p>添加图片的形式与链接相似，只需在链接的基础上前方加一个“！”。<br><strong>9. 反斜杠\</strong><br>相当于<strong>反转义</strong>作用，使符号变成普通符号。</p>
-</blockquote>
-<p><strong>10.列表</strong></p>
-<blockquote>
-<p>有序列表使用<strong>1.和2.和3.</strong>。<br>无序列表使用-或*或+加个空格</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1841,7 +1939,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1852,7 +1950,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1863,7 +1961,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

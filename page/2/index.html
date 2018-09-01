@@ -253,6 +253,292 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/jQuery使用基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/jQuery使用基础/" itemprop="url">jQuery使用基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T16:06:33+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="jQuery的好处"><a href="#jQuery的好处" class="headerlink" title="jQuery的好处"></a>jQuery的好处</h3><ol>
+<li>容易上手</li>
+<li>强大的选择器</li>
+<li>解决浏览器的兼容</li>
+<li>完善的事件机制</li>
+<li>出色的Ajax封装</li>
+<li>丰富的UI</li>
+<li>还有很多的特性和工具方法（链式操作，回调函数，迭代器，延迟对象）</li>
+</ol>
+<h3 id="jQuery基础——样式篇"><a href="#jQuery基础——样式篇" class="headerlink" title="jQuery基础——样式篇"></a>jQuery基础——样式篇</h3><h4 id="初始jQuery"><a href="#初始jQuery" class="headerlink" title="初始jQuery"></a>初始jQuery</h4><ol>
+<li>jQuery 分 2 个系列版本 1.x 与 2.x，主要的区别在于 2.x 不再兼容 IE6、7、8浏览器。。jQuery 每一个系列版本分为：压缩版(compressed) 与 开发版(development)，我们在开发过程中使用开发版（开发版本便于代码修改及调试），项目上线发布使用压缩版（因为压缩版本体积更小，效率更快）。jQuery是一个JavaScript脚本库，不需要特别的安装，只需要我们在页面 <code>/&lt;head/&gt;</code> 标签内中，通过 script 标签引入 jQuery 库即可。</li>
+<li><code>$(document).ready()</code>的作用是等页面的文档中的节点都加载完毕后，再执行后续的代码，因为我们在执行代码的时候，可能会依赖页面的某一个元素，我们要确保这个元素真正的被加载完毕后才能正确的使用。</li>
+<li>通过原生DOM模型提供的方法获取的DOM元素就是一个DOM对象，<code>var $p = $(&#39;#imooc&#39;)</code>通过$(‘#imooc’)方法会得到一个$p的jQuery对象，$p是一个伪数组对象，这个对象里面包含了DOM对象的信息，然后封装了很多操作方法。</li>
+<li>标准的JavaScript操作DOM与jQuery操作DOM的对比：一、通过jQuery方法包装后的对象，是一个类数组对象。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。二、通过jQuery处理DOM的操作，可以让开发者更专注业务逻辑的开发，而不需要我们具体知道哪个DOM节点有那些方法，也不需要关心不同浏览器的兼容性问题，我们通过jQuery提供的API进行开发，代码也会更加精短。</li>
+<li><code>var $div = $(&#39;div&#39;);var div=$div[0]</code>,jQuery对象转化成DOM对象。用jQuery找到所有的div元素，因为jQuery对象也是一个数组结构，可以通过数组下标索引找到第一个div元素。<code>var $div = $(&#39;div&#39;);var div=$div.get(0)</code>，使用jQuery对象自身提供的一个.get()方法直接访问jQuery对象中相关的节点。</li>
+<li>如果传递给$(DOM)函数的参数是一个DOM对象，jQuery方法会把这个DOM对象给包装成一个新的jQuery对象。<code>var div = document.getElementsByTagName(&#39;div&#39;);var $div = $(div)</code>,通过getElementsByTagName获取到所有div节点的元素，结果是一个dom合集对象，再通过$(div)方法转化成jQuery对象。</li>
+</ol>
+<h4 id="jQuery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h4><ol>
+<li>id选择器：<code>$( &quot;#id&quot; )</code></li>
+<li>class选择器：<code>$( &quot;.class&quot; )</code></li>
+<li>元素（标签）选择器：<code>$( &quot;element&quot; )</code></li>
+<li>全选择器(<em>选择器)：`$( “</em>“ )`</li>
+<li>层级选择器：子选择器<code>$(parent&gt;child)</code>，后代选择器<code>$(ancestor descendant)</code>，相邻兄弟选择器<code>$(&#39;prev + next&#39;)</code>，一般兄弟选择器<code>$(&#39;prev ~ siblings&#39;)</code></li>
+<li>基本筛选选择器：:eq(), :lt(), :gt(), :even, :odd 用来筛选他们前面的匹配表达式的集合元素，根据之前匹配的元素在进一步筛选，gt是一个段落筛选，从指定索引的下一个开始，gt(1) 实际从2开始。<br>选择器 | 描述 |</li>
+</ol>
+<ul>
+<li>| - |<br>$(‘:first’) | 匹配第一个元素，例:$(‘div:first’)|<br>$(‘:last’) | 匹配最后一个元素 |<br>$(‘:not(selector)’) | 一个用来过滤的选择器，选择所有元素，去除不匹配给定的选择器元素 |<br>$(‘:eq(index)’) | 在匹配的集合中选择索引值为index的元素<br>$(‘:gt(index)’) | 选择匹配集合中所有大于给定index（索引值）的元素<br>$(‘:it(index)’) | 选择匹配集合中所有索引值小于给定index参数的元素<br>$(‘:even’) | 选择索引值为偶数的元素，从0开始计数<br>$(‘:odd’) | 选择索引值为奇数的元素，从0开始计数<br>$(‘:header’) | 选择所有标题元素，如h1,h2,h3等<br>$(‘:lang(language)’) | 选择指定语言的所有元素<br>$(‘:root’) | 选择该文档的根元素<br>$(‘:animated’) | 选择所有正在执行动画效果的元素</li>
+</ul>
+<ol>
+<li>内容筛选选择器：:contains与:has都有查找的意思，但是contains查找包含“指定文本”的元素，has查找包含“指定元素”的元素，如果:contains匹配的文本包含在元素的子元素中，同样认为是符合条件的。:parent与:empty是相反的，两者所涉及的子元素，包括文本节点<br>选择器 | 描述 |</li>
+</ol>
+<ul>
+<li>| - |<br>$(‘:contains(text)’) | 选择所有包含指定文本的元素<br>$(‘:parent’) | 选择所有含有子元素或者文本的元素<br>$(‘:empty’) | 选择所有没有子元素的元素（包括文本节点）<br>$(‘:has(selector)’) | 选择元素中至少包含指定选择器的元素</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/用jQuery做个轮播/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/12/用jQuery做个轮播/" itemprop="url">用jQuery做个轮播</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T08:38:40+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="HTML、CSS、JS，内容、样式与行为分离。"><a href="#HTML、CSS、JS，内容、样式与行为分离。" class="headerlink" title="HTML、CSS、JS，内容、样式与行为分离。"></a>HTML、CSS、JS，内容、样式与行为分离。</h3><p>html负责内容，css负责样式，js负责行为。<br>如果用html写样式，会多了很多标签，有的标签是表现样式的，有的标签是表现结构的，很难看出逻辑结构。<br>如果用css来表示内容，用::after，用户选不中内容，js也获取不到内容。<br>如果用css来表示行为，如果css里有很复杂的逻辑，就会使css很慢，就会使页面很慢。  </p>
+<h3 id="轮播的思路"><a href="#轮播的思路" class="headerlink" title="轮播的思路"></a>轮播的思路</h3><ol>
+<li>滚来滚去</li>
+<li>用局部画面骗用户（就是把图片排成一排，不需要的图片挡住，要的显示出来就可以了。）</li>
+</ol>
+<h3 id="写代码过程"><a href="#写代码过程" class="headerlink" title="写代码过程"></a>写代码过程</h3><h4 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h4><p>一个div包裹住4张图，每张图一样的宽度，再用一个大的div把这个div包住。给大div一个和图片一样的宽度，给小div添加<code>display:flex</code>，使四张图排成一排，然后清除变形效果。给大div添加<code>overflow:hidden</code>，使超过大div范围的图片不可见。再新建个div，里面新建4个button按钮。  </p>
+<h4 id="点击按钮滑动到对应的图片"><a href="#点击按钮滑动到对应的图片" class="headerlink" title="点击按钮滑动到对应的图片"></a>点击按钮滑动到对应的图片</h4><p>引入jq库，用jQ获取4个button标签，此时得到的是个伪数组集合，遍历它，然后使用点击事件，知道你点击的是哪个按钮，用<code>index()</code>方法得到你是父级元素的第几个儿子，然后用这个几去乘图片的宽度，得到每张图片应该位移多少后能到达哪个可视框框的位置，再用动画滑动即可。</p>
+<h4 id="自动滑动"><a href="#自动滑动" class="headerlink" title="自动滑动"></a>自动滑动</h4><p>定义一个<code>n=0</code>和一个size为获取到的伪数组集合的长度。使用定时器，让n一直++，然后用(n%size)得到余数，假设size为4，那么得到的一直是0,1,2,3这四个数。然后用<code>:eq(index)</code>确定这个元素，给它添加trigger()方法，添加类，删除其他兄弟元素有相同类名的类。</p>
+<h4 id="自动滑动可停止"><a href="#自动滑动可停止" class="headerlink" title="自动滑动可停止"></a>自动滑动可停止</h4><p>当鼠标进入大div的范围时，执行停止定时器的函数。</p>
+<h4 id="停止后再自动"><a href="#停止后再自动" class="headerlink" title="停止后再自动"></a>停止后再自动</h4><p>当鼠标移出大div的范围时，再次启动定时器。</p>
+<h4 id="使点击按钮，按钮变色"><a href="#使点击按钮，按钮变色" class="headerlink" title="使点击按钮，按钮变色"></a>使点击按钮，按钮变色</h4><p>当点击按钮时，定位当前所在的按钮元素，然后给它添加类名，删除其他兄弟的类名。</p>
+<h4 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h4><p>把相同的代码封装成一个函数，然后调用这个函数。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src=&quot;//code.jquery.com/jquery-2.1.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;JS Bin&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    .window&#123;</span><br><span class="line">      border:1px solid;</span><br><span class="line">      width:200px;</span><br><span class="line">      overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    .images&#123;</span><br><span class="line">      display:flex;</span><br><span class="line">      transition: all 1s</span><br><span class="line">    &#125;</span><br><span class="line">    .images&gt;img&#123;</span><br><span class="line">      height:100%</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div class=&quot;window&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;images&quot; id=&apos;images&apos;&gt;</span><br><span class="line">      &lt;img src=&quot;#&quot; alt=&quot;cat1&quot; width=&apos;200px&apos;&gt;&lt;/img&gt;</span><br><span class="line">      &lt;img src=&quot;#&quot; alt=&quot;cat2&quot;</span><br><span class="line">      width=&apos;200px&apos;&gt;&lt;/img&gt;</span><br><span class="line">      &lt;img src=&quot;#&quot; alt=&quot;cat3&quot; width=&apos;200px&apos;&gt;&lt;/img&gt;</span><br><span class="line">      &lt;img src=&quot;#&quot; alt=&quot;cat4&quot; width=&apos;200px&apos;&gt;&lt;/img&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;buttons&quot;&gt;</span><br><span class="line">    &lt;button id=&quot;p1&quot;&gt;图片1&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;p2&quot;&gt;图片2&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;p3&quot;&gt;图片3&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;p4&quot;&gt;图片4&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">var allButton = $(&apos;button&apos;)</span><br><span class="line">for (let i = 0; i &lt; allButton.length; i++) &#123;</span><br><span class="line">  $(allButton[i]).on(&apos;click&apos;, function(x) &#123;</span><br><span class="line">    var index = $(x.currentTarget).index()</span><br><span class="line">    var p = index * -200</span><br><span class="line">    $(&apos;.images&apos;).css(&#123;</span><br><span class="line">      transform: &apos;translateX(&apos; + p + &apos;px)&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">    n = index</span><br><span class="line">    activeButton(allButton.eq(n))</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var n = 0</span><br><span class="line">var size = allButton.length</span><br><span class="line">var timeId = setTime()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function setTime()&#123;</span><br><span class="line">  return setInterval(() =&gt; &#123;</span><br><span class="line">  n++</span><br><span class="line">  console.log(n)</span><br><span class="line">  var tomeId = allButton.eq(n % size).trigger(&apos;click&apos;).addClass(&apos;red&apos;).siblings(&apos;.red&apos;).removeClass(&apos;red&apos;)</span><br><span class="line">&#125;, 1000)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function activeButton($button)&#123;</span><br><span class="line">    $button</span><br><span class="line">    .addClass(&apos;red&apos;)</span><br><span class="line">    .siblings(&apos;.red&apos;).removeClass(&apos;red&apos;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(&apos;.window&apos;).on(&apos;mouseenter&apos;, function() &#123;</span><br><span class="line">  window.clearInterval(timeId)</span><br><span class="line">&#125;)</span><br><span class="line">$(&apos;.window&apos;).on(&apos;mouseleave&apos;, function() &#123;</span><br><span class="line">  timeId = setTime()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/jQuery入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1478,347 +1764,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/23/JS里的数据/" itemprop="url">JS里的数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T10:12:58+08:00">
-                2018-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="JS历史"><a href="#JS历史" class="headerlink" title="JS历史"></a>JS历史</h3><p>ie7不支持ES5<br>IE8不支持ES6<br>JS每年一更<br>学习先从ES3&gt;ES5&gt;ES6<br>有些js没有发布的特性就已经被使用了（就是浏览器先有了，然后ECMA再纳入规范）  </p>
-<hr>
-<h3 id="数据类型（七种）"><a href="#数据类型（七种）" class="headerlink" title="数据类型（七种）"></a>数据类型（七种）</h3><p><strong>对象是复杂类型，其他的都是简单类型，复杂类型是由简单类型的组合。</strong></p>
-<ol>
-<li>数值(Number):十进制(1和.1),二进制(0b11),八进制(011),十六进制(0x11)  </li>
-<li>字符串(String):<blockquote>
-<ul>
-<li>可用单或双引号。</li>
-<li>空字符串（里面什么也没有，长度为0），空格字符串（里面有个空格，长度为1）。</li>
-<li>转义符\。回车(\n)长度为1，因为只有一个字符n。如果要输出转义符(‘\‘)。</li>
-<li>多行字符串，(‘123 \ 456),456是在第二行的，第一行的\后面不能有空格等看不见的字符，否则会报错（所以<em>不推荐使用这种方法</em>）。也可以使用+把两个字符串连起来。（推荐使用）。</li>
-<li>ES6里可以使用`（tab上面的那个键）把换行的字符包起来，里面可以直接换行，然后空格也会被算进去。</li>
-</ul>
-</blockquote>
-</li>
-<li>布尔值（boolean）：两个值：true和false<blockquote>
-<ul>
-<li>与运算(&amp;&amp;)，全是真，即为真，其他为假。  </li>
-<li>或运算(||)，有一个真，即为真，全是假，即为假。  </li>
-</ul>
-</blockquote>
-</li>
-<li>Symbol(符号)（es6新添加）</li>
-<li>undefined：一个值，undefined。表示为定义或不存在，即由于目前没有定义，所以此处暂时没有任何值</li>
-<li>null:一个值，null。表示空值，即此处的值为空。<br><code>var a</code>变量没有赋值，那么就是undefined。<br><code>var obj = null</code>有一个对象object，现在不给值，想以后给，就给null。(惯例，一般先给null)。  <blockquote>
-<p>有一个非对象，现在不给值，想以后给，就是undefined。  </p>
-</blockquote>
-</li>
-<li>对象(object)：形式相当于<strong>哈希表</strong>，是一组“键值对”的集合（无序）。    </li>
-</ol>
-<p>对象又可以分为3个子类型。  </p>
-<blockquote>
-<ol>
-<li>狭义的对象(object)  </li>
-<li>数组(array)  </li>
-<li>函数(fuction)<br>对象里面的valur可以是数值，字符串，布尔值，null，undefined，也可以是对象。<br>key可以是空字符串，对象里的所有key都是字符串，所以加不加引号都可以，如果key是数值，那么会自动转化为字符串，如果不是数值，也不加’’的话，那么要依照<strong>标识符命名原则</strong>。    </li>
-</ol>
-</blockquote>
-<p>生成：<code>var obj = {name:&#39;hello&#39;}</code>。    </p>
-<hr>
-<p>获取：<code>obj[&#39;name&#39;]</code>,假设key符合标识符的条件下可以直接<code>obj.name</code>。  </p>
-<hr>
-<p>删除：<code>delete obj[&#39;name&#39;]</code>,删掉以后再去访问，会得到undefined。key和value都被删除了，<strong>在正常查询中<code>obj.name</code>输出undefined也有可能只是没有value，就像<code>obj.name=undefined</code>它的value就是undefined</strong>。   </p>
-<hr>
-<p>查询：<code>&#39;name&#39; in obj</code> , 假设得到<code>flase</code>，那么代表无key。  </p>
-<hr>
-<p>遍历key(输出顺序不确定)：<br><code>var obj = {name:&#39;luojj&#39;,age:18};  
-for(var key in obj){  
-    console.log(key);  
-         };</code></p>
-<p>遍历value<br><code>var obj = {name:&#39;luojj&#39;,age:18}  
-for(var key in obj){  
-    console.log(obj[key])
-        }</code></p>
-<p>遍历key和value<br>in</p>
-<p><code>var obj = {name:&#39;luojj&#39;,age:18}  
-for(var key in obj){  
-    console.log(key,obj[key])  
-}</code>    </p>
-<hr>
-<p>查看变量类型<br><code>typeof a</code>。  </p>
-<hr>
-<p>null类型返回(bug1)<br><code>typeof null</code>应该返回null类型，但返回了这是一个object类型，这是js里的一个bug（历史错误）。  </p>
-<hr>
-<p>函数类型返回(bug2)<br><code>typeof function(){}</code>,应该返回这是一个object类型，但返回这是一个function类型。但是function类型不在那七种类型之内。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/适应移动端画板/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/20/适应移动端画板/" itemprop="url">适应移动端</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T19:42:20+08:00">
-                2018-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="pc端到移动端"><a href="#pc端到移动端" class="headerlink" title="pc端到移动端"></a>pc端到移动端</h3><ol>
-<li>页面缩小。</li>
-</ol>
-<ul>
-<li>按照980px<strong>宽度</strong>的大小放进移动端，假设本来就显示980px，那么就占整个移动端屏幕按比例缩小放进去。</li>
-<li>假设本来为490px，那么就占屏幕的一半，会空出一半位置</li>
-<li>如果超过980px那么就会出现滚动条。</li>
-</ul>
-<ol start="2">
-<li>双击放大。</li>
-</ol>
-<hr>
-<h3 id="响应式Web设计-viewport"><a href="#响应式Web设计-viewport" class="headerlink" title="响应式Web设计-viewport"></a>响应式Web设计-viewport</h3><h4 id="什么是viewport"><a href="#什么是viewport" class="headerlink" title="什么是viewport?"></a>什么是viewport?</h4><p>viewport是用户网页的可视区域，翻译为中文叫做“视区”。<br><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0&quot;&gt;</code><br>宽度=设备宽度，不允许缩放，所有比例都是1比1.   </p>
-<p>六个属性：</p>
-<ol>
-<li>width:控制viewport的大小，可以指定的一个值，如600，或者特殊的值，如device-width为设备的宽度（相当于100%的css像素）</li>
-<li>height：和width相对应，指定高度。</li>
-<li>initial-scale：初始缩放比例，也即是当页面第一次load的时候缩放比例。1.0，就是1：1</li>
-<li>maximum-scale：允许用户缩放到的最大比例。1.0</li>
-<li>minimum-scale：允许用户缩放到的最小比例。1.0</li>
-<li>user-scalable：用户是否可以手动缩放。yes或no</li>
-</ol>
-<h3 id="touch触摸事件"><a href="#touch触摸事件" class="headerlink" title="touch触摸事件"></a>touch触摸事件</h3><p>触摸事件的种类，有以下几种。可以通过TouchEvent。type属性，查看到底发生的是哪一种事件。</p>
-<ol>
-<li><code>touchstart</code>:用户开始触摸时触发，它的<code>target</code>属性返回发生触摸的元素节点。</li>
-<li><code>touchend</code>:用户不在接触触摸屏时（或移除屏幕边缘时）触发，它的<code>target</code>属性与<code>touchstart</code>事件一致的，就是开始触摸时所在的元素节点。它的<code>changedTouches</code>属性返回一个<code>TouchList</code>实例，包含所有不在触摸的触摸点（即<code>Touch实例对象</code>）</li>
-<li><code>touchmove</code>:用户移动触摸点时触发，它的<code>target</code>属性与<code>touchstart</code>事件一致。如果触摸的半径、角度、力度发生变化，也会触发该事件。</li>
-<li><code>touchcancel</code>:触摸点取消时触发，比如在触摸区域跳出一个情态窗口（modal window）、触摸点离开了文档区域（进入浏览器菜单栏）、用户的触摸点太多，超过了支持的上限（自动取消早先的触摸点）。  </li>
-</ol>
-<h3 id="查看设备是否支持触摸-特性检测"><a href="#查看设备是否支持触摸-特性检测" class="headerlink" title="查看设备是否支持触摸(特性检测)"></a>查看设备是否支持触摸(特性检测)</h3><ol>
-<li><code>canvas.ontouchstart</code>，如果显示为null，则为可触摸设备，表示支持该功能，不支持显示为undefined。canvas为变量名。  </li>
-<li>查看<code>ontouchstart</code>是否body的一个属性。例：<code>&#39;ontouchstart&#39; in document.body</code>显示true，代表是，那么可触摸。  </li>
-<li><code>document.body.touchstart == undefinede</code>为非触屏设备。<code>document.body.touchstart == null</code>为触屏设备。<br>in，用于查看什么属性或者什么值在不在xxx里面，例如：查看一个key在不在哈希里。<code>&#39;key&#39; in hash</code>，在就输出<code>true</code>，不在就输出<code>false</code>。  </li>
-</ol>
-<h3 id="获取触摸位置"><a href="#获取触摸位置" class="headerlink" title="获取触摸位置"></a>获取触摸位置</h3><p>在触摸事件属性里，在<code>touches:TouchList</code>里的第0项，有那个触摸点的clienX和clineY坐标，为什么是第0项呢？因为在触摸设备里，可能有二点触控，三点触控，五点触控，这是一个触摸点列表集合。<br><code>canvas.ontouchstart = function(a){
-    var x = a.touches[0].clientX
-    var y = a.touches[0].clientY 
-}</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1869,7 +1814,7 @@ for(var key in obj){
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1880,7 +1825,7 @@ for(var key in obj){
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1891,7 +1836,7 @@ for(var key in obj){
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
