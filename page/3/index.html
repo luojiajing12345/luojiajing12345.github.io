@@ -253,6 +253,181 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/23/JS里的类型/" itemprop="url">JS里的类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-23T21:19:02+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h4 id="强制转换"><a href="#强制转换" class="headerlink" title="强制转换"></a>强制转换</h4><ol>
+<li>其他类型转化为数值类型<br><strong>可使用：全局函数Number()，全局函数parseInt()(重要),全局函数parseFoat(),减0，取正(就是前面加个+)</strong><br>字符串<br>Number(‘123’)//123  //如果可以被解析为数值，则转换为相应的数值。<br>Number(‘123a’)//NaN //如果有一个字符无法转成数值，那么整个字符串就会被转为NaN<br>Number(‘’) //0 //空字符串转为0<br>布尔值<br>Number(true) //1<br>Number(flase) //0<br>undefined<br>Number(undefined) //NaN<br>null<br>Number(null) //0<br>对象<br>Number({a:1}) //NaN<br>Number({}) //NaN<br>Number([5]) //5 除了包含单个数值的数组，会返回那个数值，其他都返回NaN  </li>
+</ol>
+<hr>
+<ol start="2">
+<li>其他类型转化为字符串类型<br><strong>可使用的API:toString()，全局函数String(),加个’’空字符串</strong><br>数值<br>var a = 1; a.toString() //‘1’ //这个要使用变量<br>String(123) //‘123’ //转为相应的字符串。<br>字符串<br>String(‘abc’) //‘abc’ //不变。<br>布尔值<br>String(true) //‘ture’ //转为相应的字符串。<br>undefined<br>String(undefined) //‘undefined’ //转为字符’undefined’。<br><strong>undefined.toString() //报错，Cannot read property ‘toString’ of undefined</strong>，无法读取undefied的toString属性。<br>null<br>String(null) //‘null’ //转为字符串’null’<br><strong>null.toString() //报错，Cannot read property ‘toString’ of null</strong> ,意思是null没有toString()这个API，无法读取null的toString属性。<br>对象<br>String({a:1}) //‘[object Object]’ //参数是对象，返回一个类型字符串<br>String([1,2,3]) //‘1,2,3’ //参数是数组，返回该数组的字符串形式<br><code>console.log(1)</code>==<code>console.log((1).toString())</code>，发现你不是字符串，会转化为字符串。<br><strong>小技巧：想把其他类型转换为字符串，直接让那个值加一个空字符串，1 + ‘’ ==’1’</strong>   </li>
+</ol>
+<hr>
+<ol start="3">
+<li>其他类型转化为布尔类型<br><strong>可使用：全局函数Boolean()，取返2次（在其他值面前加两个！）</strong><br>除了以下五个值的转换结果为false，这五个值叫falsy值，其他的值全部都是ture。<blockquote>
+<p>undefined<br>null<br>-0或+0<br>NaN<br>‘’(空字符串)</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h4 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h4><ol>
+<li><p>不同类型互相运算<br><code>123 + &#39;abc&#39;</code> //“123abc”  //会把前面的123，先123.toString(),转化为字符串，然后两个字符串相加。</p>
+</li>
+<li><p>对非布尔值类型的数据求布尔值<br>‘’’if(‘abc’){<br> console.log(‘hello’)<br>} //“hello”<br>‘’’</p>
+</li>
+<li>对非数值类型的值使用运算符（+和-）</li>
+</ol>
+<ul>
+<li>{foo:’bar’} //NaN</li>
+</ul>
+<ul>
+<li>[1,2,3] //NaN</li>
+</ul>
+<ol start="4">
+<li>除了加法运算符(+)有可能吧运算子转为字符串，其他运算符都会把运算自自动转成数值。<br><code>&#39;5&#39;-&#39;2&#39;</code> //3<br><code>&#39;abc&#39; - 1</code> //NaN</li>
+</ol>
+<h3 id="javascript基本类型和引用类型在内存中的值"><a href="#javascript基本类型和引用类型在内存中的值" class="headerlink" title="javascript基本类型和引用类型在内存中的值"></a>javascript基本类型和引用类型在内存中的值</h3><hr>
+<h4 id="内存基本概念"><a href="#内存基本概念" class="headerlink" title="内存基本概念"></a>内存基本概念</h4><p><strong>内存的生存周期：</strong></p>
+<ol>
+<li>分配所需的内存</li>
+<li>内存的读与写</li>
+<li>不需要时将其释放<br>所有语言的内存生命周期都基本一致，不同的是最后一步在低级语言中很清晰，但是在像JavaScript等高级语言中，这一步是隐藏的、透明的。  </li>
+</ol>
+<p><strong>js内存生命周期：</strong>  </p>
+<ol>
+<li>定义变量时就完成了内存分配</li>
+<li>使用值的过程实际上是对分配内存进行读取与写入的操作，读取与写入可能是写入一个变量或者一个对象的属性值，甚至传递函数的参数。</li>
+<li>内存的释放依赖GC机制（高级语言解释器嵌入的“垃圾回收器”）。   </li>
+</ol>
+<hr>
+<h3 id="数据和代码在内存中的存放"><a href="#数据和代码在内存中的存放" class="headerlink" title="数据和代码在内存中的存放"></a>数据和代码在内存中的存放</h3><p>js程序在运行的时候，需要内存空间存放代码和数据，所以分为代码区和数据区。而数据区又分为栈(stack)和堆(heap)两种内存空间。  </p>
+<ul>
+<li>栈(stack)是有结构的，每个块区按照一定次序存放（先进后出），sack中主要存放一些基本的变量和对象的引用，存在栈中的数据大小与生存期必须是确定的。可以明确知道每个区块的大小，因此，stack的寻址速度要快于heap。它的存储方式是一行一行的和栈类似。简单数据类型都存在这（6种）。  </li>
+<li>堆(heap)是没有结构的，数据可以任意存放。heap用于复杂数据类型（引用类型）分配空间，例如数组对象、object对象。它的存储方式跟堆类似。<br>例<code>var a = 1</code>,首先变量a提升，此时a等于undefined，然后a放在代码区，1放在数据区的栈里。在js内部，所有数字都是以64位浮点数形式储存，所以这个1在内存里占了64位。ECMAScript规定。<br>复制基本类型：<code>var b = 2</code>,也和上面一样，当<code>b=a</code>，那么就把a对应的在栈里的64位浮点数形式的1覆盖在b对应的栈的位置。<br>js在存字符的时候，每个字符占16位。ECMAScript规定<br>存对象：<code>var a = {name:&#39;luo&#39;,age:18}</code>,那么会把a放在代码区，然后a对应的栈内存里有个ADDR（地址），那个地址是堆内存中的一块空间的地址，这块空间大小可以变化，就可以不受影响的增加或减少对象里的东西了。<br>复制对象：相当于把变量对应的栈里面的ADDR复制给另一个变量。  </li>
+</ul>
+<hr>
+<p>引用：当复制保存着对象的某个变量时，操作的是对象的引用（就是那个地址）。但在为对象添加属性时，操作的是实际的对象。<br><strong>关于循环引用</strong><code>var a</code>,<code>a={self:a}</code>,a.self等于undefined。也就是得到的对象是{self:undefined},因为第二步把对象赋值给a的时候，对象里的a等于undefined，运算是从右到左的。<br>循环引用应该是<code>var a = {}</code>,<code>a.self=a</code>,会得到一个{self:{…}},点开发现里面也是一个{self:{…}}，一直循环。因为我们把a的值赋值给self的value，然后我们打开对象a，发现里面的栈有个地址，说明是个对象，按着这个地址找到堆里的空间，发现里面的self对应的又是个地址，再按着这个地址，一直循环，一直都在那个空间里找。    </p>
+<p>引用类型面试题：<br>输入：<code>var a={n:1};var b=a;a.x=a={n:2}</code>。<br>输出<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。。<br>首先前两步是没有问题的，生成一个对象，赋值给a，然后把a的地址赋值给b，此时<strong>a和b在stack中的值（地址）是一样的，假设为ADDR100,对应的heap中的对象也是一样的</strong>。<br>然后<code>a.x=a={n:2}</code>,假设{n:2}的地址为ADDR200，浏览器读数据是从左到右的，运算是从右到左的。所以此时a的值为ADDR100，右边运算赋值后给中间a后，中间的a后此时对应的stack中的值为ADDR200,左边的a还是ADDR100，然后把中间那个a，也就是ADDR200,赋值给ADDR100中的对象中的key为x的value。<br>那么此时a是ADDR200那里的的对象，里面的对象为<code>{n:2}</code>,b为ADDR100那里的对象，里面的对象为<code>{n:1,x:{n:2}}</code>,第三步的赋值只是赋给了ADDR100对应的对象里面的key为x的value。<br>当使用<code>alert(a.x)</code>，会调用toString方法。所以<code>alert(a.x);--&gt;undefined</code>,<code>alert(b.x);--&gt;[object Object]</code>。   </p>
+<hr>
+<h3 id="垃圾回收机制（GC）"><a href="#垃圾回收机制（GC）" class="headerlink" title="垃圾回收机制（GC）"></a>垃圾回收机制（GC）</h3><p>Javascript具有自动垃圾回收机制。<br><strong>如果一个对象没有被引用，他就是垃圾，将被回收。</strong><br><code>var a={name:&#39;a&#39;};var b={name:&#39;b&#39;};a=b</code>，a就变成垃圾，将被回收，至于什么时候回收是不确定的。<br><code>var fn = function(){};document.body.onclick=fn;fn=null;</code>请问这个函数是不是垃圾？<br>答：不是，当函数赋值给fn的时候，fn的stack指向那个对象，fn赋值给document.body.onclick时，document指向body,body指向onclick，onclick指向那个对象。当fn等于null，document那条连接并没有改变，对象还是被引用。<br>如果onclick等于null的话，那么它就是垃圾了。<br>如果把页面关闭的话，它也变成垃圾了。因为页面关了，相当于document不见了，然后它们内部只有body–&gt;onclick–&gt;function(){}了。<br>在IE6里面这三个不算垃圾，它会把这三个对象一直留着，只要不关闭整个浏览器就会一直留着，这样垃圾会越来越多。我们要把这个垃圾丢掉的话，只能运行<code>window.onunload = function(){document.body.onclick = null}</code>这种代码，把所有的事件监听赋值为空，<strong>所有的</strong>，这就是<strong>内存泄漏</strong>。<br><strong>内存泄漏</strong>就是由一些浏览器引起的bug，使一些该被标记为垃圾的东西没有被标记为垃圾，然后内存就会被永久的占用着，浏览器会占用越来越多内存，会变慢，甚至崩溃。</p>
+<h3 id="深拷贝和浅拷贝概念"><a href="#深拷贝和浅拷贝概念" class="headerlink" title="深拷贝和浅拷贝概念"></a>深拷贝和浅拷贝概念</h3><p>深拷贝：<code>var a=1;var b=a;</code>b变，不影响a。所以一般说深拷贝和浅拷贝的时候不考虑基本类型，因为赋值都是深拷贝。我们只说对象。<br>浅拷贝：<code>var a={name:&#39;a&#39;};var b=a;b.name=&#39;b&#39;；</code>此时a={name:’b’},把a复制给b后，b改变，a也改变，这就是浅拷贝。<br>深拷贝：a和b在stack里有不同的地址，在heap里的空间也不一样，假设在heap里的对象中还有地址，也必须是不同的，这是两条分开，独立，互不影响的两条线。b变，a不变。这就是深拷贝。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/JS里的数据/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,217 +1859,6 @@ hash[key] = hashurl //替换hash里的值
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/算法入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/05/算法入门/" itemprop="url">算法入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T20:52:42+08:00">
-                2018-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="结构化编程"><a href="#结构化编程" class="headerlink" title="结构化编程"></a>结构化编程</h3><p>结构化程式设计（英语：Structured programming），一种编程典范。它采用子程序、程式码区块（英语：block structures）、for循环以及while循环等结构，来取代传统的 goto。希望借此来改善计算机程序的明晰性、品质以及开发时间，并且避免写出面条式代码。<br>满足下面3个语句，就是结构化编程。</p>
-<ol>
-<li>一行一行执行</li>
-<li>有条件控制语句if…else…</li>
-<li>有循环控制语句while(exp)do…</li>
-</ol>
-<h3 id="什么是算法"><a href="#什么是算法" class="headerlink" title="什么是算法"></a>什么是算法</h3><p>在高德纳的著作《计算机程序设计艺术》里对算法的特征归纳：</p>
-<ul>
-<li>输入：一个算法必须有零个或以上输入量。</li>
-<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
-<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地匹配要求或期望，通常要求实际运行结果的确定的。</li>
-<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态，有限个输入符号和有限个穿衣函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
-<li>有效性：又称可行性。能够实现，算法中描述的操作都可以通过已经实现的基本运算执行有限次来实现。</li>
-</ul>
-<h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><p>就是数据的结构。<br>一般来说这样的：</p>
-<ol>
-<li>我们要解决一个跟数据相关的问题。  </li>
-<li>分析这个问题，相处对应的数据结构</li>
-<li><strong>分析数据结构，想出算法</strong><blockquote>
-<p>数据结构和算法是相互依存，不可分开的。<br>学习完排序算法，就能了解常见的数据结构。</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="算法大分类"><a href="#算法大分类" class="headerlink" title="算法大分类"></a>算法大分类</h3><ul>
-<li>分治法：把一个问题分区成互相独立的多个部分分别求解的思路。这种求解思路带来的好处之一是便于进行并行计算。（例如把国家分为省，然后把省分为市这样一路分，每个地方不一样的管理方式）</li>
-<li>动态规则法：当问题的整体最优解就是有局部最优解组成的时候，经常采用的一种方式。（就目前的情况来看，如果当前是最好的，那么就用这个。）</li>
-<li>贪婪算法： 常见的近似求解思路。当问题的整体最优解不是（或无法证明是）由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。（短视算法，选择当前较好的方法）</li>
-<li>线性规划法：</li>
-<li>简并法：把一个问题通过逻辑或数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。</li>
-</ul>
-<p><strong>前端主要使用分治法————分而治之</strong></p>
-<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p><strong>冒泡排序</strong>（体育委员两两对比法）：例如要把3、5、9、1、7、6这六个数字从左往右为以小到大。</p>
-<ol>
-<li>对比第一个和第二个，把小的放左边，大的放右边。</li>
-<li>然后对比第二个和第三个，也是小的放左边，大的放右边。</li>
-<li>就这样依次对比，比完第五个和第六个。此时的排序为3、5、1、7、6、9。此时最大的值已固定。</li>
-<li>依照前面的方法，但最后一位数不用再比，此时的排序为3、1、5、6、7、9。此时后两位二位已固定。</li>
-<li>再按照前面的方法，最后两位不用比，此时的排序为1、3、5、6、7、9。此时后三位已固定。</li>
-<li>再按照前面的方法，后3位不用比，此时排序为1、3、5、6、7、9.此时后四位已固定。</li>
-<li>再按照前面的方法，后四位不用比，此时排序为1、3、5、6、7、9.此时后五位已固定，</li>
-<li>那么这几个数字从左往右从小到大为1、3、5、6、7、9.</li>
-</ol>
-<p><strong>选择排序</strong>（体育老师一指禅法）：例如要把6、3、2、4、5、1这6个数字从左往右以小到大。</p>
-<ol>
-<li>找出个最小的，把这6个数字相互比较，找出最小的数字也就是1，把跟最前面的数字换位置，得到的排序为1、3、2、4、5、6，此时最小值已固定。比较方法，例：6和3比，3小；3和2比，2小；2和4比。4小，这样。</li>
-<li>从后五位中选出最小的，也就是2，和排在第二位的3换位置，得到的为1、2、3、4、5、6，此时前二位已固定。</li>
-<li>从后四位中选出最小的，也就是3,3本身排在第三位，就不用换位置了，此时排序为1、2、3、4、5、6，前三位已固定。</li>
-<li>从后三位中选出最小的，也就是4,4本身排在第四位，就不用换位置了，此时排序为1、2、3、4、5、6，前四位已固定。</li>
-<li>从后二位中选出最小的，也就是5,5本身排在第五位，就不用换位置了，此时排序为1、2、3、4、5、6，前五位已固定。</li>
-<li>此时得到的排序就是想要的排序了。</li>
-</ol>
-<p><strong>插入排序</strong>（起扑克牌法）例如要把5、6、4、3、2、1这6个数字从左往右以小到大。</p>
-<ol>
-<li>把第一个数字，也就是5（第一张扑克牌），拿到手里。此时排序为5.</li>
-<li>拿到第二个，也就是6，对比手中的5，发现比5大，把6放5右边。此时排序5、6.</li>
-<li>拿到第三个，也就是4，对比手中的，发现比6小，然后有比5小，把4放5左边。此时排序4、5、6.</li>
-<li>拿到第四个，也就是3，对比手中的，发现比4、5、6都小，把3放最左边。此时排序3、4、5、6.</li>
-<li>拿到第五个，也就是2，对比手中的，发现比3、4、5、6都小，把2放最左边。此时排序2、3、4、5、6.</li>
-<li>拿到最后一个，也就是1，对比手中的，发现比2、3、4、5、6都小，把1放最左边，此时排序1、2、3、4、5、6.</li>
-<li>此时得到想要的排序1、2、3、4、5、6.</li>
-</ol>
-<p><strong>桶排序</strong>（强迫症受扑克牌法） 例如地上有4个A，4个2,4个K，4个3，要把它们收集起来。<br>随便捡一个，例如捡到A，把A放一边放好，再捡到2，又放一边放好，再捡到A，放到A放的地方叠起来，就一直这样，相同的放一起，不同的分开放。<strong>优点：速度最快，因为不用对比。缺点：需要较大的存放空间</strong></p>
-<p><strong>快速排序</strong> 例如要把13、2、60、0、1、32、40、9、6这9个数字从左往右以小到大排。</p>
-<ol>
-<li>以13为中心，比它小的放左边，大的放右边。此时的排序为2、0、1、9、6、13、60、32、40。此时13已结确定位置。</li>
-<li>以2为中心，和13前面的另外几个数字对比，比它小的左边，大的右边。以60为中心，和13后面的另外几个数字对比，比它小的放左边，大的放右边。<strong>因为对比的数少很多，所以节省很多时间</strong>,此时的排序为，0、1、2、9、6、13、32、40、60。此时2,13,60位置已固定。</li>
-<li>以0为中心，和2前面的数字对比，比它小的放左边，大的放右边。以9为中心，和2后面13前面的数字作对比，比它小的放左边，比它大的放右边。以32为中心，和13后面60前面的数字对比，比它小的放左边，大的放右边。此时的排序为0、1、2、6、9、13、32、40、60。此时所有数字都以固定</li>
-<li>此时得到想要的排序0、1、2、6、9、13、32、40、60。</li>
-</ol>
-<p><strong>快速排序之所以快，是因为每次对比过后，都缺少一半对比的东西，减少很多对比时间。</strong><br><strong>快排有时也不快，例如每次选的中心要么是最大的要么是最小的，所有数字都跑到一边去了的时候</strong>例：654321，选了6，然后选了5，以此类推。解决此类的方法是随机选个数字，所以尽量使用<strong>随机快排</strong>。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1945,7 +1909,7 @@ hash[key] = hashurl //替换hash里的值
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

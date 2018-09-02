@@ -253,6 +253,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/面向对象思想/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="罗嘉劲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="罗嘉劲的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/面向对象思想/" itemprop="url">面向对象思想</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T19:25:24+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="面向过程设计思想和面向对象设计思想"><a href="#面向过程设计思想和面向对象设计思想" class="headerlink" title="面向过程设计思想和面向对象设计思想"></a>面向过程设计思想和面向对象设计思想</h2><p>举例：  </p>
+<ul>
+<li>我要去新疆<ul>
+<li>面向过程<ul>
+<li>我开车，我挂挡，我踩油门，我过河北，我过陕西…</li>
+</ul>
+</li>
+<li>面向对象<ul>
+<li>我命令车去新疆（完成）</li>
+<li>车怎么去不关我事<ul>
+<li>信息封装在车这个类的内部</li>
+<li>我不用去了解车整个开动的过程和走过的地方</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>面向对象的设计思想</p>
+<ul>
+<li>面向对象的基本思想是，从现实水世界中客观存在的失误出发来构造软件系统，并在系统的构造中尽可能运用人类的自然思维方式。</li>
+<li>面向对象更加强调运用人类在日常的思维逻辑中经常采用的思想方法与原则，如抽象、分类、继承、聚合、多态等。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/JAVA01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -576,7 +741,48 @@
       
         
           
-            
+            <p>前端可以直接判断输入的账号密码是否符合格式，是否为空，这样就可以不用再发送请求给后端了。<br>前端也可以不加判断，但是后端一定要判断，因为不一定所有的请求都通过浏览器来发送，如果不是通过浏览器发送的话，前端判断就无效了</p>
+<h3 id="Cookie特点"><a href="#Cookie特点" class="headerlink" title="Cookie特点"></a>Cookie特点</h3><ol>
+<li>服务器通过 Set-Cookie 响应头设置 Cookie</li>
+<li>浏览器得到Cookie之后，每次请求都会带上Cookie</li>
+<li>服务器读取 Cookie 就知道登陆用户的信息</li>
+</ol>
+<p>问题  </p>
+<ol>
+<li>我在 Chrome 登陆了，用Safari访问，Safari会带上Cookie吗？  <ul>
+<li>不会，</li>
+</ul>
+</li>
+<li>Cookie存在哪？<ul>
+<li>Window 存在C盘的一个文件里。</li>
+<li>其他系统存在硬盘的一个文件中。 </li>
+</ul>
+</li>
+<li>Cookie能造假吗？<ul>
+<li>可以，Chrome的开发者工具——Application——Cookies里面直接改。所以不能相信这个Cookie。</li>
+</ul>
+</li>
+<li>Cookie有有效期吗？<ul>
+<li>有，但所以时间不确定，默认有效期为20分钟左右，由浏览器决定。例如：浏览器一直没关，Cookie可能一直在。浏览器关了，立马打开，Cookie也还在。浏览器关了，明天再打开，可能Cookie就没有了。</li>
+<li>后端可以强制设置有效期，例如一些网站上的，7天内不再重新登录等，可以直接在MDN搜索“Set-Cookie”<br>查看文档。</li>
+</ul>
+</li>
+</ol>
+<h3 id="注册到登陆完成流程"><a href="#注册到登陆完成流程" class="headerlink" title="注册到登陆完成流程"></a>注册到登陆完成流程</h3><ol>
+<li>打开注册页面注册</li>
+<li>发送POST请求，带有账号密码</li>
+<li>服务器验证没有问题就会写进数据库</li>
+<li>告诉用户注册成功，用户打开登陆页面</li>
+<li>登陆的时候会发送POST请求</li>
+<li>服务器查询账号密码在不在数据库</li>
+<li>如果在，服务器会给浏览器一个Cookie</li>
+<li>浏览器会把Cookie记录下来</li>
+<li>用户访问该网站的时候，会带上Cookie</li>
+<li>服务器读一下Cookie，查看到里面id，会通过id找到用户信息，会查看到用户的所有信息</li>
+<li>在html页面上填入对应信息，username和password那些，所以就不用再次登录就可以打开网页。</li>
+<li>假设有另一个用户访问该网站，因为没有cookie，所以会给一个所有人一样的页面，让你注册或登陆。</li>
+</ol>
+
           
         
       
@@ -1663,150 +1869,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/无缝轮播/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗嘉劲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="罗嘉劲的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/13/无缝轮播/" itemprop="url">无缝轮播</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T18:14:48+08:00">
-                2018-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>假设有三张图，开始把第一张图在前面，后面跟着第二张图，然后到第二张图时，第三张图在后面，到第三张图时，又把第一张图放第三张图后面，如此循环。</p>
-<h3 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h3><p>一个大div，一个小div，小div里有4张图，这4张图绝对定位于同一个位置，设置3个类样式，一个为显示在中间，一个为在右边，一个为在左边，设置translateX，在左边就-100%，右边就100%，设置完这三个样式，然后设置js切换着三个样式，当第一张图片滑动过去后切换状态，跑到右边，第二张跑到中间，然后第二张滑过去，先到左边然后又到右边，第三张滑到中间，使用一个增量然后使它一直从等于从1-4，循环，然后这4张图片就一直这三个样式切换，实现了html，css，js分离。</p>
-<h3 id="DOM-Events"><a href="#DOM-Events" class="headerlink" title="DOM Events"></a>DOM Events</h3><h4 id="DOM-Level-0版本"><a href="#DOM-Level-0版本" class="headerlink" title="DOM Level 0版本"></a>DOM Level 0版本</h4><p>在标准出来前就存在的规范，那时候就有onchick等</p>
-<h4 id="DOM-Level-1版本"><a href="#DOM-Level-1版本" class="headerlink" title="DOM Level 1版本"></a>DOM Level 1版本</h4><ol>
-<li>DOM Core</li>
-<li>DOM HTML<br>只是一个汇总<h4 id="DOM-Level-2版本"><a href="#DOM-Level-2版本" class="headerlink" title="DOM Level 2版本"></a>DOM Level 2版本</h4>把事件做了个详细的说明（目前用的最广泛的），增加了Events<h4 id="DOM-Level-3版本"><a href="#DOM-Level-3版本" class="headerlink" title="DOM Level 3版本"></a>DOM Level 3版本</h4>并没有对Events做修改。<h4 id="DOM-Level-4版本"><a href="#DOM-Level-4版本" class="headerlink" title="DOM Level 4版本"></a>DOM Level 4版本</h4>还在草案中</li>
-</ol>
-<p>在HTML里，onclick =’要执行的代码’，一旦用户点击，浏览器就eval(‘要执行的代码’)<br>在js里，x.onclick = 函数名，一旦用户点击那么浏览器就会执行x.onclick.call(x,{})，后面那个函数名是一个函数。  </p>
-<p>以下两个的区别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxx.addEventListrener(&apos;click&apos;,function()&#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxx.onclick = function()&#123;</span><br><span class="line">    console,log(1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>onclick属性是唯一的，无法绑定两个onclick，后面那个会把前面那个覆盖。有可能会把以前的覆盖（不推荐）<br>addEventListener属性是一个事件监听队列，先进先出，先绑定的先触发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">&#125;</span><br><span class="line">function f2()&#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;</span><br><span class="line">xxx.adEventListener(&apos;click&apos;,f1) //f1进去排队</span><br><span class="line">xxx.adEventListener(&apos;click&apos;,f2) //f2进去排队，此时队列里有f1和f2，f1先进，所以先输出1，再输出2</span><br><span class="line">xxx.removeEventListener(&apos;click&apos;,f1) //f1跑出队列了，此时队列里只有f2，点击按钮，只输出2</span><br></pre></td></tr></table></figure></p>
-<p>one(一次事件监听)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">    xxx.removeEventListener(&apos;click&apos;,f1)</span><br><span class="line">&#125;</span><br><span class="line">xxx.adEventListener(&apos;click&apos;,f1) //只点第一次的时候，输出个1，后面再点无效，因为f1已经跑出队列了。</span><br></pre></td></tr></table></figure></p>
-<h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;JS Bin&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    div&#123;</span><br><span class="line">      border:1px solid;</span><br><span class="line">        padding:10px;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;grand1&quot;&gt;</span><br><span class="line">    爷爷</span><br><span class="line">    &lt;div id=&quot;parent1&quot;&gt;</span><br><span class="line">      爸爸</span><br><span class="line">      &lt;div id=&quot;child1&quot;&gt;</span><br><span class="line">        儿子</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    grand1.addEventListener(&apos;click&apos;,function f1()&#123;</span><br><span class="line">      console.log(&apos;爷爷&apos;)</span><br><span class="line">    &#125;,true)</span><br><span class="line">    parent1.addEventListener(&apos;click&apos;,function f2()&#123;</span><br><span class="line">      console.log(&apos;爸爸&apos;)</span><br><span class="line">    &#125;,true)</span><br><span class="line">    child1.addEventListener(&apos;click&apos;,function f3()&#123;</span><br><span class="line">      console.log(&apos;儿子&apos;)</span><br><span class="line">    &#125;,true)</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>当我们点击儿子的时候，默认的情况下（不传参数的时候）会先输出儿子、爸爸、爷爷。当我们在函数后面加上true的时候，会先输出爷爷，爸爸，儿子，当加上的是false值的时候为默认的情况，从小到大。  </p>
-<ul>
-<li>从上到下阶段，true，捕获阶段。   </li>
-<li>从下到上阶段。false或默认，冒泡阶段</li>
-</ul>
-<p><em>假设同个元素上，既有捕获又有冒泡</em></p>
-<ul>
-<li>如果是点击的那个元素（儿子），那么是谁先写，就谁先执行。  </li>
-<li>如果是它的爸爸或爷爷，那么先捕获，后冒泡。<br>举例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">grand1.addEventListener(&apos;click&apos;,function f1()&#123;</span><br><span class="line">  console.log(&apos;爷爷冒泡&apos;)</span><br><span class="line">&#125;,true)</span><br><span class="line">grand1.addEventListener(&apos;click&apos;,function f1()&#123;</span><br><span class="line">  console.log(&apos;爷爷捕获&apos;)</span><br><span class="line">&#125;,true)</span><br><span class="line">parent1.addEventListener(&apos;click&apos;,function f2()&#123;</span><br><span class="line">  console.log(&apos;爸爸冒泡&apos;)</span><br><span class="line">&#125;,true)</span><br><span class="line">    parent1.addEventListener(&apos;click&apos;,function f2()&#123;</span><br><span class="line">  console.log(&apos;爸爸捕获&apos;)</span><br><span class="line">&#125;,true)</span><br><span class="line"></span><br><span class="line">child1.addEventListener(&apos;click&apos;,function f3()&#123;</span><br><span class="line">  console.log(&apos;儿子冒泡&apos;)</span><br><span class="line">&#125;,true)</span><br><span class="line">child1.addEventListener(&apos;click&apos;,function f3()&#123;</span><br><span class="line">  console.log(&apos;儿子捕获&apos;)</span><br><span class="line">&#125;,true)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>它的输出顺序是，爷爷捕获、爸爸捕获、儿子冒泡、儿子捕获、爸爸冒泡、爷爷冒泡</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1857,7 +1919,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

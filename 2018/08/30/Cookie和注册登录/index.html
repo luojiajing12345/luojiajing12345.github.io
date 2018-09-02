@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="罗嘉劲的博客，记录一些学习的东西">
+<meta name="description" content="前端可以直接判断输入的账号密码是否符合格式，是否为空，这样就可以不用再发送请求给后端了。前端也可以不加判断，但是后端一定要判断，因为不一定所有的请求都通过浏览器来发送，如果不是通过浏览器发送的话，前端判断就无效了 Cookie特点 服务器通过 Set-Cookie 响应头设置 Cookie 浏览器得到Cookie之后，每次请求都会带上Cookie 服务器读取 Cookie 就知道登陆用户的信息">
 <meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cookie和注册登录">
 <meta property="og:url" content="http://yoursite.com/2018/08/30/Cookie和注册登录/index.html">
 <meta property="og:site_name" content="罗嘉劲的博客">
-<meta property="og:description" content="罗嘉劲的博客，记录一些学习的东西">
+<meta property="og:description" content="前端可以直接判断输入的账号密码是否符合格式，是否为空，这样就可以不用再发送请求给后端了。前端也可以不加判断，但是后端一定要判断，因为不一定所有的请求都通过浏览器来发送，如果不是通过浏览器发送的话，前端判断就无效了 Cookie特点 服务器通过 Set-Cookie 响应头设置 Cookie 浏览器得到Cookie之后，每次请求都会带上Cookie 服务器读取 Cookie 就知道登陆用户的信息">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T01:37:22.783Z">
+<meta property="og:updated_time" content="2018-09-02T11:03:26.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cookie和注册登录">
-<meta name="twitter:description" content="罗嘉劲的博客，记录一些学习的东西">
+<meta name="twitter:description" content="前端可以直接判断输入的账号密码是否符合格式，是否为空，这样就可以不用再发送请求给后端了。前端也可以不加判断，但是后端一定要判断，因为不一定所有的请求都通过浏览器来发送，如果不是通过浏览器发送的话，前端判断就无效了 Cookie特点 服务器通过 Set-Cookie 响应头设置 Cookie 浏览器得到Cookie之后，每次请求都会带上Cookie 服务器读取 Cookie 就知道登陆用户的信息">
 
 
 
@@ -342,7 +342,48 @@
       
 
       
-        
+        <p>前端可以直接判断输入的账号密码是否符合格式，是否为空，这样就可以不用再发送请求给后端了。<br>前端也可以不加判断，但是后端一定要判断，因为不一定所有的请求都通过浏览器来发送，如果不是通过浏览器发送的话，前端判断就无效了</p>
+<h3 id="Cookie特点"><a href="#Cookie特点" class="headerlink" title="Cookie特点"></a>Cookie特点</h3><ol>
+<li>服务器通过 Set-Cookie 响应头设置 Cookie</li>
+<li>浏览器得到Cookie之后，每次请求都会带上Cookie</li>
+<li>服务器读取 Cookie 就知道登陆用户的信息</li>
+</ol>
+<p>问题  </p>
+<ol>
+<li>我在 Chrome 登陆了，用Safari访问，Safari会带上Cookie吗？  <ul>
+<li>不会，</li>
+</ul>
+</li>
+<li>Cookie存在哪？<ul>
+<li>Window 存在C盘的一个文件里。</li>
+<li>其他系统存在硬盘的一个文件中。 </li>
+</ul>
+</li>
+<li>Cookie能造假吗？<ul>
+<li>可以，Chrome的开发者工具——Application——Cookies里面直接改。所以不能相信这个Cookie。</li>
+</ul>
+</li>
+<li>Cookie有有效期吗？<ul>
+<li>有，但所以时间不确定，默认有效期为20分钟左右，由浏览器决定。例如：浏览器一直没关，Cookie可能一直在。浏览器关了，立马打开，Cookie也还在。浏览器关了，明天再打开，可能Cookie就没有了。</li>
+<li>后端可以强制设置有效期，例如一些网站上的，7天内不再重新登录等，可以直接在MDN搜索“Set-Cookie”<br>查看文档。</li>
+</ul>
+</li>
+</ol>
+<h3 id="注册到登陆完成流程"><a href="#注册到登陆完成流程" class="headerlink" title="注册到登陆完成流程"></a>注册到登陆完成流程</h3><ol>
+<li>打开注册页面注册</li>
+<li>发送POST请求，带有账号密码</li>
+<li>服务器验证没有问题就会写进数据库</li>
+<li>告诉用户注册成功，用户打开登陆页面</li>
+<li>登陆的时候会发送POST请求</li>
+<li>服务器查询账号密码在不在数据库</li>
+<li>如果在，服务器会给浏览器一个Cookie</li>
+<li>浏览器会把Cookie记录下来</li>
+<li>用户访问该网站的时候，会带上Cookie</li>
+<li>服务器读一下Cookie，查看到里面id，会通过id找到用户信息，会查看到用户的所有信息</li>
+<li>在html页面上填入对应信息，username和password那些，所以就不用再次登录就可以打开网页。</li>
+<li>假设有另一个用户访问该网站，因为没有cookie，所以会给一个所有人一样的页面，让你注册或登陆。</li>
+</ol>
+
       
     </div>
     
@@ -436,8 +477,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -452,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,6 +547,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie特点"><span class="nav-number">1.</span> <span class="nav-text">Cookie特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册到登陆完成流程"><span class="nav-number">2.</span> <span class="nav-text">注册到登陆完成流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
