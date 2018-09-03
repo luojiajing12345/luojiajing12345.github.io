@@ -742,9 +742,15 @@
         
           
             <p>前端可以直接判断输入的账号密码是否符合格式，是否为空，这样就可以不用再发送请求给后端了。<br>前端也可以不加判断，但是后端一定要判断，因为不一定所有的请求都通过浏览器来发送，如果不是通过浏览器发送的话，前端判断就无效了</p>
+<h3 id="Cookie是什么？-重点"><a href="#Cookie是什么？-重点" class="headerlink" title="Cookie是什么？(重点)"></a>Cookie是什么？(重点)</h3><ol>
+<li>服务器通过 Set-Cookie 头给客户端一串字符串（登陆不登录都有）</li>
+<li>客户端每次访问相同域名的网页时，必须带上这个字符串</li>
+<li>客户端要在一段时间内保存这个Cookie</li>
+<li>Cookie默认在用户关闭页面后就失效，后台代码可以任意设置Cookie的过期时间。</li>
+</ol>
 <h3 id="Cookie特点"><a href="#Cookie特点" class="headerlink" title="Cookie特点"></a>Cookie特点</h3><ol>
 <li>服务器通过 Set-Cookie 响应头设置 Cookie</li>
-<li>浏览器得到Cookie之后，每次请求都会带上Cookie</li>
+<li>浏览器得到Cookie之后，每次请求都会带上Cookie(访问同域名)</li>
 <li>服务器读取 Cookie 就知道登陆用户的信息</li>
 </ol>
 <p>问题  </p>
@@ -768,7 +774,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="注册到登陆完成流程"><a href="#注册到登陆完成流程" class="headerlink" title="注册到登陆完成流程"></a>注册到登陆完成流程</h3><ol>
+<h3 id="前端永远都不要去写或者读Cookie，这是后端做的。"><a href="#前端永远都不要去写或者读Cookie，这是后端做的。" class="headerlink" title="前端永远都不要去写或者读Cookie，这是后端做的。"></a>前端永远都不要去写或者读Cookie，这是后端做的。</h3><h3 id="注册到登陆完成流程"><a href="#注册到登陆完成流程" class="headerlink" title="注册到登陆完成流程"></a>注册到登陆完成流程</h3><ol>
 <li>打开注册页面注册</li>
 <li>发送POST请求，带有账号密码</li>
 <li>服务器验证没有问题就会写进数据库</li>
@@ -781,6 +787,54 @@
 <li>服务器读一下Cookie，查看到里面id，会通过id找到用户信息，会查看到用户的所有信息</li>
 <li>在html页面上填入对应信息，username和password那些，所以就不用再次登录就可以打开网页。</li>
 <li>假设有另一个用户访问该网站，因为没有cookie，所以会给一个所有人一样的页面，让你注册或登陆。</li>
+</ol>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h3 id="Cookie的问题"><a href="#Cookie的问题" class="headerlink" title="Cookie的问题"></a>Cookie的问题</h3><p>假设我们知道数据库里另一个用户的账号，和cookie的组成规则，那么我们只要把我们的cookie修改成另一个用户的cookie，就可以获取到那个用户的密码。<br>上面说到Cookie是可以改的，那么改了Cookie就变成另一个用户了,这是很不安全的，怎么解决这个问题呢？<br>答案是：使用Session  </p>
+<h3 id="什么是Session"><a href="#什么是Session" class="headerlink" title="什么是Session?"></a>什么是Session?</h3><ol>
+<li>服务器通过Cookie给用户一个SessionId。</li>
+<li>SessionId对应服务器里面的一小块内存，每次用户访问服务器的时候，服务器通过SessionId去读取对应的Session，就知道用户的隐私信息了。</li>
+<li>因为一般SessionId是随机的，所以正常情况下是猜不到的，这样就无法获取用户的Cookie了，也无法改用户的Cookie了。安全由这个随机数保证，没有人能猜到随机数，得不到随机数就得不到Cookie</li>
+</ol>
+<h3 id="什么是Session-（重点）"><a href="#什么是Session-（重点）" class="headerlink" title="什么是Session? （重点）"></a>什么是Session? （重点）</h3><ol>
+<li>将SessionID（随机数）通过Cookie发给客户端</li>
+<li>客户端访问服务器时，服务器读取SessionID</li>
+<li>服务器有一块内存（对象）保存了所有的session</li>
+<li>通过SessionID我们可以得到对应用户的隐私信息，如 id、email</li>
+<li>这块内存（哈希表）就是服务器上的所有session</li>
+<li>对服务器来说有很多session,对用户来说有一个session</li>
+</ol>
+<h3 id="Session和Cookie的关系"><a href="#Session和Cookie的关系" class="headerlink" title="Session和Cookie的关系"></a>Session和Cookie的关系</h3><ol>
+<li>一般来说，Session是基于Cookie来实现的，因为Session必须把SessionID放到Cookie里面来发给客户端，没有这个SessionID就没有这个Session。</li>
+</ol>
+<hr>
+<h2 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h2><h3 id="localStorage简介"><a href="#localStorage简介" class="headerlink" title="localStorage简介"></a>localStorage简介</h3><ol>
+<li><code>localStorage</code>是Html5提供的一个API,里面常用的方法有<code>clear</code>,<code>getItem</code>,<code>setItem</code>,<code>removeItem</code>。</li>
+<li><code>Session</code>是服务器上的哈希表，<code>localStorage</code>是浏览器上的哈希表。</li>
+<li><code>localStorage</code>只能存字符串，直接存函数或对象的话会变成字符串，所有要存对象的话要使用JSON。</li>
+</ol>
+<h3 id="localStorage用法"><a href="#localStorage用法" class="headerlink" title="localStorage用法"></a>localStorage用法</h3><ol>
+<li>正常来说js代码中的变量在页面刷新的时候，会全部销毁，刷新后重新声明，没有办法保存下来。</li>
+<li>使用localStorage可以把变量保存下来，刷新页面后也不会销毁，因为localStorage是保存在系统文件里的，这叫持久化存储 </li>
+<li>假设我的网站更新了，我要提示用户，但是直接使用<code>aleart()</code>的话，每次刷新这个页面都会弹出这个提示，那我们就可以使用localStorage，先查看localStorage里有没有我们的哈希，如果没有，就进行提示，并把哈希存进去，如果有，就不提示。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let already = localStorage.getItem(&quot;已经提示了&quot;)</span><br><span class="line">if (!already) &#123;</span><br><span class="line">    alert(&apos;你好&apos;)</span><br><span class="line">    localStorage.setItem(&apos;已经提示了&apos;, true)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="localStorage特点（重点）"><a href="#localStorage特点（重点）" class="headerlink" title="localStorage特点（重点）"></a>localStorage特点（重点）</h3><ol>
+<li>LocalStorage跟HTTP无关</li>
+<li>HTTP 不会带上 LocalStorage 的值</li>
+<li>只有相同域名的页面才能互相读取 LocalStorage（没有同源那么严格）（浏览器的基本功能，这样才安全）</li>
+<li>每个域名LocalStorage最大存储量为5Mb左右（每个浏览器不一样）</li>
+<li>常用场景：记录有没有提示过用户（没有用的信息，不能记录密码，敏感信息）</li>
+<li>LocalStorage 永久有效，除非用户清理浏览器缓存数据。</li>
+</ol>
+<h3 id="Cookie和localStorage的区别"><a href="#Cookie和localStorage的区别" class="headerlink" title="Cookie和localStorage的区别"></a>Cookie和localStorage的区别</h3><ol>
+<li>每次发送HTTP请求的时候都会带上Cookie给服务器，而LocalStorage不会带给服务器，因为它和http无关。</li>
+<li>Cookie的最大存储量一般为4k，而LocalStorage一般为5MB。</li>
+</ol>
+<h2 id="SessionStorage（会话存储，和上面的Session没关系）"><a href="#SessionStorage（会话存储，和上面的Session没关系）" class="headerlink" title="SessionStorage（会话存储，和上面的Session没关系）"></a>SessionStorage（会话存储，和上面的Session没关系）</h2><h3 id="SessionStorage特点"><a href="#SessionStorage特点" class="headerlink" title="SessionStorage特点"></a>SessionStorage特点</h3><ol>
+<li>1、2、3、4同上，使用方法也一样</li>
+<li>SessionStorage 在用户关闭浏览器页面后就失效。</li>
+</ol>
+<h3 id="LocalStorage和SessionStorage什么区别？"><a href="#LocalStorage和SessionStorage什么区别？" class="headerlink" title="LocalStorage和SessionStorage什么区别？"></a>LocalStorage和SessionStorage什么区别？</h3><ol>
+<li>localStorage在关闭页面甚至浏览器后不会失效，SessionStorage 在用户关闭浏览器页面(Session结束，网络连接中的会话结束)后就失效。</li>
 </ol>
 
           
