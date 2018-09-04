@@ -774,6 +774,13 @@
 </ul>
 </li>
 </ol>
+<h3 id="Cookie-如何设置过期时间？如何删除-Cookie？"><a href="#Cookie-如何设置过期时间？如何删除-Cookie？" class="headerlink" title="Cookie 如何设置过期时间？如何删除 Cookie？"></a>Cookie 如何设置过期时间？如何删除 Cookie？</h3><p>设置过期时间可以用Expires或Max-Age</p>
+<ol>
+<li><code>Set-Cookie: Expires: Tue, 04 Sep 2018 13:10:29 GMT</code>,2018年9月04号，13：10：29，格林威治时间过期</li>
+<li><code>Set-Cookie: max-age=30s</code>,30秒后过期<br>删除Cookie</li>
+<li>使用setcookie()函数删除小部分cookie，</li>
+<li>在浏览器设置里删除所有cookie</li>
+</ol>
 <h3 id="前端永远都不要去写或者读Cookie，这是后端做的。"><a href="#前端永远都不要去写或者读Cookie，这是后端做的。" class="headerlink" title="前端永远都不要去写或者读Cookie，这是后端做的。"></a>前端永远都不要去写或者读Cookie，这是后端做的。</h3><h3 id="注册到登陆完成流程"><a href="#注册到登陆完成流程" class="headerlink" title="注册到登陆完成流程"></a>注册到登陆完成流程</h3><ol>
 <li>打开注册页面注册</li>
 <li>发送POST请求，带有账号密码</li>
@@ -805,6 +812,12 @@
 <h3 id="Session和Cookie的关系"><a href="#Session和Cookie的关系" class="headerlink" title="Session和Cookie的关系"></a>Session和Cookie的关系</h3><ol>
 <li>一般来说，Session是基于Cookie来实现的，因为Session必须把SessionID放到Cookie里面来发给客户端，没有这个SessionID就没有这个Session。</li>
 </ol>
+<h3 id="Cookie-和-Session-的区别"><a href="#Cookie-和-Session-的区别" class="headerlink" title="Cookie 和 Session 的区别"></a>Cookie 和 Session 的区别</h3><ol>
+<li>Cookie数据放在客户端的系统文件里，每次都随请求发送给 Server</li>
+<li>Session 保存在 Server 的内存里，其 Session ID 是通过 Cookie 发送给客户端的</li>
+<li>Cookie不安全，因为它数据在本地，容易被别人篡改，session较安全，因为它的数据在服务端，然后一般给的SessionID是随机的，也不容易测试出来。</li>
+<li>一般来说，Session是基于Cookie来实现的，没有Cookie就没有session</li>
+</ol>
 <hr>
 <h2 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h2><h3 id="localStorage简介"><a href="#localStorage简介" class="headerlink" title="localStorage简介"></a>localStorage简介</h3><ol>
 <li><code>localStorage</code>是Html5提供的一个API,里面常用的方法有<code>clear</code>,<code>getItem</code>,<code>setItem</code>,<code>removeItem</code>。</li>
@@ -826,7 +839,7 @@
 <li>LocalStorage 永久有效，除非用户清理浏览器缓存数据。</li>
 </ol>
 <h3 id="Cookie和localStorage的区别"><a href="#Cookie和localStorage的区别" class="headerlink" title="Cookie和localStorage的区别"></a>Cookie和localStorage的区别</h3><ol>
-<li>每次发送HTTP请求的时候都会带上Cookie给服务器，而LocalStorage不会带给服务器，因为它和http无关。</li>
+<li>每次发送HTTP请求的时候都会带上Cookie给服务器，而LocalStorage不会随http发送给服务器，因为它和http无关。</li>
 <li>Cookie的最大存储量一般为4k，而LocalStorage一般为5MB。</li>
 </ol>
 <h2 id="SessionStorage（会话存储，和上面的Session没关系）"><a href="#SessionStorage（会话存储，和上面的Session没关系）" class="headerlink" title="SessionStorage（会话存储，和上面的Session没关系）"></a>SessionStorage（会话存储，和上面的Session没关系）</h2><h3 id="SessionStorage特点"><a href="#SessionStorage特点" class="headerlink" title="SessionStorage特点"></a>SessionStorage特点</h3><ol>
@@ -834,7 +847,43 @@
 <li>SessionStorage 在用户关闭浏览器页面后就失效。</li>
 </ol>
 <h3 id="LocalStorage和SessionStorage什么区别？"><a href="#LocalStorage和SessionStorage什么区别？" class="headerlink" title="LocalStorage和SessionStorage什么区别？"></a>LocalStorage和SessionStorage什么区别？</h3><ol>
-<li>localStorage在关闭页面甚至浏览器后不会失效，SessionStorage 在用户关闭浏览器页面(Session结束，网络连接中的会话结束)后就失效。</li>
+<li>localStorage在关闭页面甚至浏览器后不会失效（不会自动过期），SessionStorage 在用户关闭浏览器页面(Session结束，网络连接中的会话结束)后就失效（会自动过期）。</li>
+</ol>
+<h2 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h2><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><ol>
+<li>服务器某个响应部分加上’Cache-Control’,’max-age=30’（单位是秒）</li>
+<li>第一次请求还是会下载，如果客户端再次请求这个相同的url，浏览器就会阻断这个请求，直接从浏览器的内存里或者硬盘里返回上一次请求到的文件。</li>
+<li>过了30s后再次发起请求才不会被阻断。（在测试的时候不要勾选浏览器上的Disable cache）</li>
+<li>不要给首页（html）设置缓存，因为如果首页都设置了缓存，那么浏览器不会给服务端发送任何请求，如果代码更新了，无法获取最新的网页，所以我们要留一个入口。</li>
+</ol>
+<h3 id="如何更新缓存"><a href="#如何更新缓存" class="headerlink" title="如何更新缓存"></a>如何更新缓存</h3><ol>
+<li>假设我们设置的缓存时间比较长，但是网页的js更新了，怎么办？</li>
+<li>稍微改动一下请求的url，例如<code>./css</code>改成<code>./css?v=2</code>,或者改成<code>./css?随机数</code>。</li>
+</ol>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><ol>
+<li>从前的更新缓存是使用Expires：<code>response.setHeader(&#39;Expirse&#39;, &#39;SUM,04 Feb 2018 14:04:04 GM&#39;)</code>,2018年二月24好，14点4分5秒，格林威治时间过期，过了以后就没缓存了。但是这是根据自己客户端的本地时间的，如果时间错了，就会出问题。</li>
+<li>如果同时有Cache-Control和Expirse，会优先使用Cache-Control</li>
+</ol>
+<h3 id="Etag"><a href="#Etag" class="headerlink" title="Etag"></a>Etag</h3><h4 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h4><ol>
+<li>MD5-摘要算法，就是把一个文件变成一个字符串，如果文件里的内容有改一点点，算出来的md5，差异都很大。差异越小，算出来的md5差别越大。</li>
+<li>例如下载个Linux.iso 400M,怎么知道下载的完不完整呢，万一少一两个字节怎么办？</li>
+<li>网上的Linux.iso可以算个MD5，然后我本地下载后也算一个MD5，进行对比，一样就代表完整。</li>
+</ol>
+<h4 id="Etag的使用"><a href="#Etag的使用" class="headerlink" title="Etag的使用"></a>Etag的使用</h4><ol>
+<li>安装个MD5<code>npm install MD5</code>，引入nodejs里面</li>
+<li>给访问的文件的响应头部加上Etag<code>let string = fs.readFileSync(&#39;./js/main.js&#39;, &#39;utf8&#39;)</code>,          <code>response.setHeader(&#39;ETag&#39;, fileMd5)</code>。</li>
+<li>在第一次请求的时候请求响应头会有个<code>Etag:8ae0c72f0ceab4c0511cd69747342af3</code>，这个值就是它的md5,刷新一次，第二次请求的请求头上会有个（如果不匹配）<code>If-None-Match: 8ae0c72f0ceab4c0511cd69747342af3</code>。</li>
+<li>借助请求头，我们直接用if判断我们需要的文件的请求头上的md5和服务器上的请求文件的md是否相等，如果相等，则http状态码为304，代表从上次请求后，请求的网页为修改，服务器返回响应后，不会返回网页内容。<br>示例代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let string = fs.readFileSync(&apos;./js/main.js&apos;, &apos;utf8&apos;)</span><br><span class="line">response.setHeader(&apos;Content-Type&apos;, &apos;text/javascript,charset=utf-8&apos;)</span><br><span class="line">let fileMd5 = md5(string)</span><br><span class="line">if (request.headers[&apos;if-none-match&apos;] === fileMd5) &#123;</span><br><span class="line">  response.statusCode = 304</span><br><span class="line">&#125;else&#123;</span><br><span class="line">      response.setHeader(&apos;ETag&apos;, fileMd5)</span><br><span class="line">      response.write(string)</span><br><span class="line">&#125;</span><br><span class="line">response.end()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Cache-Control和Etag"><a href="#Cache-Control和Etag" class="headerlink" title="Cache-Control和Etag"></a>Cache-Control和Etag</h4><ol>
+<li>Cache-Control直接不请求，直接读取内存或磁盘里的数据</li>
+<li>Etag请求但不返回内容，查看md5是否相等，相等就不返回内容</li>
+<li>Cache-Control比较好，连http请求都不用发送了。</li>
+</ol>
+<h4 id="Cache-Control-max-age-1000-缓存-与-ETag-的「缓存」有什么区别？"><a href="#Cache-Control-max-age-1000-缓存-与-ETag-的「缓存」有什么区别？" class="headerlink" title="Cache-Control: max-age=1000 缓存 与 ETag 的「缓存」有什么区别？"></a>Cache-Control: max-age=1000 缓存 与 ETag 的「缓存」有什么区别？</h4><ol>
+<li>Cache-Control:max-age=1000的话，第一次请求过后，会把响应内容进行缓存，缓存内容会在1000秒后失效，1000s内不会再访问相同的url，直接从内存或磁盘里读取缓存内容。</li>
+<li>Etag是在文件HTTP响应头上添加的标识符。客户端请求后，在请求相同url的http请求头中，会有个If-None-Match的属性，它的值对应请求文件的值，如果相等，则服务器直接返回http状态码304，代表内容没有改变，不会返回请求内容，直接使用缓存的内容。只有改变了请求的文件，Etag的值和If-None-Match的值不相等，服务器才会返回http状态码200，并返回相应内容。</li>
+<li>最大的区别是Cache-Control:max-age=1000，在1000s内不会发送http请求包，而Etag每次请求都会发送http请求包。</li>
 </ol>
 
           
